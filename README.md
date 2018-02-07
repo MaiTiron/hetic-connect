@@ -6,7 +6,7 @@
 
 Lancer le serveur mongodb
 ```
-mongod --port 27017
+mongod --dbpath data
 ```
 
 Se connecter à l'interface mongo
