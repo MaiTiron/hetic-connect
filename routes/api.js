@@ -83,8 +83,8 @@ router.post('/suppr-task/:id', (req, res) => {
 
 // Afficher un profil 
 router.get('/voir-profil/:nom', (req, res) => {
-    console.log(req.params.id);
-    res.render('voir-profil');
+    console.log(req.params.nom);
+    res.render('voir-profil/?'+req.params.nom);
 });
 
 
