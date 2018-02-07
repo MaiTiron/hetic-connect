@@ -9,15 +9,22 @@
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 </head>
 <body>
-    <article>
-        <h2>Voir profile</h2>
-        <form action="api/suppr-task/<%= item._id %>" method="POST">
-            <button type="submit">Supprimer la tâche</button>
-        </form>
-    </article>
-    <form action="api/add-task" method="POST">
-        <textarea name="title" placeholder="Le nom de la tâche"></textarea>
-        <button type="submit">Ajouter une tâche</button>
-    </form>
+    <h1>%Nom + prénom</h1>
+    <!-- Si admin : smaller "admin" en gris -->
+    <img src="#" alt="image de profile" />
+    <p>%age</p>
+    <p>%filière</p>
+    <p>%Description</p>
+    <ul>
+        <li>%Compétence 1</li>
+        <li>%Compétence 2</li>
+        <li>%Compétence 3</li>
+    </ul>
+    <ul>
+        <li>%Tag 1</li>
+        <li>%Tag 2</li>
+        <li>%Tag 3</li>
+    </ul>
+    <p>%Parcours</p>
 </body>
 </html>
