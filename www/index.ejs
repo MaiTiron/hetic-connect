@@ -11,10 +11,13 @@
 <body>
     <h1>Index</h1>
     <a href="./api/mon-compte">Mon compte</a>
-    <a href="./api/voir-profile/?nom=anto">Compte Anto</a>
-    <form action="api/add-task" method="POST">
-        <textarea name="title" placeholder="Le nom de la tâche"></textarea>
-        <button type="submit">Ajouter une tâche</button>
-    </form>
+    <a href="./api/voir-profile/?nom=anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
+
+    <article>
+        <h2>%Prénom %Nom</h2>
+        <img src="#" alt="Image de profile" />
+        <p>%Bio</p>
+        <a href="./api/voir-profile/?nom=%Nom"></a>
+    </article>
 </body>
 </html>
