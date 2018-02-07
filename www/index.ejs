@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+<body>
+    <% for (let item of data) { %>
+        <article>
+            <h2><%= item.title %></h2>
+            <p><%= item.state %></p>
+            <form action="api/suppr-task/<%= item._id %>" method="POST">
+                <button type="submit">Supprimer la tâche</button>
+            </form>
+        </article>
+    <% } %>
+    <form action="api/add-task" method="POST">
+        <textarea name="title" placeholder="Le nom de la tâche"></textarea>
+        <button type="submit">Ajouter une tâche</button>
+    </form>
+</body>
+</html>
