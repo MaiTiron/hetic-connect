@@ -19,5 +19,13 @@
         <p>%Bio</p>
         <a href="./api/voir-profile/?nom=%Nom"></a>
     </article>
+    <article>
+            <% for (let item of data){ %>
+                <article>
+                    <p><%= item.nom %></p>
+                    <p><%= item.prenom %></p>
+                </article>
+            <% } %>
+    </article>
 </body>
 </html>
