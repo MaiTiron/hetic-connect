@@ -2,6 +2,62 @@
 
 ##todolist
 
+##Mongodb liste des commande
+
+Lancer le serveur mongodb
+```
+mongod --port 27017
+```
+
+Se connecter à l'interface mongo
+```
+mongo
+```
+Voir les database
+```
+show dbs
+```
+
+Utiliser la database hetic
+```
+use hetic
+```
+Voir les collections
+```
+show collections
+```
+
+Il y a actuellement la collection user dans la table hetic pour ajouter une autre collection (ultérieurement compétence et tags), il faut faire ceci:
+```
+db.createCollection('user')
+```
+
+Pour injecter des informations dans la base de donnée ATTENTION si tu colles cette ligne dans le terminal elle s'active automatiquement fait tes changements ici avant de copier coller.
+```
+db.user.insert(
+{ 
+"admin" : "false",
+ "password" : "root",
+ "prenom" : "Julien",
+ "nom" : "Marseille",
+ "e-mail" : "julienmarseille38@yahoo.fr",
+ "age" : 20,
+ "filière" : "pmd",
+ "compétences" : [ "node", "seo" ],
+ "tags": ["chic type","micro-onde abuser"],
+"parcours" : "IUT MMI",
+ "description" : "J’aime le travail d’équipe de découvrir de nouvelles personnalités"
+ })
+
+```
+
+Pour récupérer des informations dans la collection user
+```
+db.user.find().pretty()
+```
+
+
+
 ###1. Connexion BDD --> Afficher du contenu []
 ```
 // AFFICHER DU CONTENU DANS index.ejs
