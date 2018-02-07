@@ -1,8 +1,6 @@
 # plateforme_hetic
 
-##todolist
-
-##Mongodb liste des commande
+## Mongodb liste des commande
 
 Lancer le serveur mongodb
 ```
@@ -56,7 +54,7 @@ Pour récupérer des informations dans la collection user
 db.user.find().pretty()
 ```
 
-
+## Todolist
 
 ###1. Connexion BDD --> Afficher du contenu []
 ```
@@ -81,7 +79,7 @@ mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on p
 ```
 
 
-###2. Connexion BDD --> Injecter dans la BDD []
+### 2. Connexion BDD --> Injecter dans la BDD []
 ```
 // AJOUTER UNE TACHE EN COURS
 
@@ -106,7 +104,7 @@ mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on p
 ```
 
 
-###3. Connexion BDD --> Supprimer du contenu []
+### 3. Connexion BDD --> Supprimer du contenu []
 ```
 // SUPPRIMER UNE TACHE EN COURS
 
@@ -128,4 +126,4 @@ mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on p
 });
 ```
 
-###4. Création des pages html pour dev les fonctionnalités []
+### 4. Création des pages html pour dev les fonctionnalités []
