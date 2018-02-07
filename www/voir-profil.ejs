@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 </head>
 <body>
-    <h1>Index</h1>
-    <a href="./api/mon-compte">Mon compte</a>
-    <a href="./api/voir-profile/:nom=anto">Compte Anto</a>
+    <article>
+        <h2>Voir profile</h2>
+        <form action="api/suppr-task/<%= item._id %>" method="POST">
+            <button type="submit">Supprimer la tâche</button>
+        </form>
+    </article>
     <form action="api/add-task" method="POST">
         <textarea name="title" placeholder="Le nom de la tâche"></textarea>
         <button type="submit">Ajouter une tâche</button>

@@ -79,3 +79,16 @@ router.post('/suppr-task/:id', (req, res) => {
         db.close();
     });
 });
+
+
+// Afficher un profil 
+router.get('/voir-profil/:nom', (req, res) => {
+    console.log(req.params.id);
+    res.render('voir-profil');
+});
+
+
+// Mon compte
+router.get('/mon-compte', (req, res) => {
+    res.render('mon-compte');
+});
