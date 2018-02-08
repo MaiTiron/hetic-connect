@@ -24,11 +24,11 @@ router.get('/', (req, res) => {
     
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
-        console.log(db.collection('user').find('nom'));
+        console.log(db.collection('user'));
     if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
     else { // Connexion établie --> récupère la collection de data
 
-        db.collection('tasks').find().toArray( (err, collection) => {
+        db.collection('user').find().toArray( (err, collection) => {
             // Test la connexion à la collection
             if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
             else {

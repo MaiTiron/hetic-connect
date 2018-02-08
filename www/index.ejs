@@ -13,19 +13,15 @@
     <a href="./api/mon-compte">Mon compte</a>
     <a href="./api/voir-profile/?nom=anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
 
-    <article>
-        <h2>%Prénom %Nom</h2>
-        <img src="#" alt="Image de profile" />
-        <p>%Bio</p>
-        <a href="./api/voir-profile/?nom=%Nom"></a>
-    </article>
-    <article>
-            <% for (let item of data){ %>
-                <article>
-                    <p><%= item.nom %></p>
-                    <p><%= item.prenom %></p>
-                </article>
-            <% } %>
-    </article>
+
+    <% for (let item of data){ %>
+        <article>
+            <h2><%= item.nom %></h2>
+            <p><%= item.prenom %></p>
+            <img src="#" alt="Image de profile" />
+            <a href="./api/voir-profile/?nom=<%= item.nom %>">Voir profil</a>
+        </article>
+    <% } %>
+
 </body>
 </html>
