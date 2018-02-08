@@ -16,6 +16,7 @@ router.use(bodyParser.urlencoded({extended: false}));
 const mongoServer = 'mongodb://localhost:27017/hetic'; // Mettre le lien vers la vraie BDD ?
 
 
+
 /*
     Def des routes
 */
@@ -24,7 +25,6 @@ router.get('/', (req, res) => {
     
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
-        console.log(db.collection('user'));
     if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
     else { // Connexion établie --> récupère la collection de data
 
@@ -32,6 +32,7 @@ router.get('/', (req, res) => {
             // Test la connexion à la collection
             if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
             else {
+                
                 // Connexion à la collection établie
                 res.render('index', {data: collection});
             }

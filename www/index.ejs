@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,34 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <link rel="stylesheet" href="">
 </head>
-<body>
-    <h1>Index</h1>
+<body ng-controller="TodoController">
+ 
+        <ng-view></ng-view>
+        
+        <!-- Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
+        
+        <!-- Template -->
+        <script type="text/ng-template" id="/todos.html">
+          Search: <input type="text" ng-model="search.name">
+          <ul>
+            <li ng-repeat="todo in todos | filter: search">
+              <input type="checkbox" ng-model="todo.completed">
+              <a href="#/{{$index}}">{{todo.name}}</a>
+            </li>
+          </ul>
+        </script>
+        
+     
+
+
+
+
     <a href="./api/mon-compte">Mon compte</a>
     <a href="./api/voir-profile/?nom=anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
-
 
     <% for (let item of data){ %>
         <article>
@@ -23,5 +45,8 @@
         </article>
     <% } %>
 
+
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script src="js/script.js"></script>
 </html>
