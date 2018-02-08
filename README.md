@@ -128,4 +128,23 @@ mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on p
 
 ### 4. Création des pages html pour dev les fonctionnalités []
 
-test
+### 5. Gestion d'erreur 
+--> Le but est à chq erreur de renvoyer vers la 404
+--> Ajouter un msg différent à chq gestion d'érreur (par ex : la personne que vous cherchez n'existe pas ou autre)
+
+Vlà le code :
+```
+router.get('CHEMIN À PRÉCISER', (req, res) => { 
+    res.render('404', {data : 'MSG À MODIFIER'});
+});
+```
+
+### 6. Mise en place des connexion et dialogue avec la BDD
+
+### 7. Gestion du quiz et de la récupération des données
+    --> [] Intégrer le front 
+    --> [] Gérer l'affichage des questions 1/1 dans l'interface avec un bouton suivant (FRONT JS)
+    --> [] Gérer l'envoi des données (2 validation : 1. les infos importantes, 2. le quiz)
+    --> [] Gérer les erreurs
+        1. [] L'utilisateur à pas terminé son quiz et à quitté
+            --> Il se reco et recommence directement le quizz

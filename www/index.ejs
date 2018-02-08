@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 </head>
 <body>
     <h1>Index</h1>
     <a href="./api/mon-compte">Mon compte</a>
-    <a href="./api/voir-profile/?nom=anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
+    <a href="./api/voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
 
 
     <% for (let item of data){ %>
@@ -19,7 +20,7 @@
             <h2><%= item.nom %></h2>
             <p><%= item.prenom %></p>
             <img src="#" alt="Image de profile" />
-            <a href="./api/voir-profile/?nom=<%= item.nom %>">Voir profil</a>
+            <a href="./api/voir-profil/<%= item.nom %>">Voir profil</a>
         </article>
     <% } %>
 
