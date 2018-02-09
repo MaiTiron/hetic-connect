@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+<body id="quiz">
+    <h1>Inscription</h1>
+    <a href="./api/mon-compte">Mon compte</a>
+    <a href="./api/voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
+    
+    <form>
+        <div class="inscription">
+            <h2>Vos informations de base</h2>
+            <input name="nom" type="text" placeholder="Votre nom" />
+            <input name="prenom" type="text" placeholder="Votre prénom" />
+            <input name="mail" type="email" placeholder="Votre adresse mail" />
+            <input name="dob" type="date" />
+            <input name="mdp" type="password" placeholder="Votre mot de passe" />
+            <input name="mdp-confirmation" type="password" placeholder="Répetez votre mot de passe" />
+            <select name="formation" >
+                <option selected disabled>Votre formation actuelle</option>
+                <option>PMD</option>
+                <option>MD UX & Marketing</option>
+                <option>PMD Data</option>
+                <option>MBA</option>
+            </select>
+            <label for="parcours">Indiquez la ou les formations que vous avez réalisé avant HETIC</label>
+            <textarea name="parcours" placeholder="Votre parcours d'étude"></textarea>
+            <input name="linkedin" type="text" placeholder="Votre lien Linkedin" />
+            <input name="portfolio" type="text" placeholder="Votre portfolio" />
+            <input name="lienOpt1" type="text" placeholder="Lien optionnel" />
+            <input name="lienOpt2" type="text" placeholder="Lien optionnel" />
+
+            <label for="bio">Décrivez-vous en quelques phrases, adoptez un ton fun :)</label>
+            <textarea name="bio" placeholder="Vous en quelques lignes"></textarea>
+
+            <input name="disponibilites" type="text" placeholder="Vos disponibilités" />        
+
+            <input name="valider_inscription" type="submit" value="Inscription" />
+        </div>
+
+    </form>
+
+</body>
+</html>
