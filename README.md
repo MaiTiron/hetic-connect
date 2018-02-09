@@ -76,6 +76,7 @@ Pour récupérer des informations dans la collection user
 db.user.find().pretty()
 ```
 
+
 ## Todolist
 
 ###1. Connexion BDD --> Afficher du contenu []
@@ -148,7 +149,9 @@ mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on p
 });
 ```
 
+
 ### 4. Création des pages html pour dev les fonctionnalités []
+
 
 ### 5. Gestion d'erreur []
 --> Le but est à chq erreur de renvoyer vers la 404
@@ -161,7 +164,9 @@ router.get('CHEMIN À PRÉCISER', (req, res) => {
 });
 ```
 
+
 ### 6. Mise en place des connexion et dialogue avec la BDD []
+
 
 ### 7. Gestion du quiz et de la récupération des données []
     --> [] Intégrer le front 
