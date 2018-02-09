@@ -52,10 +52,21 @@ router.get('/voir-profil/:nom', (req, res) => { // Possibilité de récup l'ID (
     
     
 });
-
-router.get('/voir-profil/', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)
-    res.render('404', {data : 'MSG PERSO'});
+    // Afficher un profil sans nom
+router.get('/voir-profil/', (req, res) => { 
+    res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
 });
+
+    // Inscription connexion
+router.get('/identification', (req, res) => {
+    res.render('identification', {data: res});
+});
+
+    // quiz
+router.get('/quiz', (req, res) => {
+    res.render('quiz-inscription', {data: res});
+});
+
 
 
     // Mon compte
