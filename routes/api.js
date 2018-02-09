@@ -60,7 +60,7 @@ router.get('/voir-profil/', (req, res) => {
 
     // Inscription
 router.get('/inscription', (req, res) => {
-    res.render('inscription', {data: res});
+    res.render('inscription');
 });
 
     // Connexion
