@@ -1,46 +1,39 @@
-
-
-// Attendre le chargement du DOM
-document.addEventListener('DOMContentLoaded', () => {
-  //document.querySelector('button').submit( (e) => e.preventDefault() );
-},
-
-
-
-
-
 angular.module('app', ['ngRoute'])
 //---------------
 // Services
 //---------------
-.factory('Todos', function(){
+.factory('Users', function(){
 
-var table = document.querySelector("table");
-var data  = parseTable(table);
-console.log(data);
-return data;
+    var table = document.querySelector("table");
+    var data  = parseTable(table);
 
+    return data;
 })
 //---------------
 // Controllers
 //---------------
-.controller('TodoController', ['$scope', 'Todos', function ($scope, Todos) {
-$scope.todos = Todos;
+.controller('UserController', ['$scope', 'Users', function ($scope, Users) {
+    $scope.users = Users;
 }])
-.controller('TodoDetailCtrl', ['$scope', '$routeParams', 'Todos', function ($scope, $routeParams, Todos) {
-$scope.todo = Todos[$routeParams.id];
+.controller('UserDetailCtrl', ['$scope', '$routeParams', 'Users', function ($scope, $routeParams, Users) {
+    $scope.user = Users[$routeParams.id];
 }])
 //---------------
 // Routes
 //---------------
 .config(['$routeProvider', function ($routeProvider) {
-$routeProvider
-  .when('/', {
-    templateUrl: '/todos.html',
-    controller: 'TodoController'
-  })
-  .when('/:id', {
-    templateUrl: '/todoDetails.html',
-    controller: 'TodoDetailCtrl'
- });
-}]));
+    $routeProvider
+    .when('/', {
+        templateUrl: '/user.html',
+        controller: 'UserController'
+    })
+    .when('/:id', {
+        templateUrl: '/userDetails.html',
+        controller: 'UserDetailCtrl'
+    });
+}]);
+
+
+document.querySelector('#zebi').addEventListener('click', function(e) {
+    e.preventDefault();
+});

@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
     <link rel="stylesheet" href="">
 </head>
-<body ng-controller="TodoController">
-
-    
- 
+<body ng-controller="UserController">
         <ng-view></ng-view>
         
         <!-- Libraries -->
@@ -21,19 +18,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
         
         <!-- Template -->
-        <script type="text/ng-template" id="/todos.html">
+        <script type="text/ng-template" id="/users.html">
           Search: <input type="text" ng-model="search.nom">
           <ul>
-            <li ng-repeat="todo in todos | filter: search">
-              <a href="#/{{$index}}">{{todo.nom}}</a>
+            <li ng-repeat="user in users | filter: search">
+              <a href="{{$index}}">{{user.nom}}</a>
             </li>
           </ul>
         </script>
-        
-     
-
-
-
 
     <a href="./api/mon-compte">Mon compte</a>
     <a href="./api/voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
@@ -53,7 +45,7 @@
                         <td><%= item.nom %></td>
                         <td><%= item.prenom %></td>
                         <td><img src="#" alt="Image de profile" /></td>
-                        <td><a href="./api/voir-profil/<%= item.nom %>">Voir profil</a></td>
+                        <td><a href="./voir-profil/<%= item.nom %>">Voir profil</a></td>
                     </tr>
                 <% } %>
         </tbody>

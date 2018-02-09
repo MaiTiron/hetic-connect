@@ -11,16 +11,20 @@
 </head>
 <body id="quiz">
     <h1>Quiz de profil</h1>
-    <a href="./api/mon-compte">Mon compte</a>
-    <a href="./api/voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
+    <a href="./mon-compte">Mon compte</a>
+    <a href="./voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
     
-    <form>
+    <form action="./send-quizz" method="post">
         <div class="inscription">
             <h2>Vos étiquettes</h2>
             <p>Répondez à notre quiz pour avoir des étiquettes qui completeront votre profil.</p>
             
             <div>
-                
+                <h3>Qeusiton kkrjgmohzrg</h3>
+                <button id="zebi" name="knfkjaefb" value="test"><%= questions %></button>
+                <button id="zebi" name="knfkjaefb" value="test"><%= questions._id %></button>
+                <button id="zebi" name="knfkjaefb" value="test"><%= questions.Q1.question %></button>
+                <button id="zebi" name="knfkjaefb" value="test"><%= questions.Q1.reponses.solution_one.contenu %></button>
             </div>
             
             <input name="valider_inscription" type="submit" value="Inscription" />
