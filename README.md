@@ -177,3 +177,18 @@ router.get('CHEMIN À PRÉCISER', (req, res) => {
             --> Il se reco et recommence directement le quizz
 
 ### 8. Quelqu'un qui recherche trop de compétence aura un msg d'erreur "Vous recherchez un dieu, nous ne trouvons personne qui corresponde à votre requête", sinon "Nous ne trouvons personne qui corresponde à votre recherche" []
+
+
+
+
+## BDD --> Table QUESTIONS
+```
+db.questions.insert({ 
+    "inscription" : [
+        
+    ],
+    "quiz" : [
+        
+    ]
+})
+```
