@@ -6,27 +6,31 @@ var UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }, 
-  affichage: {
-    type: Boolean,
-    default: false
-  },
-  email: {
-    type: String,
-    required: true
-  },
   password: {
     type: String,
     required: true
   },
-  username: {
+  prenom: {
     type: String,
     required: true
   },
-  dob: {
-    type: Date,
+  nom: {
+    type: String,
+    required: true
   },
-  fillière: {
-    type: String
+  affichage: {
+    type: Boolean,
+    default: false
+  },
+  mail: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+  },
+  filliere: {
+    type: String,
   },
   competences: {
     type: Array,
@@ -37,17 +41,23 @@ var UserSchema = new mongoose.Schema({
   parcours: {
     type: Array,
   },
+  description: {
+    type: String,
+  },
   biographie: {
     type: String,
   },
   disponibilites: {
     type: String,
   },
-  realisation: {
+  realisations: {
     type: Array,
   },
   contact: {
     type: Array,
+  },
+  photo: {
+    type: String,
   }
 });
 
