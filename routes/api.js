@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 var User = require('../models/user');
 
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectID;
@@ -12,6 +13,8 @@ const ObjectId = require('mongodb').ObjectID;
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
+
+
 
 // const mongoServer = 'mongodb://localhost:27017/hetic'; // Mettre le lien vers la vraie BDD ?
 const mongoServer = 'mongodb://localhost/hetic';
@@ -56,21 +59,17 @@ router.get('/', (req, res) => {
 });
 
 router.post('/data', (req, res) => {
-   // SI (user connected ET quiz terminée) ==> on affiche tout
-    // SI (user )
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
     if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
     else { // Connexion établie --> récupère la collection de data
 
-        db.collection('users').find({"affichage": "true"}).toArray( (err, collection) => {
+        db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
             // Test la connexion à la collection
+            console.log({result});
             if (err) { res.json({error : err}) }
             else {
-               
-                // Connexion à la collection établie
-                
-                res.json({data : collection}); //changer collection
+                res.json({data : result}); //changer collection
             }
         });
     };
@@ -151,7 +150,13 @@ router.get('/quizz', (req, res) => {
 router.post('/send-quizz', (req, res) => {
     
     var lastID = req.body.id_Quest;
-    console.log('\n\n' + req.body.id_Quest);
+    console.log(req.session.userId);
+    app.use(session({
+        genid: function(req) {
+          return genuuid() // use UUIDs for session IDs
+        },
+        secret: 'keyboard cat'
+    }))
 
     mongoose.connect(mongoServer, (err, db) => {
         const quizz = db.collection('quizz');
