@@ -1,0 +1,8 @@
+article {
+    border: 2px solid black;
+}
+.error {
+    background-color: #C70018;
+    padding: 15px;
+    color: #FFFFFF;
+}
