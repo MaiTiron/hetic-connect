@@ -19,6 +19,7 @@ $.ajax({
     //element.addEventListener("input", function(e) {
       $('#yo').on('input', function(){
         console.log(user.data);
+        $('#container>*').remove();
         search(this.value.toLowerCase(), user.data);
         
       });
@@ -61,10 +62,11 @@ function injectCompetences(competences, i) {
 };
 
 function affichage(prenom, nom, bio, competences, i) {
+  console.log('test');
   console.log('nom : ' + prenom + ' ' + nom);
   console.log('bio : ' + bio);
   console.log('compétences : ' + competences);
-
+  
   // Gestion de du nb de compétences
   var content = "<article><h3>" + prenom + " " + nom + "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div></article>";
   console.log(competences);
