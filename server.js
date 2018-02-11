@@ -5,7 +5,6 @@
 const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
-const session = require('express-session')
 const bodyParser = require('body-parser');
 
     
@@ -76,8 +75,6 @@ app.use('/', frontRoute);
 app.use('/api', apiRoute);
 
 
-<<<<<<< HEAD
-=======
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -95,7 +92,6 @@ app.use(function (req, res, next) {
 
   
 
->>>>>>> 54ea3a0de942dd326872d4f2422581adbbae78fd
 /*
     Lancer le server
 */
