@@ -23,7 +23,7 @@ Import des composants MongoDB et configuration
 */
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-mongoose.connect('mongodb://localhost/auth');
+mongoose.connect('mongodb://localhost/hetic');
 const db = mongoose.connection;
 
     

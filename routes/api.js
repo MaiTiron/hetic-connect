@@ -14,7 +14,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
 // const mongoServer = 'mongodb://localhost:27017/hetic'; // Mettre le lien vers la vraie BDD ?
-const mongoServer = 'mongodb://localhost/auth';
+const mongoServer = 'mongodb://localhost/hetic';
 
 
 
