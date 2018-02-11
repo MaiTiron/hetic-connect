@@ -10,6 +10,9 @@ var UserSchema = new mongoose.Schema({
   },
   password: {
     type: String
+  },
+  quizzResponses: {
+    type: String
   }
 });
 
