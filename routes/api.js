@@ -24,16 +24,6 @@ const mongoServer = 'mongodb://localhost/hetic';
 /*
     Def des routes
 */
-
-
-
-
-
-
-
-
-
-
     // Accueil --> Affichage des profils 
 router.get('/', (req, res) => {
     // SI (user connected ET quiz terminée) ==> on affiche tout
@@ -61,28 +51,45 @@ router.get('/', (req, res) => {
 router.post('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
-    if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-    else { // Connexion établie --> récupère la collection de data
+        if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        else { // Connexion établie --> récupère la collection de data
 
-        db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
-            // Test la connexion à la collection
-            console.log({result});
-            if (err) { res.json({error : err}) }
-            else {
-                res.json({data : result}); //changer collection
-            }
-        });
-    };
-    db.close();
-});
-
+            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
+                // Test la connexion à la collection
+                console.log({result});
+                if (err) { res.json({error : err}) }
+                else {
+                    res.json({data : result}); //changer collection
+                }
+            });
+        };
+        db.close();
+    });
 });
 
 
  
     // Afficher un profil 
-router.get('/voir-profil/:nom', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)
-    let targetName = req.params.nom;
+router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)
+    let targetID = req.params.id;
+    console.log(targetID);
+
+    mongoose.connect(mongoServer, (err, db) => { 
+        if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        else {
+
+            db.collection('users').find({"_id": ObjectId(targetID)}).toArray( (err, result) => {
+                // Test la connexion à la collection
+                
+                if (err) { res.json({error : err}) }
+                else {
+                    console.log(result);
+                }
+            });
+        };
+        db.close();
+    });
+
     if (targetName == 'zebi') { // Seulement si la connexion avec le BDD ne trouve rien
         res.render('voir-profil', {error : 'Désolé mais la personne que vous cherchez n\'existe pas !', data : targetName});
     }
@@ -111,18 +118,16 @@ router.get('/connexion', (req, res) => {
 });
 
     
-
-
-
-
-
-
+// Clears the session data by setting the value to null
+router.get('/clear', function(req, res) {  
+    res.send(req.session);
+  });
 
     // quizz
     let tab = [];
     let test = false;
 router.get('/quizz', (req, res) => {
-
+    console.log('Req.session : ' + req.session);
     mongoose.connect(mongoServer, (err, db) => {
         if (err) { res.render('404', {error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else { 
@@ -151,29 +156,18 @@ router.post('/send-quizz', (req, res) => {
     
     var lastID = req.body.id_Quest;
     console.log(req.session.userId);
-    app.use(session({
-        genid: function(req) {
-          return genuuid() // use UUIDs for session IDs
-        },
-        secret: 'keyboard cat'
-    }))
-
+    console.log(req.body.etiquette);
     mongoose.connect(mongoServer, (err, db) => {
         const quizz = db.collection('quizz');
         if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else { 
             
             // SI ON REÇOIT 2 _ID ON AJOUTE DANS LA REQUETE
-            
                 if(tab.length > 1) {
                     let questionAlea = tab[Math.floor(Math.random()*tab.length)];
                     tab.splice( tab.indexOf(questionAlea), 1 );
-                    console.log('tab : ' + tab + ' --------- length Tab : ' + tab.length);
-                   
-                    
-                    console.log('ID prochaine : ' + questionAlea._id);
-                    
-                   
+                    // console.log('tab : ' + tab + ' --------- length Tab : ' + tab.length);
+                    // console.log('ID prochaine : ' + questionAlea._id);
                     res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
                 } else {
                     console.log('tableau vide bande de fdp');

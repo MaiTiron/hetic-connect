@@ -72,8 +72,9 @@ function affichage(username, bio, competences, i) {
   // Gestion de du nb de compétences
   var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div></article>";
 
-  injectCompetences(competences, i);
-  $('#container').append(content);
 
+  $('#container').append(content);
+  injectCompetences(competences, i);
+  
   var content = "";
 }

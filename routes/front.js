@@ -28,7 +28,9 @@ router.get('/inscription', (req, res) => {
 // Page inscription : POST
 router.post('/inscription', function (req, res, next) {
  
+    // CONNEXION
     if (req.body.password !== req.body.passwordVerif) {
+      console.log(req.session);
       var err = new Error('Les mots de passe ne correspondent pas.');
       err.status = 400;
       // res.send("Le mot de passe ne correspond pas.");
