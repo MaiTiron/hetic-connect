@@ -25,6 +25,11 @@ Voir les collections
 show collections
 ```
 
+remove
+```
+db.quizz.remove({"_id" : new ObjectId("5a7e1060c9f2040f0cb4de49")})
+```
+
 Il y a actuellement la collection user dans la table hetic pour ajouter une autre collection (ultérieurement compétence et tags), il faut faire ceci:
 ```
 db.createCollection('user')
@@ -192,3 +197,17 @@ db.questions.insert({
     ]
 })
 ```
+
+
+var reqAjax = $.ajax({
+      type: 'POST',
+      data: JSON.stringify(user),
+      contentType: 'application/json',
+      url: 'http://localhost:3000/api/data',					
+      success: function(user) {
+        console.log(user);
+        }
+  }).done(function(user){
+    console.log(user);
+    return user;
+  });
