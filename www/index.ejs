@@ -9,11 +9,55 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
     <link rel="stylesheet" href="">
+<<<<<<< HEAD
 
     </head>
 <body >
 
         <input id="yo" type="text" name="lname"><br>
+=======
+</head>
+<body ng-controller="UserController">
+        <ng-view></ng-view>
+        
+        <!-- Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
+        
+        <!-- Template -->
+        <script type="text/ng-template" id="/users.html">
+          Search: <input type="text" ng-model="search.nom">
+          <ul>
+            <li ng-repeat="user in users | filter: search">
+              <a href="{{$index}}">{{user.nom}}</a>
+            </li>
+          </ul>
+        </script>
+
+    <a href="./api/mon-compte">Mon compte</a>
+    <a href="./api/voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
+
+    <table>
+        <thead>
+             <tr>
+               <th>nom</th>
+               <th>prenom</th>
+               <th>image de profil</th>
+               <th>Voir profil</th>
+             </tr>
+        </thead>
+        <tbody>
+                <% for (let item of data){ %>
+                    <tr>
+                        <td><%= item.nom %></td>
+                        <td><%= item.prenom %></td>
+                        <td><img src="#" alt="Image de profile" /></td>
+                        <td><a href="./voir-profil/<%= item.nom %>">Voir profil</a></td>
+                    </tr>
+                <% } %>
+        </tbody>
+    </table>
+>>>>>>> f716280f6047be3c58d7a9fdbc00fb82509dbfbb
 
 
     <section id="container">

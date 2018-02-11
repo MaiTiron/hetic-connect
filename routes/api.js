@@ -3,21 +3,34 @@
 */
 const express = require('express');
 const router = express.Router();
+var User = require('../models/user');
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectID;
-module.exports = router;
+// module.exports = router;
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
-const mongoServer = 'mongodb://localhost:27017/hetic'; // Mettre le lien vers la vraie BDD ?
+// const mongoServer = 'mongodb://localhost:27017/hetic'; // Mettre le lien vers la vraie BDD ?
+const mongoServer = 'mongodb://localhost/auth';
 
 
 
 /*
     Def des routes
 */
+
+
+
+
+
+
+
+
+
+
     // Accueil --> Affichage des profils 
 router.get('/', (req, res) => {
     // SI (user connected ET quiz terminée) ==> on affiche tout
@@ -82,6 +95,7 @@ router.get('/voir-profil/:nom', (req, res) => { // Possibilité de récup l'ID (
     
 });
 
+
     // Afficher un profil sans nom
 router.get('/voir-profil/', (req, res) => { 
     res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
@@ -97,12 +111,51 @@ router.get('/connexion', (req, res) => {
     res.render('connexion');
 });
 
+    
+
+
+
+
+
+
+
     // quiz
-router.get('/quiz', (req, res) => {
+router.get('/quizz', (req, res) => {
     // Gérer la connexion à la BDD pour récupérer toutes les questions
-    res.render('quiz-inscription', {questions: res});
+    mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
+    // Test de la connexion
+    if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+    else { // Connexion établie --> récupère la collection de data
+
+        db.collection('quizz').find().toArray( (err, collection) => {
+            // Test la connexion à la collection
+            if (err) { res.render('404', {error : err, data: 'Aucune tâche en cours'}) }
+            else {
+                let questionAlea = collection[Math.floor(Math.random()*collection.length)];
+                console.log(questionAlea);
+                res.render('quizz', {questions: questionAlea});
+            }
+        });
+    };
+    db.close();
+    });
 });
 
+
+
+
+
+
+
+
+
+
+    // Validation quizz
+router.post('/send-quizz', (req, res) => {
+    console.log(req.body)
+        
+    res.render('quizz', {data : req.body});
+});
 
 
     // Mon compte
@@ -118,7 +171,7 @@ router.get('/404', (req, res) => {
 
 
 
-
+module.exports = router;
 
 
 
