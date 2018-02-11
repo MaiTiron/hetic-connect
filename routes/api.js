@@ -14,7 +14,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
 // const mongoServer = 'mongodb://localhost:27017/hetic'; // Mettre le lien vers la vraie BDD ?
-const mongoServer = 'mongodb://localhost/auth';
+const mongoServer = 'mongodb://localhost/hetic';
 
 
 
@@ -125,18 +125,18 @@ router.get('/connexion', (req, res) => {
 router.get('/quizz', (req, res) => {
 
     mongoose.connect(mongoServer, (err, db) => {
-        if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        if (err) { res.render('404', {error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else { 
             db.collection('quizz').find().toArray( (err, collection) => {
                 if (err) { res.render('404', {error : err, data: 'Problème dans l\'affichage des questions du quizz'}) }
 
                 else {
-                    if (test === false){
+                    console.log(collection);
                         for (q of collection) {
                             tab.push(q);
                             test = true;
                         }
-                    }
+                    
                     console.log(tab.length);
                     let questionAlea = tab[Math.floor(Math.random()*tab.length)]; 
                     res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
@@ -166,7 +166,7 @@ router.post('/send-quizz', (req, res) => {
                     console.log('tab : ' + tab + ' --------- length Tab : ' + tab.length);
                    
                     
-                    console.log('ID prochaine : ' +questionAlea._id);
+                    console.log('ID prochaine : ' + questionAlea._id);
                     
                    
                     res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
@@ -176,17 +176,7 @@ router.post('/send-quizz', (req, res) => {
                 }
             
         }
-            
-        
-        
-        /*quizz.find({"_id": {$ne: ObjectId(lastID) }}).toArray( (err, collection) => { // On récupère toutes les questions QUI ONT un id DIFFERENT des dernières
-                if (err) { res.render('404', {error : err, data: 'Problème dans l\'affichage des questions du quizz'}) }
 
-                else { 
-                    let questionAlea = collection[Math.floor(Math.random()*collection.length)]; 
-                    res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
-                }
-            });*/
         db.close();
     });
 });
