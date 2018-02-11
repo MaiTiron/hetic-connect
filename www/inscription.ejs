@@ -10,11 +10,34 @@
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 </head>
 <body id="quiz">
+    <h1>Connexion</h1>
+
+        <form action="/inscription" method="post">
+            <input type="text" name="logemail" placeholder="mail">
+            <input type="password" name="logpassword" placeholder="mdp">
+            <input type="submit" value="Connexion">
+        </form>
+
+
     <h1>Inscription</h1>
+
+        <form action="/inscription" method="post">
+            <input type="text" name="email" placeholder="mail">
+            <input type="text" name="username" placeholder="nom">
+            <input type="password" name="password" placeholder="mdp">
+            <input type="password" name="passwordVerif" placeholder="Confirmer mdp">
+            <input type="submit" value="S'inscrire">
+        </form>
+
+        
+
+
+    <!-- 
     <a href="./api/mon-compte">Mon compte</a>
     <a href="./api/voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
     
-    <form>
+
+    <!--<form>
         <div class="inscription">
             <h2>Vos informations de base</h2>
             <input name="nom" type="text" placeholder="Votre nom" />
@@ -36,16 +59,13 @@
             <input name="portfolio" type="text" placeholder="Votre portfolio" />
             <input name="lienOpt1" type="text" placeholder="Lien optionnel" />
             <input name="lienOpt2" type="text" placeholder="Lien optionnel" />
-
             <label for="bio">Décrivez-vous en quelques phrases, adoptez un ton fun :)</label>
             <textarea name="bio" placeholder="Vous en quelques lignes"></textarea>
-
             <input name="disponibilites" type="text" placeholder="Vos disponibilités" />        
-
             <input name="valider_inscription" type="submit" value="Inscription" />
         </div>
-
     </form>
+     -->
 
 </body>
 </html>

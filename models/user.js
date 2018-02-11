@@ -2,14 +2,52 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
 var UserSchema = new mongoose.Schema({
-  email: {
-    type: String
+  admin: {
+    type: Boolean,
+    default: false
+  }, 
+  affichage: {
+    type: Boolean,
+    default: false
   },
-  username: {
-    type: String
+  email: {
+    type: String,
+    required: true
   },
   password: {
+    type: String,
+    required: true
+  },
+  username: {
+    type: String,
+    required: true
+  },
+  dob: {
+    type: Date,
+  },
+  fillière: {
     type: String
+  },
+  competences: {
+    type: Array,
+  },
+  tags: {
+    type: Array,
+  },
+  parcours: {
+    type: Array,
+  },
+  biographie: {
+    type: String,
+  },
+  disponibilites: {
+    type: String,
+  },
+  realisation: {
+    type: Array,
+  },
+  contact: {
+    type: Array,
   }
 });
 
@@ -45,5 +83,5 @@ UserSchema.pre('save', function (next) {
 });
 
 
-var User = mongoose.model('User', UserSchema);
+var User = mongoose.model('user', UserSchema);
 module.exports = User;

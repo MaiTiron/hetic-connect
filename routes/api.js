@@ -63,7 +63,7 @@ router.post('/data', (req, res) => {
     if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
     else { // Connexion établie --> récupère la collection de data
 
-        db.collection('user').find().toArray( (err, collection) => {
+        db.collection('users').find({"affichage": "true"}).toArray( (err, collection) => {
             // Test la connexion à la collection
             if (err) { res.json({error : err}) }
             else {

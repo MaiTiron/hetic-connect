@@ -25,9 +25,9 @@ router.get('/inscription', (req, res) => {
   });
   
   
-  // Page inscription : POST
-  router.post('/inscription', function (req, res, next) {
-  
+// Page inscription : POST
+router.post('/inscription', function (req, res, next) {
+ 
     if (req.body.password !== req.body.passwordVerif) {
       var err = new Error('Les mots de passe ne correspondent pas.');
       err.status = 400;

@@ -6,16 +6,17 @@ const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
+/*
+Import des composant pour l'authentification
+*/
+const session = require('express-session');
 
     
     // Modules
 const frontRoute = require('./routes/front');
 const apiRoute = require('./routes/api');
 
-/*
-Import des composant pour l'authentification
-*/
-const session = require('express-session');
+
 
 
 /*
