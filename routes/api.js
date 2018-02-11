@@ -6,6 +6,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectID;
+
 module.exports = router;
 
 router.use(bodyParser.json());
@@ -80,44 +81,77 @@ router.get('/connexion', (req, res) => {
 
 
 
-    // quiz
+    // quizz
+    let tab = [];
+    let test = false;
 router.get('/quizz', (req, res) => {
-    // Gérer la connexion à la BDD pour récupérer toutes les questions
-    mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
-    // Test de la connexion
-    if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-    else { // Connexion établie --> récupère la collection de data
 
-        db.collection('quizz').find().toArray( (err, collection) => {
-            // Test la connexion à la collection
-            if (err) { res.render('404', {error : err, data: 'Aucune tâche en cours'}) }
-            else {
-                let questionAlea = collection[Math.floor(Math.random()*collection.length)];
-                console.log(questionAlea);
-                res.render('quizz', {questions: questionAlea});
-            }
-        });
-    };
-    db.close();
+    mongoose.connect(mongoServer, (err, db) => {
+        if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        else { 
+            db.collection('quizz').find().toArray( (err, collection) => {
+                if (err) { res.render('404', {error : err, data: 'Problème dans l\'affichage des questions du quizz'}) }
+
+                else {
+                    if (test === false){
+                        for (q of collection) {
+                            tab.push(q);
+                            test = true;
+                        }
+                    }
+                    console.log(tab.length);
+                    let questionAlea = tab[Math.floor(Math.random()*tab.length)]; 
+                    res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
+                }
+            });
+        };
+        db.close();
     });
 });
-
-
-
-
-
-
-
-
-
-
-    // Validation quizz
+    
+    // quizz
 router.post('/send-quizz', (req, res) => {
-    console.log(req.body)
-        
-    res.render('quizz', {data : req.body});
-});
+    
+    var lastID = req.body.id_Quest;
+    console.log('\n\n' + req.body.id_Quest);
 
+    mongoose.connect(mongoServer, (err, db) => {
+        const quizz = db.collection('quizz');
+        if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        else { 
+            
+            // SI ON REÇOIT 2 _ID ON AJOUTE DANS LA REQUETE
+            
+                if(tab.length > 1) {
+                    let questionAlea = tab[Math.floor(Math.random()*tab.length)];
+                    tab.splice( tab.indexOf(questionAlea), 1 );
+                    console.log('tab : ' + tab + ' --------- length Tab : ' + tab.length);
+                   
+                    
+                    console.log('ID prochaine : ' +questionAlea._id);
+                    
+                   
+                    res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
+                } else {
+                    console.log('tableau vide bande de fdp');
+                    res.render('404', {data: 'La page de retour n\'est pas encore dev !'});
+                }
+            
+        }
+            
+        
+        
+        /*quizz.find({"_id": {$ne: ObjectId(lastID) }}).toArray( (err, collection) => { // On récupère toutes les questions QUI ONT un id DIFFERENT des dernières
+                if (err) { res.render('404', {error : err, data: 'Problème dans l\'affichage des questions du quizz'}) }
+
+                else { 
+                    let questionAlea = collection[Math.floor(Math.random()*collection.length)]; 
+                    res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
+                }
+            });*/
+        db.close();
+    });
+});
 
     // Mon compte
 router.get('/mon-compte', (req, res) => {
