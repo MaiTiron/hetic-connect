@@ -50,7 +50,7 @@ function search(inputValue, userList){
     
     }
   
-    if (countMatched>0) affichage(user.username, user.description, user.competences, countPeople);
+    if (countMatched>0) affichage( user.username, user.description, user.competences,user._id, countPeople);
   }
 }
 
@@ -58,22 +58,23 @@ function search(inputValue, userList){
 function injectCompetences(competences, i) {
   for (competence of competences ) {
     console.log(competence);
-
+    console.log($('.list-competences-'+i));
     $('.list-competences-'+i).prepend("<a href='#'>" + competence + "</a></br>");
   }
 };
 
-function affichage(username, bio, competences, i) {
+function affichage(username, bio, competences,id, i) {
   console.log('test');
   console.log('username : ' + username );
   console.log('bio : ' + bio);
   console.log('compétences : ' + competences);
+  console.log(id);
   
   // Gestion de du nb de compétences
-  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div></article>";
-
-  injectCompetences(competences, i);
+  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div><a href='/api/voir-profil/"+ id +"'>Voir mon compte</a></article>";
   $('#container').append(content);
+  injectCompetences(competences, i);
+  
 
   var content = "";
 }

@@ -81,17 +81,24 @@ router.post('/data', (req, res) => {
 
  
     // Afficher un profil 
-router.get('/voir-profil/:nom', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)
-    let targetName = req.params.nom;
-    if (targetName == 'zebi') { // Seulement si la connexion avec le BDD ne trouve rien
-        res.render('voir-profil', {error : 'Désolé mais la personne que vous cherchez n\'existe pas !', data : targetName});
-    }
-    else {
-        // 404 ici dans tous les cas autre que le profil inconnu et le cas où ça marche
-        res.render('voir-profil', {data: targetName, error: ''});
-    }
-    
-    
+router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)   
+var targetId = req.params.id;
+mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
+// Test de la connexion
+if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+else { // Connexion établie --> récupère la collection de data
+    db.collection('users').find({"_id": ObjectId(targetId) }).toArray( (err, result) => {
+        // Test la connexion à la collection
+        console.log(result);
+        if (err) { res.json({error : err}) }
+        else {
+            console.log(result[0].realisations);
+            res.render('voir-profil', {nom: result[0].nom , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, competences: result[0].competences, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
+        }
+    });
+};
+    db.close();
+    });
 });
 
 
