@@ -37,13 +37,15 @@ router.post('/inscription', function (req, res, next) {
   
     
   
-    if (req.body.email &&
-      req.body.username &&
+    if (req.body.mail &&
+      req.body.nom &&
+      req.body.prenom &&
       req.body.password) {
   
       var userData = {
-        email: req.body.email,
-        username: req.body.username,
+        mail: req.body.mail,
+        nom: req.body.nom,
+        prenom: req.body.prenom,
         password: req.body.password
       }
   
@@ -87,7 +89,7 @@ router.post('/inscription', function (req, res, next) {
             return next(err);
           } else {
             // Remplacer par route sur laquelle il faut rediriger une fois connecté
-            return res.send('<h1>Nom: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Déconnexion</a>')
+            return res.send('<h1>Nom: </h1>' + user.nom + '<h1>prenom: </h1>' + user.prenom + '<h2>Mail: </h2>' + user.mail + '<br><a type="button" href="/logout">Déconnexion</a>')
           }
         }
       });
