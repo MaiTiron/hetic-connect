@@ -31,15 +31,41 @@ router.get('/', (req, res) => {
             // Test la connexion à la collection
             if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
             else {
-                
+               
                 // Connexion à la collection établie
-                res.render('index', {data: collection});
+                
+                res.render('index');
             }
         });
     };
     db.close();
 });
 });
+
+router.post('/data', (req, res) => {
+   // SI (user connected ET quiz terminée) ==> on affiche tout
+    // SI (user )
+    mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
+    // Test de la connexion
+    if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+    else { // Connexion établie --> récupère la collection de data
+
+        db.collection('user').find().toArray( (err, collection) => {
+            // Test la connexion à la collection
+            if (err) { res.json({error : err}) }
+            else {
+               
+                // Connexion à la collection établie
+                
+                res.json({data : collection}); //changer collection
+            }
+        });
+    };
+    db.close();
+});
+
+});
+
 
  
     // Afficher un profil 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" ng-app="app">
+<html lang="fr" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,60 +9,19 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
     <link rel="stylesheet" href="">
-</head>
-<body ng-controller="TodoController">
 
-    
- 
-        <ng-view></ng-view>
+    </head>
+<body >
+
+        <input id="yo" type="text" name="lname"><br>
+
+
+    <section id="container">
+
+    </section>
         
-        <!-- Libraries -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js"></script>
-        
-        <!-- Template -->
-        <script type="text/ng-template" id="/todos.html">
-          Search: <input type="text" ng-model="search.nom">
-          <ul>
-            <li ng-repeat="todo in todos | filter: search">
-              <a href="#/{{$index}}">{{todo.nom}}</a>
-            </li>
-          </ul>
-        </script>
-        
-     
-
-
-
-
-    <a href="./api/mon-compte">Mon compte</a>
-    <a href="./api/voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
-
-    <table>
-        <thead>
-             <tr>
-               <th>nom</th>
-               <th>prenom</th>
-               <th>image de profil</th>
-               <th>Voir profil</th>
-             </tr>
-        </thead>
-        <tbody>
-                <% for (let item of data){ %>
-                    <tr>
-                        <td><%= item.nom %></td>
-                        <td><%= item.prenom %></td>
-                        <td><img src="#" alt="Image de profile" /></td>
-                        <td><a href="./api/voir-profil/<%= item.nom %>">Voir profil</a></td>
-                    </tr>
-                <% } %>
-        </tbody>
-    </table>
-
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-<script src="js/parseTable.js"></script>
-<script src="js/script.js"></script>
+
 </html>
