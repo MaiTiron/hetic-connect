@@ -106,6 +106,10 @@ router.get('/questionnaire', (req, res) => {
         res.render('questionnaire', {userId : req.session.userId})
     });
 });
+router.post('/send-questionnaire', (req, res) => {
+    console.log(req.body);
+});
+
 
     // Connexion
 router.get('/connexion', (req, res) => {
@@ -133,6 +137,10 @@ router.get('/profil', (req, res) => {
     res.render('profil');
 });
 
+    // Accueil
+router.get('/home', (req, res) => {
+    res.render('home');
+});
 
 
 
@@ -237,7 +245,7 @@ router.post('/inscription', function (req, res, next) {
                 return next(error);
             } else {
                 req.session.userId = user._id;
-                return res.redirect('mon-compte');
+                res.redirect('mon-compte');
             }
         });
     } else if (req.body.logemail && req.body.logpassword) {

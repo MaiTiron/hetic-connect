@@ -70,7 +70,7 @@ function affichage(username, bio, competences,id, i) {
   console.log(id);
   
   // Gestion de du nb de compétences
-  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div></article>";
+  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div><a href='/api/voir-profil/" + id + "'>Voir le profil</a></article>";
   $('#container').append(content);
   injectCompetences(competences, i);
   
