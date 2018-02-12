@@ -73,8 +73,8 @@ Configuration des middleware
 /*
 Configuration des routes
 */
-app.use('/', frontRoute);
-app.use('/api', apiRoute);
+// app.use('/', frontRoute);
+app.use('/', apiRoute);
 
 
 // catch 404 and forward to error handler

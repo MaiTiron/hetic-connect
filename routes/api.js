@@ -28,10 +28,10 @@ const mongoServer = 'mongodb://localhost/hetic';
 function loggedIn(req, res, next) {
     // router.get('/:path', function(req, res) {
     if(req.session.userId){
-        console.log("zobi")
-        res.redirect("/api");
+        console.log(req.session)
+        next();
     }else{
-        res.render('inscription');
+        return res.render('inscription');
     }
 };
 
@@ -43,22 +43,22 @@ router.get('/', loggedIn, (req, res) => {
     // SI (user )
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
-    if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-    else { // Connexion établie --> récupère la collection de data
+        if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        else { // Connexion établie --> récupère la collection de data
 
-        db.collection('user').find().toArray( (err, collection) => {
-            // Test la connexion à la collection
-            if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
-            else {
-               
-                // Connexion à la collection établie
+            db.collection('user').find().toArray( (err, collection) => {
+                // Test la connexion à la collection
+                if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
+                else {
                 
-                res.render('index');
-            }
-        });
-    };
-    db.close();
-});
+                    // Connexion à la collection établie
+                    
+                    res.render('index');
+                }
+            });
+        };
+        db.close();
+    });
 });
 
 router.post('/data', (req, res) => {
@@ -105,7 +105,7 @@ else { // Connexion établie --> récupère la collection de data
 
 
     // Afficher un profil sans nom
-router.get('/voir-profil/', (req, res) => { 
+router.get('/voir-profil/', (req, res) => {
     res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
 });
 
@@ -115,11 +115,14 @@ router.get('/inscription', (req, res) => {
 });
     // Inscription
 router.get('/questionnaire', (req, res) => {
-    User.findById(req.session.userId)
-    .exec(function (error, user) {
-        res.render('questionnaire', {userId : req.session.userId})
-    });
+ 
+        res.render('questionnaire')
+
 });
+router.post('/send-questionnaire', (req, res) => {
+    console.log(req.body);
+});
+
 
     // Connexion
 router.get('/connexion', (req, res) => {
@@ -142,12 +145,20 @@ router.get('/signin', (req, res) => {
     res.render('signin');
 });
 
-    // Connexion
+    // Profil
 router.get('/profil', (req, res) => {
     res.render('profil');
 });
 
+    // Accueil
+router.get('/home', (req, res) => {
+    res.render('home');
+});
 
+    // FAQ
+router.get('/faq', (req, res) => {
+    res.render('faq');
+});
 
 
 
@@ -256,7 +267,8 @@ router.post('/inscription', function (req, res, next) {
         });
     } else if (req.body.logemail && req.body.logpassword) {
         User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
-            if (error || !user) {
+            if (error) {
+                console.log(error);
                 var err = new Error('Mauvaise adresse mail ou mot de passe.');
                 err.status = 401;
                 return next(err);
@@ -274,7 +286,6 @@ router.post('/inscription', function (req, res, next) {
   
   // Page profil : GET
 router.get('/mon-compte', function (req, res, next) {
-    console.log(req.body.msg);
     User.findById(req.session.userId).exec(function (error, user) {
         if (error) {
             return next(error);
