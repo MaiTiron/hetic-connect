@@ -72,8 +72,8 @@ Configuration des middleware
 /*
 Configuration des routes
 */
-app.use('/', frontRoute);
-app.use('/api', apiRoute);
+// app.use('/', frontRoute);
+app.use('/', apiRoute);
 
 
 
