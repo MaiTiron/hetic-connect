@@ -112,11 +112,39 @@ router.get('/connexion', (req, res) => {
     res.render('connexion');
 });
 
+
+    // Démarrer le quizz
+router.get('/start-quizz', (req, res) => {
+    res.render('start-quizz');
+});    
+
+    // Inscription
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});    
+
+    // Connexion
+router.get('/signin', (req, res) => {
+    res.render('signin');
+});
+
+    // Connexion
+router.get('/profil', (req, res) => {
+    res.render('profil');
+});
+
+
+
+
+
+
+
     
 // Clears the session data by setting the value to null
 router.get('/clear', function(req, res) {  
     res.send(req.session);
 });
+
 
     // quizz
     let tab = [];
