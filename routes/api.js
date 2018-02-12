@@ -107,6 +107,10 @@ router.get('/questionnaire', (req, res) => {
         res.render('questionnaire', {userId : req.session.userId})
     });
 });
+router.post('/send-questionnaire', (req, res) => {
+    console.log(req.body);
+});
+
 
     // Connexion
 router.get('/connexion', (req, res) => {
