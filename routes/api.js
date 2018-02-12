@@ -134,6 +134,11 @@ router.get('/profil', (req, res) => {
     res.render('profil');
 });
 
+    // Accueil
+router.get('/home', (req, res) => {
+    res.render('home');
+});
+
 
 
 
@@ -141,15 +146,10 @@ router.get('/profil', (req, res) => {
 
 
     
-<<<<<<< HEAD
-
-
-=======
 // Clears the session data by setting the value to null
 router.get('/clear', function(req, res) {  
     res.send(req.session);
   });
->>>>>>> ca3bc0402f6ce08a487257628d55f8f1afad00c9
 
 
     // quizz
