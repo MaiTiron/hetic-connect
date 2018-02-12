@@ -138,6 +138,10 @@ router.get('/profil', (req, res) => {
     res.render('profil');
 });
 
+    // Accueil
+router.get('/home', (req, res) => {
+    res.render('home');
+});
 
 
 
