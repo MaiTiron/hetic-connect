@@ -24,8 +24,21 @@ const mongoServer = 'mongodb://localhost/hetic';
 /*
     Def des routes
 */
+/* GET login page. */
+function loggedIn(req, res, next) {
+    // router.get('/:path', function(req, res) {
+    if(req.session.userId){
+        console.log("zobi")
+        res.redirect("/api");
+    }else{
+        res.render('inscription');
+    }
+};
+
+
+
     // Accueil --> Affichage des profils 
-router.get('/', (req, res) => {
+router.get('/', loggedIn, (req, res) => {
     // SI (user connected ET quiz terminée) ==> on affiche tout
     // SI (user )
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
@@ -141,15 +154,10 @@ router.get('/profil', (req, res) => {
 
 
     
-<<<<<<< HEAD
-
-
-=======
 // Clears the session data by setting the value to null
 router.get('/clear', function(req, res) {  
     res.send(req.session);
   });
->>>>>>> ca3bc0402f6ce08a487257628d55f8f1afad00c9
 
 
     // quizz
