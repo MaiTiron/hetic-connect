@@ -24,41 +24,28 @@ const mongoServer = 'mongodb://localhost/hetic';
 /*
     Def des routes
 */
-/* GET login page. */
-function loggedIn(req, res, next) {
-    // router.get('/:path', function(req, res) {
-    if(req.session.userId){
-        console.log(req.session)
-        next();
-    }else{
-        return res.render('inscription');
-    }
-};
-
-
-
     // Accueil --> Affichage des profils 
-router.get('/', loggedIn, (req, res) => {
+router.get('/', (req, res) => {
     // SI (user connected ET quiz terminée) ==> on affiche tout
     // SI (user )
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
-        if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-        else { // Connexion établie --> récupère la collection de data
+    if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+    else { // Connexion établie --> récupère la collection de data
 
-            db.collection('user').find().toArray( (err, collection) => {
-                // Test la connexion à la collection
-                if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
-                else {
+        db.collection('user').find().toArray( (err, collection) => {
+            // Test la connexion à la collection
+            if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
+            else {
+               
+                // Connexion à la collection établie
                 
-                    // Connexion à la collection établie
-                    
-                    res.render('index');
-                }
-            });
-        };
-        db.close();
-    });
+                res.render('index');
+            }
+        });
+    };
+    db.close();
+});
 });
 
 router.post('/data', (req, res) => {
@@ -104,7 +91,7 @@ else { // Connexion établie --> récupère la collection de data
 
 
     // Afficher un profil sans nom
-router.get('/voir-profil/', (req, res) => {
+router.get('/voir-profil/', (req, res) => { 
     res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
 });
 
@@ -120,34 +107,6 @@ router.get('/questionnaire', (req, res) => {
 });
 router.post('/send-questionnaire', (req, res) => {
     console.log(req.body);
-
-    var userData = {
-        age: req.body.age,
-        filiere: req.body.filiere,
-        parcours: req.body.parcours,
-        contact: [req.body.linkedin, req.body.facebook, req.body.telephone],
-        realisations: [req.body.dribbble, req.body.behance, req.body.instagram, req.body.site],
-        description: req.body.description,
-        biographie: req.body.biographie,
-        affichage: true,
-        disponibilites: req.body.disponibilites,
-        competences: [req.body.competences]
-
-    };
-    console.log(userData);
-        User.findById(req.session.userId).update(userData, function (error, user) {
-            console.log(userData);
-            if (error) {
-                return next(error);
-            } else {
-                console.log(User._id);
-                console.log(req.session.userId);
-                // req.session.userId = user._id;
-                return res.redirect('mon-compte');
-            }
-        })
-    
-    
 });
 
 
@@ -172,7 +131,7 @@ router.get('/signin', (req, res) => {
     res.render('signin');
 });
 
-    // Profil
+    // Connexion
 router.get('/profil', (req, res) => {
     res.render('profil');
 });
@@ -182,10 +141,6 @@ router.get('/home', (req, res) => {
     res.render('home');
 });
 
-    // FAQ
-router.get('/faq', (req, res) => {
-    res.render('faq');
-});
 
 
 
@@ -294,8 +249,7 @@ router.post('/inscription', function (req, res, next) {
         });
     } else if (req.body.logemail && req.body.logpassword) {
         User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
-            if (error) {
-                console.log(error);
+            if (error || !user) {
                 var err = new Error('Mauvaise adresse mail ou mot de passe.');
                 err.status = 401;
                 return next(err);
@@ -314,13 +268,11 @@ router.post('/inscription', function (req, res, next) {
   // Page profil : GET
 router.get('/mon-compte', function (req, res, next) {
     User.findById(req.session.userId).exec(function (error, user) {
-        console.log(User.age);
         if (error) {
-            console.log("Erreur");            
             return next(error);
         } else {
             if (user === null) {
-                var err = new Error('Pas duser');
+                var err = new Error('Erreur');
                 err.status = 400;
                 return next(err);
             } else {
