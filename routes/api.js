@@ -129,7 +129,7 @@ router.get('/signin', (req, res) => {
     res.render('signin');
 });
 
-    // Connexion
+    // Profil
 router.get('/profil', (req, res) => {
     res.render('profil');
 });
@@ -137,6 +137,11 @@ router.get('/profil', (req, res) => {
     // Accueil
 router.get('/home', (req, res) => {
     res.render('home');
+});
+
+    // FAQ
+router.get('/faq', (req, res) => {
+    res.render('faq');
 });
 
 
