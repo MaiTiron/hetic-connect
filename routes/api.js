@@ -162,17 +162,112 @@ router.post('/send-quizz', (req, res) => {
                     console.log('tableau vide bande de fdp');
                     res.render('404', {data: 'La page de retour n\'est pas encore dev !'});
                 }
-            
         }
-
         db.close();
     });
 });
 
-    // Mon compte
-router.get('/mon-compte', (req, res) => {
-    res.render('mon-compte');
+
+
+
+
+
+
+
+// Page inscription : GET
+router.get('/inscription', (req, res) => {
+    res.render('inscription');
 });
+  
+  
+// Page inscription : POST
+router.post('/inscription', function (req, res, next) {
+    // Vérification pwd et conf pwd
+    if (req.body.password !== req.body.passwordVerif) {
+        
+        var err = new Error('Les mots de passe ne correspondent pas.');
+        err.status = 400;
+        return next(err);
+    }
+
+        // TODO : Vérifier que ça existe pas déja dans la base
+    if (req.body.mail && req.body.nom && req.body.prenom && req.body.password) {
+        var userData = {
+            mail: req.body.mail,
+            nom: req.body.nom,
+            prenom: req.body.prenom,
+            password: req.body.password
+        };
+        User.create(userData, function (error, user) {
+            if (error) {
+                return next(error);
+            } else {
+                req.session.userId = user._id;
+                return res.redirect('mon-compte');
+            }
+        });
+    } else if (req.body.logemail && req.body.logpassword) {
+        User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
+            if (error || !user) {
+                var err = new Error('Mauvaise adresse mail ou mot de passe.');
+                err.status = 401;
+                return next(err);
+            } else {
+                req.session.userId = user._id;
+                return res.redirect('mon-compte');
+            }
+        });
+    } else {
+        var err = new Error('Remplissez tous les champs.');
+        err.status = 400;
+        return next(err);
+    }
+});
+  
+  // Page profil : GET
+router.get('/mon-compte', function (req, res, next) {
+    console.log(req.body.msg);
+    User.findById(req.session.userId).exec(function (error, user) {
+        if (error) {
+            return next(error);
+        } else {
+            if (user === null) {
+                var err = new Error('Erreur');
+                err.status = 400;
+                return next(err);
+            } else {
+                // Remplacer par route sur laquelle il faut rediriger une fois connecté
+                return res.render('mon-compte', {nom: user.nom, prenom: user.prenom, mail: user.mail});
+            }
+        }
+    });
+});
+  
+  // Page déconnexion : GET
+router.get('/logout', function (req, res, next) {
+    if (req.session) {
+      // Supprime session
+        req.session.destroy(function (err) {
+            if (err) {
+                return next(err);
+            } else {
+                return res.redirect('inscription');
+            }
+        });
+    }
+});
+
+
+
+
+
+
+
+
+    // Mon compte
+/*router.get('/mon-compte', (req, res) => {
+    res.render('mon-compte');
+});*/
 
     // 404
 router.get('/404', (req, res) => {

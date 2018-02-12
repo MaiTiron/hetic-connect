@@ -11,18 +11,16 @@
 <body>
     <h1>Mon compte</h1>
     
-    <input name="Prénom" type="text" placeholder="Votre prénom" value="%Prénom" />
-    <input name="Nom" type="text" placeholder="Votre nom" value="%Nom" />
+    <input name="Prénom" type="text" placeholder="Votre prénom" value="<%= prenom %>" />
+    <input name="Nom" type="text" placeholder="Votre nom" value="<%= nom %>" />
 
     <img src="#" alt="Image de profile" />
-    <input type="file" value="Vote image de profile" />
 
     <input name="age" type="text" placeholder="Votre âge" value="%Age" />
-    <input name="mail" type="e-mail" placeholder="Votre e-mail" value="%Mail" />
+    <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
 
-    <!-- compétences comment on fait ? -->
-    <!-- tags comment on fait ? -->
-    <textarea name="parcours" placeholder="Votre parcours" value="%parcours"></textarea>
+    <a href="/questionnaire">Complétez votre</a>
+    <a href="/logout">Se déconnecter</a>
 
 </body>
 </html>
