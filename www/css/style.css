@@ -6,3 +6,227 @@ article {
     padding: 15px;
     color: #FFFFFF;
 }
+@font-face {
+font-family: 'NeutraText-BookAlt';
+font-style: normal;
+font-weight: normal;
+src: local('NeutraText-BookAlt'), url('../font/neutra-text-alt.woff') format('woff');
+}
+
+@font-face {
+font-family: 'NeutraTextTF-Book';
+font-style: normal;
+font-weight: normal;
+src: local('NeutraTextTF-Book'), url('../font/neutra-text-tf.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'NeutraText-Bold';
+font-style: normal;
+font-weight: normal;
+src: local('NeutraText-Bold'), url('../font/neutra-text-bold.woff') format('woff');
+}
+/*--Global--*/
+html, body{
+    margin: 0;
+}
+h1{
+    font-family: 'NeutraText-Bold';
+}
+body{
+    font-family: 'NeutraTextTF-Book';
+    color: #303641;
+    font-size: 20px;
+}
+main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/*--Header--*/
+header{
+    position: fixed;
+    padding-left: 150px;
+}
+nav img{
+    width: 80%;
+}
+/*--Image en background--*/
+.image-background{
+    background-image: url(../img/projet-travail.jpg);
+    background-size: cover;
+    flex: 1;
+    height: 100vh;
+}
+/*--Formulaire--*/
+section{
+    flex: 1;
+    text-align: center;
+}
+section form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, button, form>a {
+    margin-right: auto;
+    margin-left: auto;
+}
+input{
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #303641;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 45%;
+    font-size: 20px;
+}
+h1, form>a{
+   color: #FFC300; 
+}
+h1{
+    margin-bottom: 45px;
+    font-size: 38px;
+}
+button {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    background-color: #384597;
+    font-family:'NeutraTextTF-Book';
+    color: #FFFFFF;
+    width: 13%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+    cursor: pointer;
+}
+form a{
+    font-family:'NeutraTextTF-Book';
+}
+/*--Icones--*/
+.icon-name{
+    background-image: url('../img/icone-compte.svg');
+    background-repeat: no-repeat;
+    background-position: 2px;
+    background-size: 15px; 
+    padding-left: 27px; 
+}
+.icon-mail{
+    background-image: url('../img/icone-enveloppe.svg');
+    background-repeat: no-repeat;
+    background-position: 2px;
+    background-size: 15px; 
+    padding-left: 27px; 
+}
+.icon-mdp{
+    background-image: url('../img/icone-lock.svg');
+    background-repeat: no-repeat;
+    background-position: 2px;
+    background-size: 15px; 
+    padding-left: 27px; 
+}
+/*----------Démarrez le quizz-----------*/
+#quizz section a{
+    font-family:'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #384597;
+    padding: 8px 25px;
+}
+#quizz {
+    height: 100vh;
+}   
+#quizz section{
+    background-image: url('../img/carte-cuvier.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
+    padding-top: 200px;
+}
+#quizz img {
+    width: 50px;
+}
+#quizz h1{
+    font-size: 38px;
+}
+#quizz a{
+    text-decoration: none;
+    font-size: 22px;
+}
+/*------Questions facultatives------*/
+#facultatif{
+    height: 100vh;
+}
+#facultatif form{
+    margin:auto;
+}
+#facultatif button{
+    font-size: 20px;
+    width: 40%;
+    padding: 15px 5px;
+}
+#facultatif section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#facultatif h1{
+    color: #303641;
+    margin-bottom: 10px;
+}
+#facultatif hr{
+    width: 60%;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFC300; 
+    margin-left: 0;
+    height: 5px;
+    margin-bottom: 45px;
+    
+}
+#inscription button, #connexion button{
+    font-size: 22px;
+}
+/*------Page Accueil------*/
+.nav{
+    padding-left: 150px;
+    position: 0px 0px;
+    position: relative;
+}
+
+.nav ul li {
+    display: inline-block;
+}
+
+.nav ul li:first-of-type {
+    margin-right: 650px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #303641;
+    font-family: 'NeutraText-BookAlt';
+    display: inline-block;
+}
+
+.nav ul li:first-of-type a img{
+    width:80%;
+}
+
+.nav ul li:nth-of-type(2) a img, header ul li:nth-of-type(3) a img{
+    height: 12px;
+    padding-right: 10px;
+    padding-left: 50px;
+}
+
+.roundedImage{
+    overflow:hidden;
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+    width:90px;
+    height:90px;
+}

@@ -5,33 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body id="quiz">
-    <h1>Quiz de profil</h1>
-    <a href="./mon-compte">Mon compte</a>
-    <a href="./voir-profil/anto">Compte Anto</a> <!-- À voir si on fait pas l'url avec l'id de l'user -->
-    
+<body>
+    <header>
+        <nav>
+        <img src="../img/logo.png">
+            </nav>
+    </header>
+      <main id="facultatif">
     <form action="./send-quizz" method="POST">
-        <div class="inscription">
-            <h2>Vos étiquettes</h2>
-            <p>Répondez à notre quiz pour avoir des étiquettes qui completeront votre profil.</p>
+            <h1><%= quest %></h1>
+            <hr>
+            <p>Répondez à notre quiz pour avoir des étiquettes qui complèteront votre profil.</p>
             
-            <div>
-                <h3><%= quest %></h3>
+            <section>
                 <% for (rep of reps) { %>
                     <button name="etiquette" value="<%= rep.etiquette %>"><%= rep.contenu %></button>
                 <% } %>
 
                 <input style="display:none" type="text" name="id_Quest" value="<%= id_Quest %>" />
                 
-            </div>
-            
-            <input name="valider_inscription" type="submit" value="Inscription" />
-        </div>
+            </section>
     </form>
-
+</main>
 </body>
 </html>

@@ -111,7 +111,26 @@ router.get('/connexion', (req, res) => {
     res.render('connexion');
 });
 
-    
+    // Démarrer le quizz
+router.get('/start-quizz', (req, res) => {
+    res.render('start-quizz');
+});    
+
+    // Inscription
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});    
+
+    // Connexion
+router.get('/signin', (req, res) => {
+    res.render('signin');
+});
+
+    // Connexion
+router.get('/profil', (req, res) => {
+    res.render('profil');
+});
+
 
 
 
