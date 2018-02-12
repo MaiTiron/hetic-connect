@@ -111,6 +111,13 @@ router.get('/voir-profil/', (req, res) => {
 router.get('/inscription', (req, res) => {
     res.render('inscription');
 });
+    // Inscription
+router.get('/questionnaire', (req, res) => {
+    User.findById(req.session.userId)
+    .exec(function (error, user) {
+        res.render('questionnaire', {userId : req.session.userId})
+    });
+});
 
     // Connexion
 router.get('/connexion', (req, res) => {
@@ -118,10 +125,6 @@ router.get('/connexion', (req, res) => {
 });
 
     
-
-
-
-
 
 
 
@@ -183,7 +186,7 @@ router.post('/send-quizz', (req, res) => {
                    
                     res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
                 } else {
-                    console.log('tableau vide bande de fdp');
+                    console.log('tableau vide');
                     res.render('404', {data: 'La page de retour n\'est pas encore dev !'});
                 }
             
