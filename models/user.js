@@ -2,14 +2,62 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
 var UserSchema = new mongoose.Schema({
-  email: {
-    type: String
-  },
-  username: {
-    type: String
-  },
+  admin: {
+    type: Boolean,
+    default: false
+  }, 
   password: {
-    type: String
+    type: String,
+    required: true
+  },
+  prenom: {
+    type: String,
+    required: true
+  },
+  nom: {
+    type: String,
+    required: true
+  },
+  affichage: {
+    type: Boolean,
+    default: false
+  },
+  mail: {
+    type: String,
+    required: true
+  },
+  age: {
+    type: Number,
+  },
+  filliere: {
+    type: String,
+  },
+  competences: {
+    type: Array,
+  },
+  tags: {
+    type: Array,
+  },
+  parcours: {
+    type: Array,
+  },
+  description: {
+    type: String,
+  },
+  biographie: {
+    type: String,
+  },
+  disponibilites: {
+    type: String,
+  },
+  realisations: {
+    type: Array,
+  },
+  contact: {
+    type: Array,
+  },
+  photo: {
+    type: String,
   }
 });
 
@@ -45,5 +93,5 @@ UserSchema.pre('save', function (next) {
 });
 
 
-var User = mongoose.model('User', UserSchema);
+var User = mongoose.model('user', UserSchema);
 module.exports = User;

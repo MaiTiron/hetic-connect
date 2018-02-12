@@ -1,26 +1,27 @@
-
+var container;
 
 // Attendre le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
-  //document.querySelector('button').submit( (e) => e.preventDefault() );
+  container = document.querySelector('#container');
   
   
 });		
 
 var element = document.getElementById('yo');
+console.log( $('#yo'));
 
-var user = {};
+var users = {};
 $.ajax({
   type: 'POST',
-  data: JSON.stringify(user),
+  data: JSON.stringify(users),
   contentType: 'application/json',
   url: 'http://localhost:3000/api/data',					
-  success: function(user) {
+  success: function(users) {
     //element.addEventListener("input", function(e) {
       $('#yo').on('input', function(){
-        console.log(user.data);
         $('#container>*').remove();
-        search(this.value.toLowerCase(), user.data);
+        console.log(users);
+        search(this.value.toLowerCase(), users.data);
         
       });
     }
@@ -30,6 +31,7 @@ var countPeople = 0;
 function search(inputValue, userList){
   
   for (user of userList){
+    user.username = user.nom +' '+ user.prenom;
     
     countPeople++;
     var countMatched = 0;
@@ -48,7 +50,7 @@ function search(inputValue, userList){
     
     }
   
-    if (countMatched>0) affichage(user.prenom, user.nom, user.description, user.competences, countPeople);
+    if (countMatched>0) affichage( user.username, user.description, user.competences,user._id, countPeople);
   }
 }
 
@@ -56,22 +58,22 @@ function search(inputValue, userList){
 function injectCompetences(competences, i) {
   for (competence of competences ) {
     console.log(competence);
-
+    console.log($('.list-competences-'+i));
     $('.list-competences-'+i).prepend("<a href='#'>" + competence + "</a></br>");
   }
 };
 
-function affichage(prenom, nom, bio, competences, i) {
+function affichage(username, bio, competences,id, i) {
   console.log('test');
-  console.log('nom : ' + prenom + ' ' + nom);
+  console.log('username : ' + username );
   console.log('bio : ' + bio);
   console.log('compétences : ' + competences);
+  console.log(id);
   
   // Gestion de du nb de compétences
-  var content = "<article><h3>" + prenom + " " + nom + "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div></article>";
-  console.log(competences);
+  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div></article>";
   $('#container').append(content);
-  var content = "";
   injectCompetences(competences, i);
-
+  
+  var content = "";
 }

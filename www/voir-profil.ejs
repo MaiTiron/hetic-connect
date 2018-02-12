@@ -10,31 +10,44 @@
     <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 </head>
 <body>
-    <h1><%= data %></h1>
-    <% if (error) { %>
-        <a href="../">Retour</a>
-        <div class="error">
-            <p><%= error %></p>
-        </div>
-    <% } else { %>
         <img src="#" alt="image de profile" />
+    <h1><%= nom %><%= prenom %></h1>
+    <p><%= age %></p>
+    <h2><%= filiere %></h2>
+    <p><%= description %></p>
+    <ul>
+            <% for(var i=0; i < tags.length; i++) { %>
+                    <li>
+                            <%= tags[i] %>
+                    </li>
+            <% } %>
+    </ul>
+    <ul>
+        <% for(var i=0; i < competences.length; i++) { %>
+                 <li>
+                    <%= competences[i] %>
+                </li>
+        <% } %>
+    </ul>
         <!-- Si admin : smaller "admin" en gris -->
-
-        <p><%= data %></p>
-        <p>%filière</p>
-        <p>%Description</p>
-        <ul>
-            <li>%Compétence 1</li>
-            <li>%Compétence 2</li>
-            <li>%Compétence 3</li>
-        </ul>
-        <ul>
-            <li>%Tag 1</li>
-            <li>%Tag 2</li>
-            <li>%Tag 3</li>
-        </ul>
-        <p>%Parcours</p>
-    <% } %>
+    <ul>
+        <% for(var i=0; i < parcours.length; i++) { %>
+            <li>
+                    <%= parcours[i] %>
+            </li>
+        <% } %>
+     </ul>
+     <ul>
+        <li><%= realisations.dribbble %></li>
+        <li><%= realisations.behance %></li>
+        <li><%= realisations.instagram %></li>
+     </ul>
+     <ul>
+        <li><%= contact.linkedin %></li>
+        <li><%= contact.facebook %></li>
+        <li><%= contact.telephone %></li>
+        <li><%= contact.mail %></li>
+     </ul>
 
 </body>
 </html>

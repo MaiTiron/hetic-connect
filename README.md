@@ -198,16 +198,14 @@ db.questions.insert({
 })
 ```
 
+    for (competence of user.competences) {
+      
+      if (competence.toLowerCase().indexOf(inputValue) == 0){
+        
+        countMatched++;
+      }
+    
+    }
 
-var reqAjax = $.ajax({
-      type: 'POST',
-      data: JSON.stringify(user),
-      contentType: 'application/json',
-      url: 'http://localhost:3000/api/data',					
-      success: function(user) {
-        console.log(user);
-        }
-  }).done(function(user){
-    console.log(user);
-    return user;
-  });
+
+     injectCompetences(competences, i);

@@ -6,16 +6,17 @@ const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
+/*
+Import des composant pour l'authentification
+*/
+const session = require('express-session');
 
     
     // Modules
 const frontRoute = require('./routes/front');
 const apiRoute = require('./routes/api');
 
-/*
-Import des composant pour l'authentification
-*/
-const session = require('express-session');
+
 
 
 /*
@@ -23,7 +24,7 @@ Import des composants MongoDB et configuration
 */
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-mongoose.connect('mongodb://localhost/auth');
+mongoose.connect('mongodb://localhost/hetic');
 const db = mongoose.connection;
 
     
