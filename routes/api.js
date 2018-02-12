@@ -102,8 +102,7 @@ router.get('/inscription', (req, res) => {
 });
     // Inscription
 router.get('/questionnaire', (req, res) => {
-    User.findById(req.session.userId)
-    .exec(function (error, user) {
+    User.findById(req.session.userId).exec(function (error, user) {
         res.render('questionnaire', {userId : req.session.userId})
     });
 });
@@ -114,15 +113,10 @@ router.get('/connexion', (req, res) => {
 });
 
     
-<<<<<<< HEAD
-
-
-=======
 // Clears the session data by setting the value to null
 router.get('/clear', function(req, res) {  
     res.send(req.session);
-  });
->>>>>>> ca3bc0402f6ce08a487257628d55f8f1afad00c9
+});
 
     // quizz
     let tab = [];

@@ -1,9 +1,8 @@
 var container;
-
+var 
 // Attendre le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
   container = document.querySelector('#container');
-  
   
 });		
 
