@@ -29,7 +29,7 @@ var UserSchema = new mongoose.Schema({
   age: {
     type: Number,
   },
-  filliere: {
+  filiere: {
     type: String,
   },
   competences: {

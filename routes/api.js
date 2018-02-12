@@ -120,6 +120,34 @@ router.get('/questionnaire', (req, res) => {
 });
 router.post('/send-questionnaire', (req, res) => {
     console.log(req.body);
+
+    var userData = {
+        age: req.body.age,
+        filiere: req.body.filiere,
+        parcours: req.body.parcours,
+        contact: [req.body.linkedin, req.body.facebook, req.body.telephone],
+        realisations: [req.body.dribbble, req.body.behance, req.body.instagram, req.body.site],
+        description: req.body.description,
+        biographie: req.body.biographie,
+        affichage: true,
+        disponibilites: req.body.disponibilites,
+        competences: [req.body.competences]
+
+    };
+    console.log(userData);
+        User.findById(req.session.userId).update(userData, function (error, user) {
+            console.log(userData);
+            if (error) {
+                return next(error);
+            } else {
+                console.log(User._id);
+                console.log(req.session.userId);
+                // req.session.userId = user._id;
+                return res.redirect('mon-compte');
+            }
+        })
+    
+    
 });
 
 
@@ -286,11 +314,13 @@ router.post('/inscription', function (req, res, next) {
   // Page profil : GET
 router.get('/mon-compte', function (req, res, next) {
     User.findById(req.session.userId).exec(function (error, user) {
+        console.log(User.age);
         if (error) {
+            console.log("Erreur");            
             return next(error);
         } else {
             if (user === null) {
-                var err = new Error('Erreur');
+                var err = new Error('Pas duser');
                 err.status = 400;
                 return next(err);
             } else {
