@@ -13,7 +13,7 @@ const session = require('express-session');
 
     
     // Modules
-const frontRoute = require('./routes/front');
+// const frontRoute = require('./routes/front');
 const apiRoute = require('./routes/api');
 
 
@@ -55,12 +55,12 @@ Configuration des middleware
 */
   // Configuration de Express Session
     app.use(session({
-      secret: 'secret',
-      resave: true,
-      saveUninitialized: false,
-      store: new MongoStore({
-        mongooseConnection: db
-      })
+        secret: 'secret',
+        resave: true,
+        saveUninitialized: false,
+        store: new MongoStore({
+            mongooseConnection: db
+        })
     }));
 
   // Configuration de BodyParser
@@ -82,17 +82,16 @@ app.use(function (req, res, next) {
     var err = new Error('File Not Found');
     err.status = 404;
     next(err);
-  });
+});
   
   // error handler
   // define as the last app.use callback
-  app.use(function (err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.send(err.message);
-  });
+});
 
   
-
 /*
     Lancer le server
 */
