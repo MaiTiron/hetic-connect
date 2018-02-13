@@ -102,9 +102,10 @@ router.get('/inscription', (req, res) => {
 });
     // Inscription
 router.get('/questionnaire', (req, res) => {
-    User.findById(req.session.userId).exec(function (error, user) {
-        res.render('questionnaire', {userId : req.session.userId})
-    });
+    //User.findById(req.session.userId).exec(function (error, user) {
+    //    res.render('questionnaire', {userId : req.session.userId})
+    //});
+    res.render('questionnaire')
 });
 router.post('/send-questionnaire', (req, res) => {
     console.log(req.body);
@@ -268,7 +269,6 @@ router.post('/inscription', function (req, res, next) {
   
   // Page profil : GET
 router.get('/mon-compte', function (req, res, next) {
-    console.log(req.body.msg);
     User.findById(req.session.userId).exec(function (error, user) {
         if (error) {
             return next(error);

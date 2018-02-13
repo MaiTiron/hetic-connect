@@ -1,32 +1,40 @@
-.error {
-    background-color: #C70018;
-    padding: 15px;
-    color: #FFFFFF;
-}
+/* ======================
+        IMPORTS
+====================== */
 @font-face {
-font-family: 'NeutraText-BookAlt';
-font-style: normal;
-font-weight: normal;
-src: local('NeutraText-BookAlt'), url('../font/neutra-text-alt.woff') format('woff');
+    font-family: 'NeutraText-BookAlt';
+    font-style: normal;
+    font-weight: normal;
+    src: local('NeutraText-BookAlt'), url('../font/neutra-text-alt.woff') format('woff');
+} 
+@font-face {
+    font-family: 'NeutraTextTF-Book';
+    font-style: normal;
+    font-weight: normal;
+    src: local('NeutraTextTF-Book'), url('../font/neutra-text-tf.woff') format('woff');
+}    
+@font-face {
+    font-family: 'NeutraText-Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('NeutraText-Bold'), url('../font/neutra-text-bold.woff') format('woff');
+}
+    
+
+#facultatif, #inscription, #connexion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-@font-face {
-font-family: 'NeutraTextTF-Book';
-font-style: normal;
-font-weight: normal;
-src: local('NeutraTextTF-Book'), url('../font/neutra-text-tf.woff') format('woff');
-}
 
-
-@font-face {
-font-family: 'NeutraText-Bold';
-font-style: normal;
-font-weight: normal;
-src: local('NeutraText-Bold'), url('../font/neutra-text-bold.woff') format('woff');
-}
+/* ======================
+        GENERICS
+====================== */
 /*--Global--*/
 html, body{
     margin: 0;
+    padding: 0;
 }
 h1{
     font-family: 'NeutraText-Bold';
@@ -36,36 +44,29 @@ body{
     color: #303641;
     font-size: 20px;
 }
-#facultatif, #inscription, #connexion{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-/*--Header--*/
 header{
     position: fixed;
-    padding-left: 150px;
+    padding: 0 150px;
 }
 nav img{
     width: 80%;
 }
-/*--Image en background--*/
-.image-background{
-    background-image: url(../img/projet-travail.jpg);
-    background-size: cover;
-    flex: 1;
-    height: 100vh;
+.error {
+    background-color: #C70018;
+    padding: 15px;
+    color: #FFFFFF;
 }
-/*--Formulaire--*/
-#connexion section, #inscription section, #quizz section, #facultatif section{
-    flex: 1;
-    text-align: center;
-}
+
+
+/* FORMULAIRES */
 section form {
     display: flex;
     flex-direction: column;
 }
 
+h1, form>a{
+    color: #FFC300; 
+}
 input, button, form>a {
     margin-right: auto;
     margin-left: auto;
@@ -79,29 +80,19 @@ input, button, form>a {
     width: 45%;
     font-size: 20px;
 }
-h1, form>a{
-   color: #FFC300; 
+#connexion section, #inscription section, #quizz section, #facultatif section{
+    flex: 1;
+    text-align: center;
 }
-h1{
-    margin-bottom: 45px;
-    font-size: 38px;
+
+/*--Image en background--*/
+.image-background{
+    background-image: url(../img/projet-travail.jpg);
+    background-size: cover;
+    flex: 1;
+    height: 100vh;
 }
-button {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    border-radius: 30px;
-    background-color: #384597;
-    font-family:'NeutraTextTF-Book';
-    color: #FFFFFF;
-    width: 13%;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    border: none;
-    cursor: pointer;
-}
-form a{
-    font-family:'NeutraTextTF-Book';
-}
+
 /*--Icones--*/
 .icon-name{
     background-image: url('../img/icone-compte.svg');
@@ -124,36 +115,12 @@ form a{
     background-size: 15px; 
     padding-left: 27px; 
 }
-/*----------Démarrez le quizz-----------*/
-#quizz section a{
-    font-family:'NeutraTextTF-Book';
-    color: white;
-    border-radius: 35px;
-    background-color: #384597;
-    padding: 8px 25px;
-}
-#quizz {
-    height: 100vh;
-}   
-#quizz section{
-    background-image: url('../img/carte-cuvier.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding-bottom: 200px;
-    padding-top: 200px;
-}
-#quizz img {
-    width: 50px;
-}
-#quizz h1{
-    font-size: 38px;
-}
-#quizz a{
-    text-decoration: none;
-    font-size: 22px;
-}
-/*------Questions facultatives------*/
+
+
+/* ==========================
+            PAGES 
+========================== */
+/*  PAGE -- QUESTIONNAIRE FACULTATIF */
 #facultatif{
     height: 100vh;
 }
@@ -184,41 +151,62 @@ form a{
     margin-bottom: 45px;
     
 }
+
+/*  PAGE -- QUESITONNAIRE OBLIGATOIRE */
+#questionnaire header {
+    height: 10vh;
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+#questionnaire h2 {
+    margin: 0;
+}
+main {
+    height: 90vh;
+}
+#questionnaire .question {
+    height: 100%;
+    width: 100%;
+}
+#questionnaire .question:nth-child(n+2) {
+    display: none;
+}
+#questionnaire .lastScreen {
+    display: none;
+}
+
+/*  PAGE -- INSCRIPTION || CONNEXION */
 #inscription button, #connexion button{
     font-size: 22px;
 }
-/*------Page Accueil------*/
+
+/*  PAGE --  */
 .nav{
     padding-left: 150px;
     position: 0px 0px;
     position: relative;
 }
-
 .nav ul li {
     display: inline-block;
 }
-
 .nav ul li:first-of-type {
     margin-right: 650px;
 }
-
 .nav ul li a {
     text-decoration: none;
     color: #303641;
     font-family: 'NeutraText-BookAlt';
     display: inline-block;
 }
-
 .nav ul li:first-of-type a img{
     width:80%;
 }
-
 .nav ul li:nth-of-type(2) a img, header ul li:nth-of-type(3) a img{
     height: 12px;
     padding-right: 10px;
     padding-left: 50px;
 }
-
 .roundedImage{
     overflow:hidden;
     -webkit-border-radius:50px;
@@ -227,15 +215,35 @@ form a{
     width:90px;
     height:90px;
 }
-
-
-
-
-
-
-
-
-
+/*----------Démarrez le quizz-----------*/
+#quizz section a{
+    font-family:'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #384597;
+    padding: 8px 25px;
+}
+#quizz {
+    height: 100vh;
+}   
+#quizz section{
+    background-image: url('../img/carte-cuvier.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
+    padding-top: 200px;
+}
+#quizz img {
+    width: 50px;
+}
+#quizz h1{
+    font-size: 38px;
+}
+#quizz a{
+    text-decoration: none;
+    font-size: 22px;
+}
 
 
 /*-----top-----*/
@@ -250,7 +258,6 @@ form a{
     box-sizing: border-box;
     height: 100vh;
 }
-
 #top h1 {
     margin-top: 0;
     padding-top: 200px;
@@ -259,14 +266,12 @@ form a{
     text-transform: uppercase;
     color: #384597;
 }
-
 #top p {
     width: 199px;                                                                                                                     
     text-align: center;
     margin: auto;
     line-height: 25px;
 }
-
 #top .rechercher{
     margin: auto;
     background-color: white;
@@ -276,7 +281,6 @@ form a{
     border-radius: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(32, 21, 134, 0.19);
 }
-
 #top .rechercher input[type="text"] {
     border: none;
     font-family: 'NeutraTextTF-Book';
@@ -284,19 +288,16 @@ form a{
     font-size: 15px;
     width: 80%;
 }
-
 #top .rechercher .loupe img {
     height: 20px;
 }
 
 /*-----contenu-----*/
-
 .contenu {
     width: 70%;
     margin: auto;
     cursor: pointer;
 }
-
 .contenu img {
     height: 130px;
     border-radius: 80px;
@@ -304,7 +305,6 @@ form a{
     margin-top: 50px;
     margin-left: 60px;
 }
-
 .contenu .rectangle {
     background-color: #FAFAFA;
     margin: auto;
@@ -316,54 +316,43 @@ form a{
     padding: 20px 40px 0px 70px;
     margin-bottom: 30px;
 }
-
 .contenu:last-of-type .rectangle {
     margin-bottom: 100px;
 }
-
 .contenu .rectangle article {
     display: inline-block;
     line-height: 25px;
 }
-
 .contenu .rectangle article:first-of-type {
     width: 35%;
     margin-right: 40px;
 }
-
 .contenu .rectangle article:first-of-type p {
     margin-top: 20px;
 }
-
 .contenu .rectangle article:first-of-type p:nth-of-type(2) {
     font-style: italic;
 }
-
 .contenu .rectangle article:nth-of-type(2) {
     line-height: 50px;
 }
-
 .contenu .rectangle article:nth-of-type(2) p span {
     margin-right: 20px;
     text-align: center;
 }
-
 .contenu .rectangle article:nth-of-type(2) p:nth-of-type(1), .contenu .rectangle article:nth-of-type(2) p:nth-of-type(2) {
     text-align: center;
 }
-
 .contenu .rectangle article p span:first-of-type {
     border: 1px solid #FFC300;
     padding: 15px;
     border-radius: 30px;
 }
-
 .contenu .rectangle article p:first-of-type span:nth-of-type(2), .contenu .rectangle article p:first-of-type span:nth-of-type(3) {
     border: 1px solid #409C5B;
     padding: 15px;
     border-radius: 30px;
 }
-
 .contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) {
     border: 1px solid #384597;
     padding: 15px;
@@ -371,11 +360,9 @@ form a{
 }
 
 /*--Footer--*/
-
 footer {
     text-align: center;
 }
-
 footer p:first-of-type {
     background-color:  #384597;
     width: 80px;
@@ -384,13 +371,11 @@ footer p:first-of-type {
     padding-top: 12px;
     border-radius: 40px;
 }
-
 footer p:first-of-type a {
     text-decoration: none;
     color: white;
     text-transform: uppercase;
 }
-
 footer p:last-of-type {
     color: #707070;
     margin-top: 40px;
