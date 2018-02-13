@@ -14,10 +14,8 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
 
-
     // TODO : Mettre le lien vers la vraie BDD
 const mongoServer = 'mongodb://localhost/hetic';
-
 
 
 /*
@@ -73,10 +71,11 @@ router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (s
 
     // Questionnaire
 router.get('/questionnaire', (req, res) => {
-        res.render('questionnaire')
+    res.render('questionnaire')
 });
     
-        // Envoi du questionnaire
+
+    // Envoi du questionnaire
 router.post('/send-questionnaire', (req, res) => {
     var userData = {
         age: req.body.age,
@@ -99,6 +98,8 @@ router.post('/send-questionnaire', (req, res) => {
         }
     });
 });
+
+
     // DATA     --> Récupération des données user
 router.post('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => {
@@ -165,15 +166,20 @@ router.get('/signup', (req, res) => {
 
     // ENVOI DE L'INSCRIPTION   --> inscription d'un user en base : POST
 router.post('/signup', function (req, res, next) {
+    
     // Vérification pwd et conf pwd
     if (req.body.password !== req.body.passwordVerif) {    
         var err = new Error('Les mots de passe ne correspondent pas.');
         err.status = 400;
         return next(err);
-    }
-        // TODO : Vérifier que ça existe pas déja dans la base
+    }    
+    
+    // Vérification qu'il y a toute les données de rentrées
     if (req.body.mail && req.body.nom && req.body.prenom && req.body.password) {
-        var userData = {
+        if (checkUserAlreadyKnown(req.body.mail) != false ) {
+            res.render('signup', {mail: req.body.mail, nom: req.body.nom, prenom: req.body.prenom});
+        };
+        let userData = {
             mail: req.body.mail,
             nom: req.body.nom,
             prenom: req.body.prenom,
@@ -187,6 +193,8 @@ router.post('/signup', function (req, res, next) {
                 res.redirect('mon-compte');
             }
         });
+
+    // Identification de l'user
     } else if (req.body.logemail && req.body.logpassword) {
         User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
             if (error || !user) {
@@ -241,9 +249,7 @@ router.get('/quizz', (req, res) => {
 router.post('/send-quizz', (req, res) => {
     
     var lastID = req.body.id_Quest;
-    console.log(req.session.userId);
-    console.log(req.body.etiquette);
-    mongoose.connect(mongoServer, (err, db) => {
+    mongoose.connect(mongoServer, (err, db) => {    // TODO : Supprimer la connexion à la base
         const quizz = db.collection('quizz');
         if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else {     
@@ -274,4 +280,29 @@ router.get('/404', (req, res) => {
 });
 
 
+
+
+// VOID : Vérifie si le mail est déjà enregistré en base pour quelqu'un
+function checkUserAlreadyKnown (mailSubmitted) { 
+    let mailToCheck = mailSubmitted.toLowerCase();
+    mongoose.connect(mongoServer, (err, db) => {
+        if (err) { res.render('404', {error : err})}
+        else { 
+            db.collection('users').find({"mail": mailToCheck.toString() }).toArray( (err, result) => {  // récupération des utilisateurs avec le même mail
+                if (err) { res.render('404', {error : err, data: 'Le service à rencontré un problème'}) }
+                else {
+                    for (user of result) {
+                        if (user.mail.toLowerCase() == mailToCheck) {
+                            console.log('Mail déjà utilisé');
+                            break;
+                        }
+                    }
+                    return false;
+                }
+            });
+        };
+        db.close();
+    });
+    return true;
+}
 module.exports = router;

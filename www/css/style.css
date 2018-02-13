@@ -90,7 +90,7 @@ input, button, form>a {
     background-image: url(../img/projet-travail.jpg);
     background-size: cover;
     flex: 1;
-    height: 100vh;
+    height: 100%;
 }
 
 /*--Icones--*/
@@ -163,7 +163,7 @@ input, button, form>a {
     margin: 0;
 }
 main {
-    height: 90vh;
+    height: 100vh;
 }
 #questionnaire .question {
     height: 100%;
