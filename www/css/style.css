@@ -1,0 +1,631 @@
+.error {
+    background-color: #C70018;
+    padding: 15px;
+    color: #FFFFFF;
+}
+@font-face {
+font-family: 'NeutraText-BookAlt';
+font-style: normal;
+font-weight: normal;
+src: local('NeutraText-BookAlt'), url('../font/neutra-text-alt.woff') format('woff');
+}
+
+@font-face {
+font-family: 'NeutraTextTF-Book';
+font-style: normal;
+font-weight: normal;
+src: local('NeutraTextTF-Book'), url('../font/neutra-text-tf.woff') format('woff');
+}
+
+
+@font-face {
+font-family: 'NeutraText-Bold';
+font-style: normal;
+font-weight: normal;
+src: local('NeutraText-Bold'), url('../font/neutra-text-bold.woff') format('woff');
+}
+/*--Global--*/
+html, body{
+    margin: 0;
+}
+h1{
+    font-family: 'NeutraText-Bold';
+}
+body{
+    font-family: 'NeutraTextTF-Book';
+    color: #303641;
+    font-size: 20px;
+}
+#facultatif, #inscription, #connexion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/*--Header--*/
+.fixed{
+    position: fixed;
+    padding-left: 150px;
+}
+nav img {
+    width: 80%;
+}
+.nav {
+    position: fixed;
+    padding-left: 150px;
+    background-color: white;
+ }
+ 
+ .nav ul li {
+    display: inline-block;
+ }
+ 
+ .nav ul li:first-of-type {
+    margin-right: 650px;
+ }
+ 
+ .nav ul li a {
+    text-decoration: none;
+    color: #303641;
+    font-family: 'NeutraText-BookAlt';
+    display: inline-block;
+ }
+  
+ .nav ul li:nth-of-type(2) a img, .nav ul li:nth-of-type(3) a img{
+    height: 12px;
+    padding-right: 10px;
+    padding-left: 50px;
+ }
+/*--Image en background--*/
+.image-background{
+    background-image: url(../img/projet-travail.jpg);
+    background-size: cover;
+    flex: 1;
+    height: 100vh;
+}
+/*--Formulaire--*/
+#connexion section, #inscription section, #quizz section, #facultatif section{
+    flex: 1;
+    text-align: center;
+}
+section form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, button, form>a {
+    margin-right: auto;
+    margin-left: auto;
+}
+#connexion input, #inscription input {
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #303641;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 45%;
+    font-size: 20px;
+}
+h1, form>a{
+   color: #FFC300; 
+}
+h1{
+    margin-bottom: 45px;
+    font-size: 38px;
+}
+button {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    background-color: #384597;
+    font-family:'NeutraTextTF-Book';
+    color: #FFFFFF;
+    width: 13%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+    cursor: pointer;
+}
+form a{
+    font-family:'NeutraTextTF-Book';
+}
+/*--Icones--*/
+.icon-name{
+    background-image: url('../img/icone-compte.svg');
+    background-repeat: no-repeat;
+    background-position: 2px;
+    background-size: 15px; 
+    padding-left: 27px; 
+}
+.icon-mail{
+    background-image: url('../img/icone-enveloppe.svg');
+    background-repeat: no-repeat;
+    background-position: 2px;
+    background-size: 15px; 
+    padding-left: 27px; 
+}
+.icon-mdp{
+    background-image: url('../img/icone-lock.svg');
+    background-repeat: no-repeat;
+    background-position: 2px;
+    background-size: 15px; 
+    padding-left: 27px; 
+}
+/*----------Démarrez le quizz-----------*/
+#quizz section a{
+    font-family:'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #384597;
+    padding: 8px 25px;
+}
+#quizz {
+    height: 100vh;
+}   
+#quizz section{
+    background-image: url('../img/carte-cuvier.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
+    padding-top: 200px;
+}
+#quizz img {
+    width: 50px;
+}
+#quizz h1{
+    font-size: 38px;
+}
+#quizz a{
+    text-decoration: none;
+    font-size: 22px;
+}
+/*------Questions facultatives------*/
+#facultatif{
+    height: 100vh;
+}
+#facultatif form{
+    margin:auto;
+}
+#facultatif button{
+    font-size: 20px;
+    width: 40%;
+    padding: 15px 5px;
+}
+#facultatif section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#facultatif h1{
+    color: #303641;
+    margin-bottom: 10px;
+}
+#facultatif hr{
+    width: 60%;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFC300; 
+    margin-left: 0;
+    height: 5px;
+    margin-bottom: 45px;
+    
+}
+#inscription button, #connexion button{
+    font-size: 22px;
+}
+/*------Page Accueil------*/
+.nav{
+    padding-left: 150px;
+    position: 0px 0px;
+    position: relative;
+}
+
+.nav ul li {
+    display: inline-block;
+}
+
+.nav ul li:first-of-type {
+    margin-right: 650px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #303641;
+    font-family: 'NeutraText-BookAlt';
+    display: inline-block;
+}
+
+.nav ul li:first-of-type a img{
+    width:80%;
+}
+
+.nav ul li:nth-of-type(2) a img, header ul li:nth-of-type(3) a img{
+    height: 12px;
+    padding-right: 10px;
+    padding-left: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+/*-----top-----*/
+#top {
+    text-align: center;
+    background-image: url("../img/carte-cuvier.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 40%;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+#top h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-family: 'NeutraText-Bold';
+    text-transform: uppercase;
+    color: #384597;
+}
+
+#top p {
+    width: 199px;                                                                                                                     
+    text-align: center;
+    margin: auto;
+    line-height: 25px;
+}
+
+#top .rechercher{
+    margin: auto;
+    background-color: white;
+    margin-top: 30px;
+    width: 400px;
+    padding: 10px 0px 10px 0px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(32, 21, 134, 0.19);
+}
+
+#top .rechercher input[type="text"] {
+    border: none;
+    font-family: 'NeutraTextTF-Book';
+    font-style: italic;
+    font-size: 15px;
+    width: 80%;
+}
+
+#top .rechercher .loupe img {
+    height: 20px;
+}
+
+/*-----contenu-----*/
+
+.contenu {
+    width: 70%;
+    margin: auto;
+    cursor: pointer;
+}
+
+.contenu img {
+    height: 130px;
+    border-radius: 80px;
+    z-index: 50;
+    margin-top: 50px;
+    margin-left: 60px;
+}
+
+.contenu .rectangle {
+    background-color: #FAFAFA;
+    margin: auto;
+    width: 60%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: -180px;
+    height: 200px;
+    padding: 20px 40px 0px 70px;
+    margin-bottom: 30px;
+}
+
+.contenu:last-of-type .rectangle {
+    margin-bottom: 100px;
+}
+
+.contenu .rectangle article {
+    display: inline-block;
+    line-height: 25px;
+}
+
+.contenu .rectangle article:first-of-type {
+    width: 35%;
+    margin-right: 40px;
+}
+
+.contenu .rectangle article:first-of-type p {
+    margin-top: 20px;
+}
+
+.contenu .rectangle article:first-of-type p:nth-of-type(2) {
+    font-style: italic;
+}
+
+.contenu .rectangle article:nth-of-type(2) {
+    line-height: 50px;
+}
+
+.contenu .rectangle article:nth-of-type(2) p span {
+    margin-right: 20px;
+    text-align: center;
+}
+
+.contenu .rectangle article:nth-of-type(2) p:nth-of-type(1), .contenu .rectangle article:nth-of-type(2) p:nth-of-type(2) {
+    text-align: center;
+}
+
+.contenu .rectangle article p span:first-of-type {
+    border: 2px solid #FFC300;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+.contenu .rectangle article p:first-of-type span:nth-of-type(2), .contenu .rectangle article p:first-of-type span:nth-of-type(3) {
+    border: 2px solid #409C5B;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+.contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) {
+    border: 2px solid #384597;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+/*--FAQ--*/
+#faq #top .topfaq p {
+    width: 30%;
+    margin-bottom: 40px;
+ }
+ 
+ #faq #top .topfaq:last-of-type p {
+    font-style: italic;
+ }
+ 
+ #faq .contenu .competence {
+    margin-bottom: 50px;
+ }
+ 
+ #faq .contenu .competence img {
+    height: 40px;
+    border-radius: 0px;
+    margin-left: 48%;
+    margin-top: 20px;
+ }
+ 
+ #faq .contenu .competence:first-of-type img {
+    margin-left: 46%;
+ }
+ 
+ #faq .contenu .competence h2 {
+    font-family: 'NeutraText-Bold';
+    text-transform: uppercase;
+    color: #384597;
+    text-align: center;
+    font-size: 1.3em;
+ }
+ 
+ #faq .contenu .competence ul li {
+    line-height: 25px;
+    margin-bottom: 10px;
+ }
+ 
+ #faq .contenu .competence ul li span {
+    font-family: 'NeutraText-Bold';
+ 
+ }
+ 
+
+
+
+
+
+
+/*---Profil---*/
+
+#profil #topprofil {
+    text-align: center;
+    width: 100%;
+    padding-top: 100px;
+}
+
+#profil #topprofil h1 {
+    font-family: 'NeutraText-BookAlt';
+    color: #303641;
+    margin-bottom: 20px;
+}
+
+#profil #topprofil h1 span{
+    text-transform: uppercase;
+}
+
+#profil #topprofil p {                                                                                                                
+    text-align: center;
+    margin: auto;
+    line-height: 32px;
+}
+
+#profil #topprofil p:first-of-type {
+    color: #FFC300;
+}
+
+#profil #topprofil p:nth-of-type(2) {
+    color: #384597;
+}
+
+#profil #topprofil p:nth-of-type(3) {
+    font-style: italic;
+}
+
+#profil #topprofil img {
+    height: 150px;
+    border-radius: 100px;
+}
+
+#profil #etiqprofil {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#profil #etiqprofil .etiqproetiquette {
+    width: 11%;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 25px 0 25px;
+}
+
+#profil #etiqprofil .etiqproetiquette img {
+    height: 100px;
+    margin-bottom: -10px;
+}
+
+#profil #etiqprofil h2 {
+    font-family: 'NeutraTextTF-Book';
+    font-style: normal;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 53%;
+    margin: auto;
+}
+
+#profil #etiqprofil .etiqprocompetences {
+    line-height: 50px;
+}
+
+#profil #etiqprofil .etiqprocompetences p span {
+    margin-right: 20px;
+    text-align: center;
+    border: 2px solid #FFC300;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+#profil #contenuprofil {
+    background-color: #FAFAFA;
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    align-items: flex-start;
+    justify-content:center ;
+}
+
+#profil #contenuprofil article {
+    width: 30%;
+    margin-left: 80px;
+    display: inline-block;
+    text-align: initial;
+}
+
+#profil #contenuprofil .contprogauche {
+    margin-top: 16px;
+}
+
+#profil #contenuprofil .contprogauche img {
+    float: left;
+    height: 60px;
+    margin-top: 7px;
+}
+
+#profil #contenuprofil .contprodroite img {
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: 13px;
+}
+
+#profil #contenuprofil .contprodroite img:first-of-type{
+    margin-top: 35px;
+}
+
+#profil #contenuprofil .contprodroite .reseauxsociaux img {
+    margin-top: -7px;
+}
+
+#profil #contenuprofil .contprogauche p{
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+#profil #contenuprofil .contprodroite h3 {
+    margin-top: 40px;
+}
+
+#profil #contenuprofil .contprodroite p {
+    line-height: 25px;
+}
+
+#profil #contenuprofil .contprodroite a {
+ color: #FFC300;
+}
+
+#profil #bottomprofil {
+    text-align: center;
+    margin-top: 90px;
+    line-height: 10px;
+}
+
+#profil #bottomprofil article {
+    display: inline-block;
+    margin: 0 23px 0 23px;
+}
+
+#profil #bottomprofil article:first-of-type {
+    text-align: initial;
+    margin-top: 30px;
+}
+
+#profil #bottomprofil article img {
+    height: 50px;
+}
+
+
+
+
+
+
+
+ /*--Footer--*/
+ 
+ footer {
+    text-align: center;
+    margin-top: 100px;
+ }
+ 
+ footer p:first-of-type {
+    background-color:  #384597;
+    width: 80px;
+    margin: auto;
+    padding: 10px;
+    padding-top: 12px;
+    border-radius: 40px;
+    width: 110px;
+ }
+ 
+ footer p:first-of-type a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+ }
+ 
+ footer p:last-of-type {
+    color: #707070;
+    margin-top: 40px;
+    margin-bottom: 40px;
+ }

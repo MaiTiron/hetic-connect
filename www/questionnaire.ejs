@@ -11,56 +11,102 @@
 
 </head>
 <body >
-    <h2>Les questions sont faculatives, votre profils sera juste monis remplie</h2>
-    <section>
-        <h3>Quel est votre age</h3>
-        <input type="text" name="age" value="age">
-    </section>
-    <section>
-        <h3>De quel formation êtes-vous?</h3>
-        <select id="listformation">
-            <option value="MBA">MBA</option> 
-            <option value="Webmarketing" selected>Mastère Webmarketing  UX</option>
-            <option value="Data">Mastère Data</option>
-            <option value="Pmd">PMD</option>
-        </select>
-    </section>
-    <section>
-        <h3>Quel est votre parcours avant d'arriver à hetic?</h3>
-            <textarea name="textarea">Raconter nous nue expérience...</textarea>
-            <textarea name="textarea">Raconter nous nue expérience...</textarea>
-            <textarea name="textarea">Raconter nous nue expérience...</textarea>
-            <textarea name="textarea">Raconter nous nue expérience...</textarea>
-    </section>
-    <section>
-        <h3>Comment peut-on vous conatcter</h3>
-            Linkedin<input type="text" name="linkedin" value="">
-            Facebook<input type="text" name="facebok" value="">
-            Telephone<input type="text" name="telephone" value="">
-            Mail<input type="email" name="mail" value="a">
-    </section>
-    <section>
-        <h3>Avez-vous un portfolio ou des réalisation à mettre en avant ?</h3>
-            Dribbble<input type="text" name="linkedin" value="">
-            Behance<input type="text" name="facebok" value="">
-            Instagram<input type="text" name="telephone" value="">
-            Site portfolio<input type="email" name="mail" value="a">
-    </section>
-    <section>
-        <h3>Décrivez-vous rapidement (faites une phrase d'accroche)</h3>
-            <textarea name="textarea">Faites ressortir votre profil</textarea>
-    </section>
-    <section>
-        <h3>Raconter nous en un peu plus sur vous...</h3>
-        <textarea name="textarea">Faites une petites bio</textarea>
-    </section>
-    <section>
-        <h3>Quelles sont vos disponibilités? Avez-vous des empechements quotidiens?</h3>
-                <input type="disponibilité" name="mail" value="a">
-    </section>
-
-
-
+    <h2>Les questions sont faculatives, votre profils sera juste moinss remplie</h2>
+        <form method="POST" action="./send-questionnaire">   
+            <section class="question">
+                <h3>Quel est votre age</h3>
+                    <input type="text" name="age" placeholder="J'ai 42 ans">
+                <a href="#">Précedent</a>
+                <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>De quel formation êtes-vous?</h3>
+                <select name="filiere">
+                    <option value="MBA">MBA</option> 
+                    <option value="Webmarketing" selected>Mastère Webmarketing  UX</option>
+                    <option value="Data">Mastère Data</option>
+                    <option value="Pmd">PMD</option>
+                </select>
+                <a href="#">Précedent</a>
+                <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Quel est votre parcours avant d'arriver à hetic?</h3>
+                    <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
+                    <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
+                    <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
+                    <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
+                    <a href="#">Précedent</a>
+                    <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Comment peut-on vous contacter</h3>
+                    Linkedin<input type="text" name="linkedin" placeholder="www.linkedin.fr">
+                    Facebook<input type="text" name="facebook" placeholder="www.facebook.fr">
+                    Telephone<input type="text" name="telephone" placeholder="www.telephone.fr">
+                    <a href="#">Précedent</a>
+                    <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Avez-vous un portfolio ou des réalisation à mettre en avant ?</h3>
+                    Dribbble<input type="text" name="dribbble" placeholder="dribbble">
+                    Behance<input type="text" name="behance" placeholder="behance">
+                    Instagram<input type="text" name="instagram" placeholder="instagram">
+                    Site portfolio<input type="text" name="site" placeholder="site">
+                    <a href="#">Précedent</a>
+                    <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Décrivez-vous rapidement (faites une phrase d'accroche)</h3>
+                    <textarea name="desription">Faites ressortir votre profil</textarea>
+                <a href="#">Précedent</a>
+                <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Raconter nous en un peu plus sur vous...</h3>
+                    <textarea name="biographie">Faites une petites bio</textarea>
+                <a href="#">Précedent</a>
+                <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Quelles sont vos disponibilités? Avez-vous des empechements quotidiens?</h3>
+                        <input type="disponibilites" name="disponibilites" placeholder="disponibilite">
+                <a href="#">Précedent</a>
+                <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Mettez en avant vos compétences</h3>
+                <h4>Compétences dev</h4>
+                    <input type="checkbox" name="competences" value="node">
+                    <input type="checkbox" name="competences" value="Js">
+                    <input type="checkbox" name="competences" value="MEAN">
+                    <input type="checkbox" name="competences" value="PHP">
+                    <input type="checkbox" name="competences" value="Symfony">
+                    <input type="checkbox" name="competences" value="HTML/CSS">
+                <h4>Compétences design</h4>
+                    <input type="checkbox" name="competences" value="UX">
+                    <input type="checkbox" name="competences" value="UI">
+                    <input type="checkbox" name="competences" value="Webdesign">
+                    <input type="checkbox" name="competences" value="Motion design / vidéo">
+                <h4>Compétences Comm & Marketing</h4>
+                    <input type="checkbox" name="competences" value="Marketing">
+                    <input type="checkbox" name="competences" value="Community management">
+                    <input type="checkbox" name="competences" value="Gestion de projet">
+                    <input type="checkbox" name="competences" value="Redaction">
+                    <input type="checkbox" name="competences" value="SEA">
+                <a href="#">Précedent</a>
+                <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <h3>Donnez-nous une petite photo de vous</h3>
+                <a href="#">Précedent</a>
+                <a href="#">Suivant</a>
+            </section>
+            <section class="question">
+                <p>C'est finis, vous pouvez personaliser encore plus votre profil en répondant à cce quizz faculatatif</p>
+                <input type="submit" value="ajoutProfil">Créer mon profil</input>
+            </section>
+        </form>
 </body>
 
 </html>
