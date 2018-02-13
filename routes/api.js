@@ -102,9 +102,10 @@ router.get('/inscription', (req, res) => {
 });
     // Inscription
 router.get('/questionnaire', (req, res) => {
- 
-        res.render('questionnaire')
-
+    //User.findById(req.session.userId).exec(function (error, user) {
+    //    res.render('questionnaire', {userId : req.session.userId})
+    //});
+    res.render('questionnaire')
 });
 router.post('/send-questionnaire', (req, res) => {
     console.log(req.body);
@@ -149,7 +150,7 @@ router.get('/faq', (req, res) => {
 // Clears the session data by setting the value to null
 router.get('/clear', function(req, res) {  
     res.send(req.session);
-  });
+});
 
 
     // quizz
@@ -243,7 +244,7 @@ router.post('/inscription', function (req, res, next) {
                 return next(error);
             } else {
                 req.session.userId = user._id;
-                return res.redirect('mon-compte');
+                res.redirect('mon-compte');
             }
         });
     } else if (req.body.logemail && req.body.logpassword) {

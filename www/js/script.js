@@ -3,29 +3,29 @@ var container;
 // Attendre le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
   container = document.querySelector('#container');
-  
-  
+  var element = document.getElementById('yo');
+  launchRequest();
 });		
 
-var element = document.getElementById('yo');
-console.log( $('#yo'));
+
 
 var users = {};
-$.ajax({
-  type: 'POST',
-  data: JSON.stringify(users),
-  contentType: 'application/json',
-  url: 'http://localhost:3000/data',					
-  success: function(users) {
-    //element.addEventListener("input", function(e) {
+function launchRequest() {
+  $.ajax({
+    type: 'POST',
+    data: JSON.stringify(users),
+    contentType: 'application/json',
+    url: 'http://localhost:3000/data',
+    success: function(users) {
+      console.log(users);
       $('#yo').on('input', function(){
         $('#container>*').remove();
-        console.log(users);
+        console.log("succes : " + users);
         search(this.value.toLowerCase(), users.data);
-        
       });
     }
-});
+  });  
+}
 
 var countPeople = 0;
 function search(inputValue, userList){
