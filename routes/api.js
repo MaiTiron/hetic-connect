@@ -138,8 +138,8 @@ router.get('/profil', (req, res) => {
 });
 
     // Accueil
-router.get('/home', (req, res) => {
-    res.render('home');
+router.get('/index', (req, res) => {
+    res.render('index');
 });
 
     // FAQ
@@ -147,12 +147,13 @@ router.get('/faq', (req, res) => {
     res.render('faq');
 });
 
+    // FAQ
+router.get('/404', (req, res) => {
+    res.render('404');
+});
 
 
-
-
-
-    
+   
 // Clears the session data by setting the value to null
 router.get('/clear', function(req, res) {  
     res.send(req.session);

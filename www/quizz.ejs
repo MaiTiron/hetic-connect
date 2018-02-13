@@ -13,7 +13,7 @@
         <img src="../img/logo.png">
             </nav>
     </header>
-      <main id="facultatif">
+      <main id="facultatif" style="display:none;">
     <form action="./send-quizz" method="POST">
             <h1><%= quest %></h1>
             <hr>
@@ -29,5 +29,11 @@
             </section>
     </form>
 </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+           $("#facultatif").fadeIn(1000);
+   });
+</script>
 </body>
 </html>

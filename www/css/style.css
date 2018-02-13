@@ -34,9 +34,9 @@ h1{
 body{
     font-family: 'NeutraTextTF-Book';
     color: #303641;
-    font-size: 20px;
+    font-size: 18px;
 }
-#facultatif, #inscription, #connexion{
+#inscription, #connexion{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -160,6 +160,8 @@ form a{
 }
 #quizz {
     height: 100vh;
+    display: flex;
+    align-items: center;
 }   
 #quizz section{
     background-image: url('../img/carte-cuvier.png');
@@ -181,6 +183,9 @@ form a{
 /*------Questions facultatives------*/
 #facultatif{
     height: 100vh;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
 }
 #facultatif form{
     margin:auto;
@@ -191,7 +196,6 @@ form a{
     padding: 15px 5px;
 }
 #facultatif section{
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -243,17 +247,15 @@ form a{
     padding-right: 10px;
     padding-left: 50px;
 }
-
-
-
-
-
-
-
-
-
-
 /*-----top-----*/
+.echarpe{
+    z-index: 1000;
+    width: 130px;
+    position: relative;
+    left: -132px;
+    top:20px;
+
+}
 #top {
     text-align: center;
     background-image: url("../img/carte-cuvier.png");
@@ -311,12 +313,12 @@ form a{
     cursor: pointer;
 }
 
-.contenu img {
+.contenu img:first-of-type {
     height: 130px;
     border-radius: 80px;
     z-index: 50;
     margin-top: 50px;
-    margin-left: 60px;
+    margin-left: 80px;
 }
 
 .contenu .rectangle {
@@ -378,7 +380,7 @@ form a{
     border-radius: 30px;
 }
 
-.contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) {
+.contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) div a {
     border: 2px solid #384597;
     padding: 15px;
     border-radius: 30px;

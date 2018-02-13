@@ -1,24 +1,95 @@
-<!DOCTYPE html>
-<html lang="fr" >
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-
-</head>
-<body >
-    <form>
-        <input id="yo" type="text" name="lname"><br>
-    </form>
-    
-    <section id="container"></section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width,initial-scale=1" name="viewport">
+        <meta name="description" content="Plateforme collaborative qui met en relation les étudiants d'Hétic pour proposer ou demander de l'aide pour réaliser des projets digitaux.">
+        <title>Hétic Connect</title>
+        <link href="../css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="nav">
+            <ul>
+                <li><a href="home"><img alt="logo" src="../img/logo.png"></a></li>
+                <li><a href="faq"><img alt="F.A.Q" src="../img/icone-faq.svg">F.A.Q</a></li>
+                <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
+            </ul>
+        </header>
+        <main>
+            <div id="top">
+                <h1>Hétic Connect</h1>
+                <p>Trouvez des étudiants pour réaliser vos projets ensemble !</p>
+                <article class="rechercher">
+                    <input type="text" id="rechercher" placeholder="exemple : Adrien Martin">
+                    <a href="#" class="loupe"><img alt="recherche" src="../img/icone-search.png"></a>
+                </article> 
+            </div>
+            <section id="container">
+            <section class="contenu">
+                <img alt="adrien" src="../img/adrien.png"><img class="echarpe" alt="écharpe hétic" src="../img/echarpe.png">
+                <div class="rectangle">
+                    <article>
+                            <p>Adrien MARTIN<br/>Profil designer</p>
+                        <p>Salut, je serai heureux de vous aider dans vos projets !</p>
+                    </article>
+                    <article>
+                        <p><span>UX design</span><span>Javascript</span><span>Symfony</span></p>
+                        <p><span>UI design</span><span>Community Management</span></p>
+                    </article>
+                </div>
+            </section>
+            <section class="contenu">
+                <img alt="elisa" src="../img/elisa.png"><img class="echarpe" alt="écharpe hétic" src="../img/echarpe.png">
+                <div class="rectangle">
+                    <article>
+                        <p>Elisa QUELVEN<br/>Profil designer</p>
+                        <p>Salut, je serai heureux de vous aider dans vos projets !</p>
+                    </article>
+                    <article>
+                        <p><span>UX design</span><span>Javascript</span><span>Symfony</span></p>
+                        <p><span>UI design</span><span>Community Management</span></p>
+                    </article>
+                </div>
+            </section>
+            <section class="contenu">
+                <img alt="valerie" src="../img/valerie.png"><img class="echarpe" alt="écharpe hétic" src="../img/echarpe.png">
+                <div class="rectangle">
+                    <article>
+                        <p>Valérie ALINE<br/>Profil designer</p>
+                        <p>Salut, je serai heureux de vous aider dans vos projets !</p>
+                    </article>
+                    <article>
+                        <p><span>UX design</span><span>Javascript</span><span>Symfony</span></p>
+                        <p><span>UI design</span><span>Community Management</span></p>
+                    </article>
+                </div>
+            </section>
+            <section class="contenu">
+                <img alt="axelle" src="../img/axelle.png"><img class="echarpe" alt="écharpe hétic" src="../img/echarpe.png">
+                <div class="rectangle">
+                    <article>
+                        <p>Axelle MOLLIER<br/>Profil designer</p>
+                        <p>Salut, je serai heureux de vous aider dans vos projets !</p>
+                    </article>
+                    <article>
+                        <p><span>UX design</span><span>Javascript</span><span>Symfony</span></p>
+                        <p><span>UI design</span><span>Community Management</span></p>
+                    </article>
+                </div>
+            </section>
+        </section>
+        </main>
+        <footer>
+            <p>
+                <a href="#top">En haut</a>
+            </p>
+            <p>
+                © Hétic 2018. All rights reserved
+            </p>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
-</body>
-
-</html>
+    </body>
+    
+    </html>
