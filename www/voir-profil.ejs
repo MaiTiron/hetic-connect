@@ -1,44 +1,108 @@
-<% include ./partials/head.ejs %>
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta name="description" content="Plateforme collaborative qui met en relation les étudiants d'Hétic pour proposer ou demander de l'aide pour réaliser des projets digitaux.">
+    <title>Hétic Connect</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
 <body>
-        <img src="#" alt="image de profile" />
-    <h1><%= nom %><%= prenom %></h1>
-    <p><%= age %></p>
-    <h2><%= filiere %></h2>
-    <p><%= description %></p>
-    <ul>
+    <header class="nav">
+        <ul>
+            <!-- Mettre à jour tous les header avec les bons liens -->
+            <li><a href="../home"><img alt="logo" src="../img/logo.png"></a></li>
+            <li><a href="../faq"><img alt="F.A.Q" src="../img/icone-faq.svg">F.A.Q</a></li>
+            <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
+        </ul>
+    </header>
+    <main id="profil">
+        <section id="topprofil">
+            <img src="#" alt="image de profile" />
+            <h1><%= prenom %><span> <%= nom %></span></h1>
+            <!-- Afficher "Profil designer", etc ? -->
+            <!-- Si admin : smaller "admin" en gris === c'était un commentaire existant, à vous de gérer -->
+            <p><%= age %> ans</p>
+            <p><%= filiere %></p>
+            <p><%= description %></p>
+        </section>
+        <section id="etiqprofil">
             <% for(var i=0; i < tags.length; i++) { %>
-                    <li>
-                            <%= tags[i] %>
-                    </li>
+                <article class="etiqproetiquette">
+                    <!-- J'ai mis une image pour pouvoir faire le style, si on peut pas lier la BDD, penser à enlever l'image d'exemple -->
+                    <img alt="#" src="../img/icone-chocolat-chaud.svg"><p><%= tags[i] %></p>
+                </article>
             <% } %>
-    </ul>
-    <ul>
-        <% for(var i=0; i < competences.length; i++) { %>
-                 <li>
-                    <%= competences[i] %>
-                </li>
-        <% } %>
-    </ul>
-        <!-- Si admin : smaller "admin" en gris -->
-    <ul>
-        <% for(var i=0; i < parcours.length; i++) { %>
-            <li>
-                    <%= parcours[i] %>
-            </li>
-        <% } %>
-     </ul>
-     <ul>
-        <li><%= realisations.dribbble %></li>
-        <li><%= realisations.behance %></li>
-        <li><%= realisations.instagram %></li>
-     </ul>
-     <ul>
-        <li><%= contact.linkedin %></li>
-        <li><%= contact.facebook %></li>
-        <li><%= contact.telephone %></li>
-        <li><%= contact.mail %></li>
-     </ul>
-
+            <h2>Compétences maîtrisées</h2>
+            <article class="etiqprocompetences">
+                <p>
+                    <% for(var i=0; i < competences.length; i++) { %>
+                    <span>
+                        <!-- Logiquement les compétences ont des couleurs différentes en fonction du domaine, à modifier si lien BDD, pour le moment c'est jaune tout le temps -->
+                        <%= competences[i] %>
+                    </span>
+                    <% } %>
+                </p>
+            </article>
+        </section>
+        <section id="contenuprofil">
+            <article class="contprogauche">
+                <img alt="parcours" src="../img/icone-parcours.svg">
+                <h3>Parcours professionnel et scolaire</h3>
+                <% for(var i=0; i < parcours.length; i++) { %>
+                    <p>
+                        <!-- Le saut de ligne est pas compté, si vous regardez la page il y a des '/n' perdus on sait pas pourquoi (enfin moi je sais pas en tous cas) -->
+                        <%= parcours[i] %>
+                    </p>
+                <% } %>
+            </article>
+            <article class="contprodroite">
+                <img alt="parcours" src="../img/icone-hobbies.svg">
+                <h3>Bio & centres d'intérêt</h3>
+                <!-- à l'affichage en  bas il y a "phdb.useroto" je sais pas ce que -->
+                <p><%= biographie %></p>
+                <img alt="disponibilités" src="../img/icone-horlogecopie.svg">
+                <h3>Disponibilités</h3>
+                <p><%= disponibilites %></p>
+                <img alt="réalisations" src="../img/icone-realisationscopie.svg">
+                <h3>Réalisations</h3>
+                <p>Vous pouvez découvrir mes réalisations dans les liens suivants :</p>
+                <p class="reseauxsociaux">
+                    <!-- 
+                        Pas de lien github ? Si  non, l'enlever 
+                    -->
+                    <a href="http://<%= realisations.dribbble %>"><img alt="dribble" src="../img/icone-dribbble.svg"></a>
+                    <a href="http://<%= realisations.behance %>"><img alt="behance" src="../img/icone-behance.svg"></a>
+                    <a href="#"><img alt="github" src="../img/icone-github.svg"></a>
+                    <a href="http://<%= realisations.instagram %>"><img alt="instagram" src="../img/icone-instagram.svg"></a>
+                    <a href="#">site perso</a>
+                    
+                </p>
+            </article>
+        </section>
+        <section id="bottomprofil">
+            <p>Ce profil vous a plu ?</p>
+            <p>Contactez <%= prenom %></p>
+            <article>
+                <p>Mail : <%= contact.mail %></p>
+                <p>Téléphone : <%= contact.telephone %></p>
+            </article>
+            <article>
+                <p>
+                    <a href="http://<%= contact.facebook %>"><img alt="facebook" src="../img/icone-facebook.svg"></a>
+                    <a href="http://<%= contact.linkedin %>"><img alt="linkedin" src="../img/icone-linkedin.svg"></a>
+                </p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <p>
+            <a href="#top">En haut</a>
+        </p>
+        <p>
+            © Hétic 2018. All rights reserved
+        </p>
+    </footer>
 </body>
 </html>

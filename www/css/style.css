@@ -48,13 +48,46 @@ header{
     position: fixed;
     padding: 0 150px;
 }
-nav img{
+nav img {
     width: 80%;
 }
-.error {
-    background-color: #C70018;
-    padding: 15px;
-    color: #FFFFFF;
+.nav {
+    position: fixed;
+    padding-left: 150px;
+    background-color: white;
+ }
+ 
+ .nav ul li {
+    display: inline-block;
+ }
+ 
+ .nav ul li:first-of-type {
+    margin-right: 650px;
+ }
+ 
+ .nav ul li a {
+    text-decoration: none;
+    color: #303641;
+    font-family: 'NeutraText-BookAlt';
+    display: inline-block;
+ }
+  
+ .nav ul li:nth-of-type(2) a img, .nav ul li:nth-of-type(3) a img{
+    height: 12px;
+    padding-right: 10px;
+    padding-left: 50px;
+ }
+/*--Image en background--*/
+.image-background{
+    background-image: url(../img/projet-travail.jpg);
+    background-size: cover;
+    flex: 1;
+    height: 100vh;
+}
+/*--Formulaire--*/
+#connexion section, #inscription section, #quizz section, #facultatif section{
+    flex: 1;
+    text-align: center;
 }
 
 
@@ -207,14 +240,7 @@ main {
     padding-right: 10px;
     padding-left: 50px;
 }
-.roundedImage{
-    overflow:hidden;
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    border-radius:50px;
-    width:90px;
-    height:90px;
-}
+
 /*----------Démarrez le quizz-----------*/
 #quizz section a{
     font-family:'NeutraTextTF-Book';
@@ -248,7 +274,6 @@ main {
 
 /*-----top-----*/
 #top {
-    margin: auto;
     text-align: center;
     background-image: url("../img/carte-cuvier.png");
     background-repeat: no-repeat;
@@ -256,11 +281,11 @@ main {
     background-size: 40%;
     width: 100%;
     box-sizing: border-box;
-    height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 #top h1 {
     margin-top: 0;
-    padding-top: 200px;
     margin-bottom: 30px;
     font-family: 'NeutraText-Bold';
     text-transform: uppercase;
@@ -344,26 +369,246 @@ main {
     text-align: center;
 }
 .contenu .rectangle article p span:first-of-type {
-    border: 1px solid #FFC300;
+    border: 2px solid #FFC300;
     padding: 15px;
     border-radius: 30px;
 }
 .contenu .rectangle article p:first-of-type span:nth-of-type(2), .contenu .rectangle article p:first-of-type span:nth-of-type(3) {
-    border: 1px solid #409C5B;
+    border: 2px solid #409C5B;
     padding: 15px;
     border-radius: 30px;
 }
 .contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) {
-    border: 1px solid #384597;
+    border: 2px solid #384597;
     padding: 15px;
     border-radius: 30px;
 }
 
-/*--Footer--*/
-footer {
+/*--FAQ--*/
+#faq #top .topfaq p {
+    width: 30%;
+    margin-bottom: 40px;
+ }
+ 
+ #faq #top .topfaq:last-of-type p {
+    font-style: italic;
+ }
+ 
+ #faq .contenu .competence {
+    margin-bottom: 50px;
+ }
+ 
+ #faq .contenu .competence img {
+    height: 40px;
+    border-radius: 0px;
+    margin-left: 48%;
+    margin-top: 20px;
+ }
+ 
+ #faq .contenu .competence:first-of-type img {
+    margin-left: 46%;
+ }
+ 
+ #faq .contenu .competence h2 {
+    font-family: 'NeutraText-Bold';
+    text-transform: uppercase;
+    color: #384597;
     text-align: center;
+    font-size: 1.3em;
+ }
+ 
+ #faq .contenu .competence ul li {
+    line-height: 25px;
+    margin-bottom: 10px;
+ }
+ 
+ #faq .contenu .competence ul li span {
+    font-family: 'NeutraText-Bold';
+ 
+ }
+ 
+
+
+
+
+
+
+/*---Profil---*/
+
+#profil #topprofil {
+    text-align: center;
+    width: 100%;
+    padding-top: 100px;
 }
-footer p:first-of-type {
+
+#profil #topprofil h1 {
+    font-family: 'NeutraText-BookAlt';
+    color: #303641;
+    margin-bottom: 20px;
+}
+
+#profil #topprofil h1 span{
+    text-transform: uppercase;
+}
+
+#profil #topprofil p {                                                                                                                
+    text-align: center;
+    margin: auto;
+    line-height: 32px;
+}
+
+#profil #topprofil p:first-of-type {
+    color: #FFC300;
+}
+
+#profil #topprofil p:nth-of-type(2) {
+    color: #384597;
+}
+
+#profil #topprofil p:nth-of-type(3) {
+    font-style: italic;
+}
+
+#profil #topprofil img {
+    height: 150px;
+    border-radius: 100px;
+}
+
+#profil #etiqprofil {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#profil #etiqprofil .etiqproetiquette {
+    width: 11%;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 25px 0 25px;
+}
+
+#profil #etiqprofil .etiqproetiquette img {
+    height: 100px;
+    margin-bottom: -10px;
+}
+
+#profil #etiqprofil h2 {
+    font-family: 'NeutraTextTF-Book';
+    font-style: normal;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 53%;
+    margin: auto;
+}
+
+#profil #etiqprofil .etiqprocompetences {
+    line-height: 50px;
+}
+
+#profil #etiqprofil .etiqprocompetences p span {
+    margin-right: 20px;
+    text-align: center;
+    border: 2px solid #FFC300;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+#profil #contenuprofil {
+    background-color: #FAFAFA;
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    align-items: flex-start;
+    justify-content:center ;
+}
+
+#profil #contenuprofil article {
+    width: 30%;
+    margin-left: 80px;
+    display: inline-block;
+    text-align: initial;
+}
+
+#profil #contenuprofil .contprogauche {
+    margin-top: 16px;
+}
+
+#profil #contenuprofil .contprogauche img {
+    float: left;
+    height: 60px;
+    margin-top: 7px;
+}
+
+#profil #contenuprofil .contprodroite img {
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: 13px;
+}
+
+#profil #contenuprofil .contprodroite img:first-of-type{
+    margin-top: 35px;
+}
+
+#profil #contenuprofil .contprodroite .reseauxsociaux img {
+    margin-top: -7px;
+}
+
+#profil #contenuprofil .contprogauche p{
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+#profil #contenuprofil .contprodroite h3 {
+    margin-top: 40px;
+}
+
+#profil #contenuprofil .contprodroite p {
+    line-height: 25px;
+}
+
+#profil #contenuprofil .contprodroite a {
+ color: #FFC300;
+}
+
+#profil #bottomprofil {
+    text-align: center;
+    margin-top: 90px;
+    line-height: 10px;
+}
+
+#profil #bottomprofil article {
+    display: inline-block;
+    margin: 0 23px 0 23px;
+}
+
+#profil #bottomprofil article:first-of-type {
+    text-align: initial;
+    margin-top: 30px;
+}
+
+#profil #bottomprofil article img {
+    height: 50px;
+}
+
+
+
+
+
+
+
+ /*--Footer--*/
+ 
+ footer {
+    text-align: center;
+    margin-top: 100px;
+ }
+ 
+ footer p:first-of-type {
     background-color:  #384597;
     width: 80px;
     margin: auto;
@@ -380,4 +625,4 @@ footer p:last-of-type {
     color: #707070;
     margin-top: 40px;
     margin-bottom: 40px;
-}
+ }
