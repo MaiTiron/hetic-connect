@@ -24,7 +24,8 @@ const mongoServer = 'mongodb://localhost/hetic';
 /*
     Def des routes
 */
-/* GET login page. */
+/*Fonctions*/
+// Fonction pour vérifier  
 function loggedIn(req, res, next) {
     // router.get('/:path', function(req, res) {
     if(req.session.userId){
@@ -61,7 +62,7 @@ router.get('/', loggedIn, (req, res) => {
     });
 });
 
-router.post('/data', (req, res) => {
+router.get('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
         if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
@@ -108,10 +109,7 @@ router.get('/voir-profil/', (req, res) => {
     res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
 });
 
-    // Inscription
-router.get('/inscription', (req, res) => {
-    res.render('inscription');
-});
+
     // Inscription
 router.get('/questionnaire', (req, res) => {
  
