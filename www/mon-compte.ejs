@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-</head>
+<% include ./partials/head.ejs %>
 <body>
     <h1>Mon compte</h1>
     
@@ -19,8 +10,8 @@
     <input name="age" type="text" placeholder="Votre âge" value="%Age" />
     <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
 
-    <a href="/questionnaire">Complétez votre</a>
-    <a href="/logout">Se déconnecter</a>
+    <a href="./questionnaire">Complétez votre</a>
+    <a href="./logout">Se déconnecter</a>
 
 </body>
 </html>
