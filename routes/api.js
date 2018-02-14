@@ -54,9 +54,8 @@ router.post('/data', (req, res) => {
         if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else { // Connexion établie --> récupère la collection de data
 
-            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
+            db.collection('users').find({"affichage": true}).toArray( (err, result) => {
                 // Test la connexion à la collection
-                console.log({result});
                 if (err) { res.json({error : err}) }
                 else {
                     res.json({data : result}); //changer collection
@@ -97,10 +96,6 @@ router.get('/voir-profil/', (req, res) => {
 });
 
     // Inscription
-router.get('/inscription', (req, res) => {
-    res.render('inscription');
-});
-    // Inscription
 router.get('/questionnaire', (req, res) => {
     //User.findById(req.session.userId).exec(function (error, user) {
     //    res.render('questionnaire', {userId : req.session.userId})
@@ -108,7 +103,31 @@ router.get('/questionnaire', (req, res) => {
     res.render('questionnaire')
 });
 router.post('/send-questionnaire', (req, res) => {
-    console.log(req.body);
+    var competences = req.body.competences.map(x => x);
+    var userData = {
+       age: req.body.age,
+       filiere: req.body.filiere,
+       parcours: req.body.parcours,
+       contact: [req.body.linkedin, req.body.facebook, req.body.telephone],
+       realisations: [req.body.dribbble, req.body.behance, req.body.instagram, req.body.site],
+       description: req.body.description,
+       biographie: req.body.biographie,
+       affichage: true,
+       disponibilites: req.body.disponibilites,
+       competences: competences
+       //try avec des name sur chaques compétences
+   };
+       User.findById(req.session.userId).update(userData, function (error, user) {
+        
+           if (error) {
+               return next(error);
+           } else {
+               console.log(User._id);
+               console.log(req.session.userId);
+               // req.session.userId = user._id;
+               return res.redirect('mon-compte');
+           }
+})
 });
 
 

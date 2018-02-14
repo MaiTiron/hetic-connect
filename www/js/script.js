@@ -40,9 +40,10 @@ function search(inputValue, userList){
       
       countMatched++;
     }
+    
       // Vérifie qu'on à bien le contenu de l'input dans les compétences
     for (competence of user.competences) {
-      
+   
       if (competence.toLowerCase().indexOf(inputValue) == 0){
         
         countMatched++;
