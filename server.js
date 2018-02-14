@@ -34,7 +34,8 @@ const db = mongoose.connection;
     // Config serveur
 const app = express();
 const port = process.env.PORT || 3000;
-    
+
+
 
     // Config dossier des vues clients
 app.set('views', __dirname + '/www');
@@ -67,14 +68,13 @@ Configuration des middleware
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
 
-
+    
 
 /*
 Configuration des routes
 */
 // app.use('/', frontRoute);
 app.use('/', apiRoute);
-
 
 
 // catch 404 and forward to error handler
@@ -91,7 +91,7 @@ app.use(function (req, res, next) {
     res.send(err.message);
   });
 
-  
+
 
 /*
     Lancer le server

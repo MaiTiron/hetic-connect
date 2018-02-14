@@ -51,10 +51,9 @@ function search(inputValue, userList){
     
     }
   
-    if (countMatched>0) affichage( user.username, user.description, user.competences,user._id, countPeople);
+    if (countMatched>0) affichage( user.username, user.description, user.competences,user._id, countPeople, inputValue);
   }
 }
-
 
 function injectCompetences(competences, i) {
   for (competence of competences ) {
@@ -64,7 +63,7 @@ function injectCompetences(competences, i) {
   }
 };
 
-function affichage(username, bio, competences,id, i) {
+function affichage(username, bio, competences,id, i, inputValue) {
   console.log('test');
   console.log('username : ' + username );
   console.log('bio : ' + bio);
@@ -73,6 +72,9 @@ function affichage(username, bio, competences,id, i) {
   
   // Gestion de du nb de compétences
   var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div><a href='/voir-profil/" + id + "'>Voir le profil</a></article>";
+  if (inputValue === ""){
+    var content = "";
+  }
   $('#container').append(content);
   injectCompetences(competences, i);
   

@@ -29,7 +29,7 @@ var UserSchema = new mongoose.Schema({
   age: {
     type: Number,
   },
-  filliere: {
+  filiere: {
     type: String,
   },
   competences: {
@@ -61,8 +61,8 @@ var UserSchema = new mongoose.Schema({
   }
 });
 
-UserSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email: email })
+UserSchema.statics.authenticate = function (mail, password, callback) {
+  User.findOne({ mail: mail })
     .exec(function (err, user) {
       if (err) {
         return callback(err)

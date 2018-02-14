@@ -44,17 +44,56 @@ body{
     color: #303641;
     font-size: 20px;
 }
-header{
+#facultatif, #inscription, #connexion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/*--Header--*/
+.fixed{
     position: fixed;
     padding: 0 150px;
 }
-nav img{
+nav img {
     width: 80%;
 }
-.error {
-    background-color: #C70018;
-    padding: 15px;
-    color: #FFFFFF;
+.nav {
+    position: fixed;
+    padding-left: 150px;
+    background-color: white;
+ }
+ 
+ .nav ul li {
+    display: inline-block;
+ }
+ 
+ .nav ul li:first-of-type {
+    margin-right: 650px;
+ }
+ 
+ .nav ul li a {
+    text-decoration: none;
+    color: #303641;
+    font-family: 'NeutraText-BookAlt';
+    display: inline-block;
+ }
+  
+ .nav ul li:nth-of-type(2) a img, .nav ul li:nth-of-type(3) a img{
+    height: 12px;
+    padding-right: 10px;
+    padding-left: 50px;
+ }
+/*--Image en background--*/
+.image-background{
+    background-image: url(../img/projet-travail.jpg);
+    background-size: cover;
+    flex: 1;
+    height: 100vh;
+}
+/*--Formulaire--*/
+#connexion section, #inscription section, #quizz section, #facultatif section{
+    flex: 1;
+    text-align: center;
 }
 
 
@@ -115,12 +154,37 @@ input, button, form>a {
     background-size: 15px; 
     padding-left: 27px; 
 }
-
-
-/* ==========================
-            PAGES 
-========================== */
 /*  PAGE -- QUESTIONNAIRE FACULTATIF */
+=======
+/*----------Démarrez le quizz-----------*/
+#quizz section a{
+    font-family:'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #384597;
+    padding: 8px 25px;
+}
+#quizz {
+    height: 100vh;
+}   
+#quizz section{
+    background-image: url('../img/carte-cuvier.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
+    padding-top: 200px;
+}
+#quizz img {
+    width: 50px;
+}
+#quizz h1{
+    font-size: 38px;
+}
+#quizz a{
+    text-decoration: none;
+    font-size: 22px;
+}
+/*------Questions facultatives------*/
 #facultatif{
     height: 100vh;
 }
@@ -207,48 +271,18 @@ main {
     padding-right: 10px;
     padding-left: 50px;
 }
-.roundedImage{
-    overflow:hidden;
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    border-radius:50px;
-    width:90px;
-    height:90px;
-}
-/*----------Démarrez le quizz-----------*/
-#quizz section a{
-    font-family:'NeutraTextTF-Book';
-    color: white;
-    border-radius: 35px;
-    background-color: #384597;
-    padding: 8px 25px;
-}
-#quizz {
-    height: 100vh;
-}   
-#quizz section{
-    background-image: url('../img/carte-cuvier.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding-bottom: 200px;
-    padding-top: 200px;
-}
-#quizz img {
-    width: 50px;
-}
-#quizz h1{
-    font-size: 38px;
-}
-#quizz a{
-    text-decoration: none;
-    font-size: 22px;
-}
+
+
+
+
+
+
+
+
 
 
 /*-----top-----*/
 #top {
-    margin: auto;
     text-align: center;
     background-image: url("../img/carte-cuvier.png");
     background-repeat: no-repeat;
@@ -256,11 +290,11 @@ main {
     background-size: 40%;
     width: 100%;
     box-sizing: border-box;
-    height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 #top h1 {
     margin-top: 0;
-    padding-top: 200px;
     margin-bottom: 30px;
     font-family: 'NeutraText-Bold';
     text-transform: uppercase;
@@ -344,40 +378,89 @@ main {
     text-align: center;
 }
 .contenu .rectangle article p span:first-of-type {
-    border: 1px solid #FFC300;
+    border: 2px solid #FFC300;
     padding: 15px;
     border-radius: 30px;
 }
 .contenu .rectangle article p:first-of-type span:nth-of-type(2), .contenu .rectangle article p:first-of-type span:nth-of-type(3) {
-    border: 1px solid #409C5B;
+    border: 2px solid #409C5B;
     padding: 15px;
     border-radius: 30px;
 }
 .contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) {
-    border: 1px solid #384597;
+    border: 2px solid #384597;
     padding: 15px;
     border-radius: 30px;
 }
 
-/*--Footer--*/
-footer {
+/*--FAQ--*/
+#faq #top .topfaq p {
+    width: 30%;
+    margin-bottom: 40px;
+ }
+ 
+ #faq #top .topfaq:last-of-type p {
+    font-style: italic;
+ }
+ 
+ #faq .contenu .competence {
+    margin-bottom: 50px;
+ }
+ 
+ #faq .contenu .competence img {
+    height: 40px;
+    border-radius: 0px;
+    margin-left: 48%;
+    margin-top: 20px;
+ }
+ 
+ #faq .contenu .competence:first-of-type img {
+    margin-left: 46%;
+ }
+ 
+ #faq .contenu .competence h2 {
+    font-family: 'NeutraText-Bold';
+    text-transform: uppercase;
+    color: #384597;
     text-align: center;
-}
-footer p:first-of-type {
+    font-size: 1.3em;
+ }
+ 
+ #faq .contenu .competence ul li {
+    line-height: 25px;
+    margin-bottom: 10px;
+ }
+ 
+ #faq .contenu .competence ul li span {
+    font-family: 'NeutraText-Bold';
+ 
+ }
+ 
+ /*--Footer--*/
+ 
+ footer {
+    text-align: center;
+    margin-top: 100px;
+ }
+ 
+ footer p:first-of-type {
     background-color:  #384597;
     width: 80px;
     margin: auto;
     padding: 10px;
     padding-top: 12px;
     border-radius: 40px;
-}
-footer p:first-of-type a {
+    width: 110px;
+ }
+ 
+ footer p:first-of-type a {
     text-decoration: none;
     color: white;
     text-transform: uppercase;
-}
-footer p:last-of-type {
+ }
+ 
+ footer p:last-of-type {
     color: #707070;
     margin-top: 40px;
     margin-bottom: 40px;
-}
+ }
