@@ -11,11 +11,13 @@
         <div class="image-background"></div>
         <section>
             <h1>Inscription</h1>
-            <form method="post" action="">
-                <img><input class="icon-name" type="mail" name="mail" id="mail" placeholder="Prénom NOM" required="required"/>
+            <form action="/signup" method="POST">
+                <img><input class="icon-name" type="text" name="nom" id="name" placeholder="Votre Nom" required="required"/>
+                <img><input class="icon-name" type="text" name="prenom" id="name2" placeholder="Votre Prénom" required="required">
                 <img><input class="icon-mail" type="mail" name="mail" id="mail" placeholder="E-mail" required="required"/>
-                <img><input class="icon-mdp" type="password" name="mdp" id="mdp" placeholder="Mot de passe" required="required"/>
-                <button type="submit">Connect</button>
+                <img><input class="icon-mdp" type="password" name="password" id="mdp" placeholder="Mot de passe" required="required"/>
+                <img><input class="icon-mdp" type="password" name="passwordVerif" id="mdp2" placeholder="Confirmez votre mot de passe" required="required"/>
+                <button type="submit">Inscription</button>
                 <a href="/signin">Connectez-vous</a>
             </form>
         </section>

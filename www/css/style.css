@@ -44,13 +44,7 @@ body{
     color: #303641;
     font-size: 20px;
 }
-#facultatif, #inscription, #connexion{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-/*--Header--*/
-.fixed{
+header{
     position: fixed;
     padding: 0 150px;
 }
@@ -129,7 +123,7 @@ input, button, form>a {
     background-image: url(../img/projet-travail.jpg);
     background-size: cover;
     flex: 1;
-    height: 100vh;
+    height: 100%;
 }
 
 /*--Icones--*/
@@ -154,8 +148,6 @@ input, button, form>a {
     background-size: 15px; 
     padding-left: 27px; 
 }
-/*  PAGE -- QUESTIONNAIRE FACULTATIF */
-=======
 /*----------Démarrez le quizz-----------*/
 #quizz section a{
     font-family:'NeutraTextTF-Book';
@@ -185,6 +177,13 @@ input, button, form>a {
     font-size: 22px;
 }
 /*------Questions facultatives------*/
+=======
+
+
+/* ==========================
+            PAGES 
+========================== */
+/*  PAGE -- QUESTIONNAIRE FACULTATIF */
 #facultatif{
     height: 100vh;
 }
@@ -227,7 +226,7 @@ input, button, form>a {
     margin: 0;
 }
 main {
-    height: 90vh;
+    height: 100vh;
 }
 #questionnaire .question {
     height: 100%;
@@ -272,13 +271,35 @@ main {
     padding-left: 50px;
 }
 
-
-
-
-
-
-
-
+/*----------Démarrez le quizz-----------*/
+#quizz section a{
+    font-family:'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #384597;
+    padding: 8px 25px;
+}
+#quizz {
+    height: 100vh;
+}   
+#quizz section{
+    background-image: url('../img/carte-cuvier.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
+    padding-top: 200px;
+}
+#quizz img {
+    width: 50px;
+}
+#quizz h1{
+    font-size: 38px;
+}
+#quizz a{
+    text-decoration: none;
+    font-size: 22px;
+}
 
 
 /*-----top-----*/
@@ -436,6 +457,180 @@ main {
  
  }
  
+
+
+
+
+
+
+/*---Profil---*/
+
+#profil #topprofil {
+    text-align: center;
+    width: 100%;
+    padding-top: 100px;
+}
+
+#profil #topprofil h1 {
+    font-family: 'NeutraText-BookAlt';
+    color: #303641;
+    margin-bottom: 20px;
+}
+
+#profil #topprofil h1 span{
+    text-transform: uppercase;
+}
+
+#profil #topprofil p {                                                                                                                
+    text-align: center;
+    margin: auto;
+    line-height: 32px;
+}
+
+#profil #topprofil p:first-of-type {
+    color: #FFC300;
+}
+
+#profil #topprofil p:nth-of-type(2) {
+    color: #384597;
+}
+
+#profil #topprofil p:nth-of-type(3) {
+    font-style: italic;
+}
+
+#profil #topprofil img {
+    height: 150px;
+    border-radius: 100px;
+}
+
+#profil #etiqprofil {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#profil #etiqprofil .etiqproetiquette {
+    width: 11%;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 25px 0 25px;
+}
+
+#profil #etiqprofil .etiqproetiquette img {
+    height: 100px;
+    margin-bottom: -10px;
+}
+
+#profil #etiqprofil h2 {
+    font-family: 'NeutraTextTF-Book';
+    font-style: normal;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 53%;
+    margin: auto;
+}
+
+#profil #etiqprofil .etiqprocompetences {
+    line-height: 50px;
+}
+
+#profil #etiqprofil .etiqprocompetences p span {
+    margin-right: 20px;
+    text-align: center;
+    border: 2px solid #FFC300;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+#profil #contenuprofil {
+    background-color: #FAFAFA;
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    align-items: flex-start;
+    justify-content:center ;
+}
+
+#profil #contenuprofil article {
+    width: 30%;
+    margin-left: 80px;
+    display: inline-block;
+    text-align: initial;
+}
+
+#profil #contenuprofil .contprogauche {
+    margin-top: 16px;
+}
+
+#profil #contenuprofil .contprogauche img {
+    float: left;
+    height: 60px;
+    margin-top: 7px;
+}
+
+#profil #contenuprofil .contprodroite img {
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: 13px;
+}
+
+#profil #contenuprofil .contprodroite img:first-of-type{
+    margin-top: 35px;
+}
+
+#profil #contenuprofil .contprodroite .reseauxsociaux img {
+    margin-top: -7px;
+}
+
+#profil #contenuprofil .contprogauche p{
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+
+#profil #contenuprofil .contprodroite h3 {
+    margin-top: 40px;
+}
+
+#profil #contenuprofil .contprodroite p {
+    line-height: 25px;
+}
+
+#profil #contenuprofil .contprodroite a {
+ color: #FFC300;
+}
+
+#profil #bottomprofil {
+    text-align: center;
+    margin-top: 90px;
+    line-height: 10px;
+}
+
+#profil #bottomprofil article {
+    display: inline-block;
+    margin: 0 23px 0 23px;
+}
+
+#profil #bottomprofil article:first-of-type {
+    text-align: initial;
+    margin-top: 30px;
+}
+
+#profil #bottomprofil article img {
+    height: 50px;
+}
+
+
+
+
+
+
+
  /*--Footer--*/
  
  footer {
@@ -450,16 +645,13 @@ main {
     padding: 10px;
     padding-top: 12px;
     border-radius: 40px;
-    width: 110px;
- }
- 
- footer p:first-of-type a {
+}
+footer p:first-of-type a {
     text-decoration: none;
     color: white;
     text-transform: uppercase;
- }
- 
- footer p:last-of-type {
+}
+footer p:last-of-type {
     color: #707070;
     margin-top: 40px;
     margin-bottom: 40px;
