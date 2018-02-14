@@ -9,16 +9,13 @@ var User = require('../models/user');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectID;
-// module.exports = router;
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
 
 
-
-// const mongoServer = 'mongodb://localhost:27017/hetic'; // Mettre le lien vers la vraie BDD ?
+    // TODO : Mettre le lien vers la vraie BDD
 const mongoServer = 'mongodb://localhost/hetic';
-
 
 
 /*
@@ -40,7 +37,6 @@ function loggedIn(req, res, next) {
     // Accueil --> Affichage des profils 
 router.get('/', loggedIn, (req, res) => {
     // SI (user connected ET quiz terminée) ==> on affiche tout
-    // SI (user )
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
         if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
@@ -50,9 +46,7 @@ router.get('/', loggedIn, (req, res) => {
                 // Test la connexion à la collection
                 if (err) { res.render('index', {error : err, data: 'Aucune tâche en cours'}) }
                 else {
-                
-                    // Connexion à la collection établie
-                    
+                    // Connexion à la collection établie    
                     res.render('index');
                 }
             });
@@ -61,16 +55,25 @@ router.get('/', loggedIn, (req, res) => {
     });
 });
 
-router.get('/data', (req, res) => {
-    mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
-    // Test de la connexion
+    
+    // Afficher un profil sans nom
+router.get('/voir-profil/', (req, res) => { 
+    res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
+});
+
+
+    // PROFIL   --> Affichage d'un profil utilisateur
+router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)   
+    var targetId = req.params.id;
+    mongoose.connect(mongoServer, (err, db) => {
+        
         if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-        else { // Connexion établie --> récupère la collection de data
-            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
-                // Test la connexion à la collection
+        else { 
+            db.collection('users').find({"_id": ObjectId(targetId) }).toArray( (err, result) => {
+                console.log('Voir User : ' + result);
                 if (err) { res.json({error : err}) }
                 else {
-                    res.json({data : result}); //changer collection
+                    res.render('voir-profil', {nom: result[0].nom , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, competences: result[0].competences, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
                 }
             });
         };
@@ -108,12 +111,12 @@ router.get('/voir-profil/', (req, res) => {
 
     // Inscription
 router.get('/questionnaire', (req, res) => {
- 
-        res.render('questionnaire')
-
+    res.render('questionnaire')
 });
-router.post('/send-questionnaire', (req, res) => {
+    
 
+    // Envoi du questionnaire
+router.post('/send-questionnaire', (req, res) => {
     var userData = {
         age: req.body.age,
         filiere: req.body.filiere,
@@ -125,117 +128,82 @@ router.post('/send-questionnaire', (req, res) => {
         affichage: true,
         disponibilites: req.body.disponibilites,
         competences: [req.body.competences]
-
     };
-        User.findById(req.session.userId).update(userData, function (error, user) {
-            if (error) {
-                return next(error);
-            } else {
-                // req.session.userId = user._id;
-                return res.redirect('mon-compte');
-            }
-        })
-    
-    
+    User.findById(req.session.userId).update(userData, function (error, user) {
+        console.log(userData);
+        if (error) {
+            return next(error);
+        } else {
+            return res.redirect('mon-compte');
+        }
+    });
 });
 
 
-    // Démarrer le quizz
-router.get('/start-quizz', (req, res) => {
-    res.render('start-quizz');
-});    
-
-    // Inscription
-router.get('/signup', (req, res) => {
-    res.render('signup');
-});    
-
-    // Connexion
-router.get('/signin', (req, res) => {
-    res.render('signin');
-});
-
-    // Profil
-router.get('/profil', (req, res) => {
-    res.render('profil');
-});
-
-    // Accueil
-router.get('/home', (req, res) => {
-    res.render('home');
-});
-
-    // FAQ
-router.get('/faq', (req, res) => {
-    res.render('faq');
-});
-
-
-
-
-
-    
-// Clears the session data by setting the value to null
-router.get('/clear', function(req, res) {  
-    res.send(req.session);
-  });
-
-
-    // quizz
-    let tab = [];
-    let test = false;
-router.get('/quizz', (req, res) => {
+    // DATA     --> Récupération des données user
+router.post('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => {
-        if (err) { res.render('404', {error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        if (err) { res.json({error : err})}
         else { 
-            db.collection('quizz').find().toArray( (err, collection) => {
-                if (err) { res.render('404', {error : err, data: 'Problème dans l\'affichage des questions du quizz'}) }
-
+            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
+                if (err) { res.json({error : err}) }
                 else {
-                        for (q of collection) {
-                            tab.push(q);
-                            test = true;
-                        }
-                    
-                    let questionAlea = tab[Math.floor(Math.random()*tab.length)]; 
-                    res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
+                    res.json({data : result}); //changer de collection
                 }
             });
         };
         db.close();
     });
 });
+
+
+    // CONNEXION    --> Connexion d'un utilisateur
+router.get('/signin', (req, res) => {
+    res.render('signin');
+});
     
-    // quizz
-router.post('/send-quizz', (req, res) => {
-    
-    var lastID = req.body.id_Quest;
-    mongoose.connect(mongoServer, (err, db) => {
-        const quizz = db.collection('quizz');
-        if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-        else { 
-            
-            // SI ON REÇOIT 2 _ID ON AJOUTE DANS LA REQUETE
-                if(tab.length > 1) {
-                    let questionAlea = tab[Math.floor(Math.random()*tab.length)];
-                    tab.splice( tab.indexOf(questionAlea), 1 );
-                    res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
-                } else {
-                    res.render('404', {data: 'La page de retour n\'est pas encore dev !'});
-                }
+
+// DÉCONNEXION    --> Suppression de la session active
+router.get('/logout', function (req, res, next) {
+    if (req.session) {
+        // Supprime session
+        req.session.destroy(function (err) {
+            if (err) {
+                return next(err);
+            } else {
+                return res.redirect('signin');
+            }
+        });
+    }
+});
+
+
+    // MON COMPTE   --> Affichage des informations personnelles
+router.get('/mon-compte', function (req, res, next) {
+    User.findById(req.session.userId).exec(function (error, user) {
+        if (error) {
+            return next(error);
+        } else {
+            if (user === null) {
+                var err = new Error('Erreur');
+                err.status = 400;
+                return next(err);
+            } else {
+                // Remplacer par route sur laquelle il faut rediriger une fois connecté
+                return res.render('mon-compte', {nom: user.nom, prenom: user.prenom, mail: user.mail}); // TODO : On peut pas plutot le faire dans la session ?
+            }
         }
-        db.close();
     });
 });
+    
 
+    // INSCRIPTION  --> Inscription d'un utilisateur
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});    
 
-
-// Page inscription : GET
-router.get('/connexion', (req, res) => {
-    res.render('connexion');
-});
-
-router.post('/connexion', function (req, res, next) {
+// Connexion
+router.post('/signin', function (req, res, next) {
     if (req.body.logemail && req.body.logpassword) {
         User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
             if (error) {
@@ -254,27 +222,22 @@ router.post('/connexion', function (req, res, next) {
     }
 });
 
-
-
-// Page inscription : GET
-router.get('/inscription', (req, res) => {
-    res.render('inscription');
-});
-  
-  
-// Page inscription : POST
-router.post('/inscription', function (req, res, next) {
+    // ENVOI DE L'INSCRIPTION   --> inscription d'un user en base : POST
+router.post('/signup', function (req, res, next) {
+    
     // Vérification pwd et conf pwd
-    if (req.body.password !== req.body.passwordVerif) {
-        
+    if (req.body.password !== req.body.passwordVerif) {    
         var err = new Error('Les mots de passe ne correspondent pas.');
         err.status = 400;
         return next(err);
-    }
-
-        // TODO : Vérifier que ça existe pas déja dans la base
+    }    
+    
+    // Vérification qu'il y a toute les données de rentrées
     if (req.body.mail && req.body.nom && req.body.prenom && req.body.password) {
-        var userData = {
+        /*if (checkUserAlreadyKnown(req.body.mail) != false ) {
+            res.render('signup', {mail: req.body.mail, nom: req.body.nom, prenom: req.body.prenom});
+        };*/
+        let userData = {
             mail: req.body.mail,
             nom: req.body.nom,
             prenom: req.body.prenom,
@@ -285,9 +248,11 @@ router.post('/inscription', function (req, res, next) {
                 return next(error);
             } else {
                 req.session.userId = user._id;
-                return res.redirect('mon-compte');
+                res.redirect('mon-compte');
             }
         });
+
+    // Identification de l'user
     } else if (req.body.logemail && req.body.logpassword) {
         User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
             if (error) {
@@ -305,40 +270,66 @@ router.post('/inscription', function (req, res, next) {
         return next(err);
     }
 });
-  
-  // Page profil : GET
-router.get('/mon-compte', function (req, res, next) {
-    User.findById(req.session.userId).exec(function (error, user) {
-        if (error) {
-            return next(error);
-        } else {
-            if (user === null) {
-                var err = new Error('Pas duser');
-                err.status = 400;
-                return next(err);
-            } else {
-                // Remplacer par route sur laquelle il faut rediriger une fois connecté
-                return res.render('mon-compte', {nom: user.nom, prenom: user.prenom, mail: user.mail});
-            }
-        }
+
+   
+   // DÉMARRER LE QUIZ  --> Page avec bouton de démarrage
+router.get('/start-quizz', (req, res) => {
+    res.render('start-quizz');
+}); 
+
+
+    // RÉALISER LE QUIZ --> Interface de réponse aux questions du quiz
+let tab = [];
+let test = false;
+router.get('/quizz', (req, res) => {
+    console.log('Req.session : ' + req.session);
+    mongoose.connect(mongoServer, (err, db) => {
+        if (err) { res.render('404', {error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        else { 
+            db.collection('quizz').find().toArray( (err, collection) => {
+                if (err) { res.render('404', {error : err, data: 'Problème dans l\'affichage des questions du quizz'}) }
+                else {
+                    for (q of collection) {
+                        tab.push(q);
+                        test = true;
+                    }
+                    let questionAlea = tab[Math.floor(Math.random()*tab.length)]; 
+                    res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
+                }
+            });
+        };
+        db.close();
     });
 });
-  
-  // Page déconnexion : GET
-router.get('/logout', function (req, res, next) {
-    if (req.session) {
-      // Supprime session
-        req.session.destroy(function (err) {
-            if (err) {
-                return next(err);
+   
+
+    // ENVOI QUIZ   --> Envoi des données du quiz vers le schema User
+router.post('/send-quizz', (req, res) => {
+    
+    var lastID = req.body.id_Quest;
+    mongoose.connect(mongoServer, (err, db) => {    // TODO : Supprimer la connexion à la base
+        const quizz = db.collection('quizz');
+        if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+        else {     
+            // SI ON REÇOIT + D'UN 1 _ID ON AJOUTE DANS LA REQUETE
+            if(tab.length > 1) {
+                let questionAlea = tab[Math.floor(Math.random()*tab.length)];
+                tab.splice( tab.indexOf(questionAlea), 1 );
+                res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
             } else {
-                return res.redirect('inscription');
+                console.log('tableau vide');
+                res.render('404', {data: 'La page de retour n\'est pas encore dev !'});
             }
-        });
-    }
+        }
+        db.close();
+    });
 });
 
 
+    // Test de la variable de session
+router.get('/clear', function(req, res) {  
+    res.send(req.session);
+});
 
 
     // 404
@@ -349,20 +340,49 @@ router.get('/404', (req, res) => {
 // Suppression profil
 router.post('/suppression-profil', (req, res) => {
 
-            // Test de la connexion
-
-            
-
-            
             var utilisateurCourant = User.findById(req.session.userId);
 
-   
-
             console.log(utilisateurCourant);
-          
-            User.findById(req.session.userId).remove(User).then( res.redirect('/signin'));
+            User.findById(req.session.userId).remove(User).then( 
+                
+                req.session.destroy(function (err) {
+                    if (err) {
+                        return next(err);
+                    } else {
+                        return res.redirect('/signin');
+                    }
+                })
+                        
+            );
+
+            
         
 });
 
 
+
+
+// VOID : Vérifie si le mail est déjà enregistré en base pour quelqu'un
+function checkUserAlreadyKnown (mailSubmitted) { 
+    let mailToCheck = mailSubmitted.toLowerCase();
+    mongoose.connect(mongoServer, (err, db) => {
+        if (err) { res.render('404', {error : err})}
+        else { 
+            db.collection('users').find({"mail": mailToCheck.toString() }).toArray( (err, result) => {  // récupération des utilisateurs avec le même mail
+                if (err) { res.render('404', {error : err, data: 'Le service à rencontré un problème'}) }
+                else {
+                    for (user of result) {
+                        if (user.mail.toLowerCase() == mailToCheck) {
+                            console.log('Mail déjà utilisé');
+                            break;
+                        }
+                    }
+                    return false;
+                }
+            });
+        };
+        db.close();
+    });
+    return true;
+}
 module.exports = router;

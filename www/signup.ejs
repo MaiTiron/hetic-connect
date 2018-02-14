@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width,initial-scale=1" name="viewport">
-    <meta name="description" content="Plateforme collaborative qui met en relation les étudiants d'Hétic pour proposer ou demander de l'aide pour réaliser des projets digitaux.">
-    <title>Hétic Connect</title>
-    <link href="../css/style.css" rel="stylesheet">
-</head>
+<% include ./partials/head.ejs %>
 
 <body>
     <header class="fixed">
@@ -21,16 +11,23 @@
         <div class="image-background"></div>
         <section>
             <h1>Inscription</h1>
-            <form method="post" action="/inscription">
-                <img><input class="icon-name" type="mail" name="prenom" id="mail" placeholder="Prénom" required="required"/>
-                <img><input class="icon-name" type="mail" name="nom" id="mail" placeholder="NOM" required="required"/>
+            <form action="/signup" method="POST">
+                <img><input class="icon-name" type="text" name="nom" id="name" placeholder="Votre Nom" required="required"/>
+                <img><input class="icon-name" type="text" name="prenom" id="name2" placeholder="Votre Prénom" required="required">
                 <img><input class="icon-mail" type="mail" name="mail" id="mail" placeholder="E-mail" required="required"/>
                 <img><input class="icon-mdp" type="password" name="password" id="mdp" placeholder="Mot de passe" required="required"/>
-                <img><input class="icon-mdp" type="password" name="passwordVerif" id="mdp" placeholder="Confirmez votre mot de passe" required="required"/>
-                <button type="submit">Connect</button>
+                <img><input class="icon-mdp" type="password" name="passwordVerif" id="mdp2" placeholder="Confirmez votre mot de passe" required="required"/>
+                
+                <!-- GESTION D'ERREUR -->
+                <div class='absolute err'>
+                    <p class='centered errMsg'>Votre mot de passe doit contenir au moins <b>6 caractères</b> avec <b>une lettre minuscule et majuscule</b>, <b>1 chiffre</b></p>
+                </div>
+                <button type="submit">Inscription</button>
                 <a href="/signin">Connectez-vous</a>
             </form>
         </section>
+
+        
 
     </main>
 
@@ -39,6 +36,22 @@
     <footer>
 
     </footer>
+
+    <script>
+        
+        var inputPwd = document.querySelectorAll("input[type='password']");
+        var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+        
+        for (input of inputPwd) {
+            input.addEventListener('change', function() { 
+                if (re.test(inputPwd.value) != true) {
+                    document.querySelector("div.err").style.display = 'block';
+                }
+            });
+
+        }
+        
+    </script>
 </body>
 
 </html>

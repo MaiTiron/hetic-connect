@@ -20,7 +20,7 @@ var UserSchema = new mongoose.Schema({
   },
   affichage: {
     type: Boolean,
-    default: false
+    default: "false"
   },
   mail: {
     type: String,
