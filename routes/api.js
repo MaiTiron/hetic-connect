@@ -89,8 +89,9 @@ router.post('/send-questionnaire', (req, res) => {
         disponibilites: req.body.disponibilites,
         competences: [req.body.competences]
     };
+    console.log(userData);
     User.findById(req.session.userId).update(userData, function (error, user) {
-        console.log(userData);
+        
         if (error) {
             return next(error);
         } else {
@@ -175,21 +176,23 @@ router.post('/signup', function (req, res, next) {
     }    
     
     // Vérification qu'il y a toute les données de rentrées
-    if (req.body.mail && req.body.nom && req.body.prenom && req.body.password) {
-        if (checkUserAlreadyKnown(req.body.mail) != false ) {
-            res.render('signup', {mail: req.body.mail, nom: req.body.nom, prenom: req.body.prenom});
-        };
+    if (req.body.mail && req.body.nom && req.body.prenom && req.body.password) { 
+       // if (checkUserAlreadyKnown(req.body.mail) != false ) {
+       //    res.render('signup', {mail: req.body.mail, nom: req.body.nom, prenom: req.body.prenom});
+       //  };
         let userData = {
             mail: req.body.mail,
             nom: req.body.nom,
             prenom: req.body.prenom,
             password: req.body.password
         };
+        console.log(userData);
         User.create(userData, function (error, user) {
             if (error) {
                 return next(error);
             } else {
                 req.session.userId = user._id;
+                
                 res.redirect('mon-compte');
             }
         });
@@ -242,10 +245,9 @@ router.get('/quizz', (req, res) => {
         };
         db.close();
     });
-});
-   
+});  
 
-    // ENVOI QUIZ   --> Envoi des données du quiz vers le schema User
+// ENVOI QUIZ   --> Envoi des données du quiz vers le schema User
 router.post('/send-quizz', (req, res) => {
     
     var lastID = req.body.id_Quest;

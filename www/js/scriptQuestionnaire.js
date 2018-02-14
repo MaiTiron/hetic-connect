@@ -43,7 +43,7 @@ function nextScreen(index) {
 
         if (index >= questionContainer.length-2) {
             nextBtn.style.display = 'none';
-            console.log('quoi ?');
+            
         }
     } 
 }

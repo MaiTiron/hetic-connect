@@ -42,7 +42,7 @@ function search(inputValue, userList){
     }
     
       // Vérifie qu'on à bien le contenu de l'input dans les compétences
-    for (competence of user.competences) {
+    for (competence of user.competences[0]) {
    
       if (competence.toLowerCase().indexOf(inputValue) == 0){
         

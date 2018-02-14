@@ -91,12 +91,8 @@ app.use(function (err, req, res, next) {
     res.send(err.message);
 });
 
-<<<<<<< HEAD
 
 
-=======
-  
->>>>>>> c578220881af05924309d68c1b1ec0a7c22fcbca
 /*
     Lancer le server
 */
