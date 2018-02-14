@@ -79,3 +79,10 @@ function affichage(username, bio, competences,id, i, inputValue) {
   
   var content = "";
 }
+
+
+// Activer champs suppression profil
+function suppr(){
+  var form = document.querySelector("#suppr");
+  form.style.display = "block";
+}

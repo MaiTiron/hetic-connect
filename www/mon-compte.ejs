@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link href="../css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Mon compte</h1>
+        
+        <input name="Prénom" type="text" placeholder="Votre prénom" value="<%= prenom %>" />
+        <input name="Nom" type="text" placeholder="Votre nom" value="<%= nom %>" />
 
-    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-</head>
-<body>
-    <h1>Mon compte</h1>
-    
-    <input name="Prénom" type="text" placeholder="Votre prénom" value="<%= prenom %>" />
-    <input name="Nom" type="text" placeholder="Votre nom" value="<%= nom %>" />
+        <img src="#" alt="Image de profile" />
 
-    <img src="#" alt="Image de profile" />
+        <input name="age" type="text" placeholder="Votre âge" value="% age" />
+        <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
 
-    <input name="age" type="text" placeholder="Votre âge" value="% age" />
-    <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
+        <a href="/questionnaire">Complétez votre</a>
+        <a href="/logout">Se déconnecter</a>
+        <a href="#" onclick="suppr()">Supprimer votre profil</a>
 
-    <a href="/questionnaire">Complétez votre</a>
-    <a href="/logout">Se déconnecter</a>
+        <form action="/suppression-profil" method="post" id="suppr">
+            <input type="text" name="pwd" placeholder="Votre mot de passe" required>
+            <input type="text" name="pwdVerif" placeholder="Confirmez votre mot de passe" required>
+            <input type="submit" value="Confirmer la suppression">
+        </form>
 
-</body>
+        <script src="js/script.js"></script>
+    </body>
 </html>

@@ -426,6 +426,11 @@ form a{
     font-family: 'NeutraText-Bold';
  
  }
+
+/*--Mon compte--*/
+#suppr{
+    display: none;
+}
  
  /*--Footer--*/
  
