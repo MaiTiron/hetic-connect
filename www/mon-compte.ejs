@@ -1,17 +1,23 @@
 <% include ./partials/head.ejs %>
-<body>
-    <h1>Mon compte</h1>
-    
-    <input name="Prénom" type="text" placeholder="Votre prénom" value="<%= prenom %>" />
-    <input name="Nom" type="text" placeholder="Votre nom" value="<%= nom %>" />
+    <body>
+        <h1>Mon compte</h1>
+        
+        <input name="Prénom" type="text" placeholder="Votre prénom" value="<%= prenom %>" />
+        <input name="Nom" type="text" placeholder="Votre nom" value="<%= nom %>" />
+        <img src="#" alt="Image de profile" />
+        <input name="age" type="text" placeholder="Votre âge" value="%Age" />
+        <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
 
-    <img src="#" alt="Image de profile" />
+        <a href="./questionnaire">Complétez votre</a>
+        <a href="./logout">Se déconnecter</a>
+        <a href="#" onclick="suppr()">Supprimer votre profil</a>
 
-    <input name="age" type="text" placeholder="Votre âge" value="%Age" />
-    <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
+        <form action="/suppression-profil" method="post" id="suppr">
+            <input type="text" name="pwd" placeholder="Votre mot de passe" required>
+            <input type="text" name="pwdVerif" placeholder="Confirmez votre mot de passe" required>
+            <input type="submit" value="Confirmer la suppression">
+        </form>
 
-    <a href="./questionnaire">Complétez votre</a>
-    <a href="./logout">Se déconnecter</a>
-
-</body>
+        <script src="js/script.js"></script>
+    </body>
 </html>

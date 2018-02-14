@@ -21,8 +21,21 @@ const mongoServer = 'mongodb://localhost/hetic';
 /*
     Def des routes
 */
-    // INDEX    --> Affichage des profils 
-router.get('/', (req, res) => {
+/*Fonctions*/
+// Fonction pour vérifier  
+function loggedIn(req, res, next) {
+    // router.get('/:path', function(req, res) {
+    if(req.session.userId){
+        next();
+    }else{
+        return res.render('signin');
+    }
+};
+
+
+
+    // Accueil --> Affichage des profils 
+router.get('/', loggedIn, (req, res) => {
     // SI (user connected ET quiz terminée) ==> on affiche tout
     mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
     // Test de la connexion
@@ -69,7 +82,34 @@ router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (s
 });
 
 
-    // Questionnaire
+ 
+    // Afficher un profil 
+router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)   
+var targetId = req.params.id;
+mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
+// Test de la connexion
+if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
+else { // Connexion établie --> récupère la collection de data
+    db.collection('users').find({"_id": ObjectId(targetId) }).toArray( (err, result) => {
+        // Test la connexion à la collection
+        if (err) { res.json({error : err}) }
+        else {
+            res.render('voir-profil', {nom: result[0].nom , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, competences: result[0].competences, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
+        }
+    });
+};
+    db.close();
+    });
+});
+
+
+    // Afficher un profil sans nom
+router.get('/voir-profil/', (req, res) => {
+    res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
+});
+
+
+    // Inscription
 router.get('/questionnaire', (req, res) => {
     res.render('questionnaire')
 });
@@ -106,8 +146,7 @@ router.post('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => {
         if (err) { res.json({error : err})}
         else { 
-            db.collection('users').find({"affichage": true}).toArray( (err, result) => {
-                console.log({result});
+            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
                 if (err) { res.json({error : err}) }
                 else {
                     res.json({data : result}); //changer de collection
@@ -133,7 +172,7 @@ router.get('/logout', function (req, res, next) {
             if (err) {
                 return next(err);
             } else {
-                return res.redirect('inscription');
+                return res.redirect('signin');
             }
         });
     }
@@ -164,6 +203,25 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });    
 
+// Connexion
+router.post('/signin', function (req, res, next) {
+    if (req.body.logemail && req.body.logpassword) {
+        User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
+            if (error) {
+                var err = new Error('Mauvaise adresse mail ou mot de passe.');
+                err.status = 401;
+                return next(err);
+            } else {
+                req.session.userId = user._id;
+                return res.redirect('mon-compte');
+            }
+        });
+    } else {
+        var err = new Error('Remplissez tous les champs.');
+        err.status = 400;
+        return next(err);
+    }
+});
 
     // ENVOI DE L'INSCRIPTION   --> inscription d'un user en base : POST
 router.post('/signup', function (req, res, next) {
@@ -200,7 +258,7 @@ router.post('/signup', function (req, res, next) {
     // Identification de l'user
     } else if (req.body.logemail && req.body.logpassword) {
         User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
-            if (error || !user) {
+            if (error) {
                 var err = new Error('Mauvaise adresse mail ou mot de passe.');
                 err.status = 401;
                 return next(err);
@@ -279,6 +337,28 @@ router.get('/clear', function(req, res) {
     // 404
 router.get('/404', (req, res) => {
     res.render('404', {data: res});
+});
+
+// Suppression profil
+router.post('/suppression-profil', (req, res) => {
+
+            var utilisateurCourant = User.findById(req.session.userId);
+
+            console.log(utilisateurCourant);
+            User.findById(req.session.userId).remove(User).then( 
+                
+                req.session.destroy(function (err) {
+                    if (err) {
+                        return next(err);
+                    } else {
+                        return res.redirect('/signin');
+                    }
+                })
+                        
+            );
+
+            
+        
 });
 
 
