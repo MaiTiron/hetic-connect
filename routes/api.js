@@ -73,7 +73,7 @@ router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (s
                 console.log('Voir User : ' + result);
                 if (err) { res.json({error : err}) }
                 else {
-                    res.render('voir-profil', {nom: result[0].nom , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, competences: result[0].competences, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
+                    res.render('voir-profil', {nom: result[0].nom , profil: result[0].profil , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, dev: result[0].dev, design: result[0].design, com: result[0].com, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
                 }
             });
         };
@@ -117,6 +117,24 @@ router.get('/questionnaire', (req, res) => {
 
     // Envoi du questionnaire
 router.post('/send-questionnaire', (req, res) => {
+    var profil = "";
+    if (req.body.com == null){
+        req.body.com = [""];
+    }
+    if (req.body.dev == null){
+        req.body.dev = [""];
+    }
+    if (req.body.design == null){
+        req.body.design = [""];
+    }
+
+    if (req.body.com.length >= req.body.dev.length && req.body.com.length >= req.body.design.length) {
+        profil += "Communication";
+    } else if (req.body.dev.length >= req.body.com.length && req.body.dev.length >= req.body.design.length) {
+        profil += "Devellopeur";
+    } else if (req.body.design.length >= req.body.com.length && req.body.design.length >= req.body.dev.length) {
+        profil += "Designer";
+    } else ( profil = "");
     var userData = {
         age: req.body.age,
         filiere: req.body.filiere,
@@ -127,7 +145,11 @@ router.post('/send-questionnaire', (req, res) => {
         biographie: req.body.biographie,
         affichage: true,
         disponibilites: req.body.disponibilites,
-        competences: [req.body.competences]
+        dev: req.body.dev,
+        design: req.body.design,
+        com:  req.body.com,
+        competences: [req.body.com, req.body.dev, req.body.design],
+        profil : profil
     };
     console.log(userData);
     User.findById(req.session.userId).update(userData, function (error, user) {
@@ -146,7 +168,7 @@ router.post('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => {
         if (err) { res.json({error : err})}
         else { 
-            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
+            db.collection('users').find({"affichage": true}).toArray( (err, result) => {
                 if (err) { res.json({error : err}) }
                 else {
                     res.json({data : result}); //changer de collection
