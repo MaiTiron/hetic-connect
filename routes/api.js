@@ -105,8 +105,7 @@ router.post('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => {
         if (err) { res.json({error : err})}
         else { 
-            db.collection('users').find({"affichage": true}).toArray( (err, result) => {
-                console.log({result});
+            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
                 if (err) { res.json({error : err}) }
                 else {
                     res.json({data : result}); //changer de collection
