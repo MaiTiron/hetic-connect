@@ -83,6 +83,7 @@ function injectDesign(competences, i) {
 function affichage(username, bio, design, com, dev ,id,img, i, inputValue) {
   
   // Gestion de du nb de compétences
+  
   var content = "<article><img src='../uploads/"+ img +"' alt='image de profile' /><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-dev-" + i + "' ><div class='list-com-" + i + "' ><div class='list-design-" + i + "' ></div><a href='/voir-profil/" + id + "'>Voir le profil</a></article>";
   if (inputValue === ""){
     var content = "";
