@@ -4,7 +4,7 @@
 const express = require('express');
 const router = express.Router();
 var User = require('../models/user');
-
+const path = require('path');
 
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -17,6 +17,8 @@ router.use(bodyParser.urlencoded({extended: false}));
     // TODO : Mettre le lien vers la vraie BDD
 const mongoServer = 'mongodb://localhost/hetic';
 
+var multer  = require('multer')
+var upload = multer({ dest: './www/uploads/' })
 
 /*
     Def des routes
@@ -73,7 +75,7 @@ router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (s
                 console.log('Voir User : ' + result);
                 if (err) { res.json({error : err}) }
                 else {
-                    res.render('voir-profil', {nom: result[0].nom , profil: result[0].profil , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, dev: result[0].dev, design: result[0].design, com: result[0].com, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
+                    res.render('voir-profil', {nom: result[0].nom , profil: result[0].profil , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, dev: result[0].dev, design: result[0].design, com: result[0].com, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact, imgURL: result[0].imgURL}); //changer collection
                 }
             });
         };
@@ -94,8 +96,26 @@ router.get('/questionnaire', (req, res) => {
 });
     
 
+var storage = multer.diskStorage({
+	destination: function(req, file, callback) {
+		callback(null, './www/uploads')
+	},
+	filename: function(req, file, callback) {
+		callback(null, req.session.userId + path.extname(file.originalname))
+	}
+})
+
+
     // Envoi du questionnaire
 router.post('/send-questionnaire', (req, res) => {
+    var upload = multer({
+		storage: storage,
+		fileFilter: function(req, file, callback) {
+			var ext = path.extname(file.originalname)
+			if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.PNG') {
+				return callback(res.end('Only images are allowed'), null)
+            }
+            
     var profil = "";
     if (req.body.com == null){
         req.body.com = [""];
@@ -106,14 +126,17 @@ router.post('/send-questionnaire', (req, res) => {
     if (req.body.design == null){
         req.body.design = [""];
     }
-
-    if (req.body.com.length >= req.body.dev.length && req.body.com.length >= req.body.design.length) {
+    
+    
+    if (req.body.com === Array && req.body.com.length >= req.body.dev.length && req.body.com.length >= req.body.design.length) {
         profil += "Communication";
-    } else if (req.body.dev.length >= req.body.com.length && req.body.dev.length >= req.body.design.length) {
+    } else if (req.body.dev === Array && req.body.dev.length >= req.body.com.length && req.body.dev.length >= req.body.design.length) {
         profil += "Devellopeur";
-    } else if (req.body.design.length >= req.body.com.length && req.body.design.length >= req.body.dev.length) {
+    } else if (req.body.design === Array && req.body.design.length >= req.body.com.length && req.body.design.length >= req.body.dev.length) {
         profil += "Designer";
     } else ( profil = "");
+
+
     var userData = {
         age: req.body.age,
         filiere: req.body.filiere,
@@ -128,9 +151,10 @@ router.post('/send-questionnaire', (req, res) => {
         design: req.body.design,
         com:  req.body.com,
         competences: [req.body.com, req.body.dev, req.body.design],
-        profil : profil
+        profil : profil,
+        imgURL: "../uploads/" + req.session.userId + ext 
     };
-    console.log(userData);
+    console.log(userData)
     User.findById(req.session.userId).update(userData, function (error, user) {
         
         if (error) {
@@ -139,6 +163,12 @@ router.post('/send-questionnaire', (req, res) => {
             return res.redirect('mon-compte');
         }
     });
+            callback(null, true)
+		}
+	}).single('userFile');
+	upload(req, res, function(err) {
+    })
+    
 });
 
 
@@ -213,7 +243,7 @@ router.post('/signin', function (req, res, next) {
                 err.status = 401;
                 return next(err);
             } else {
-                req.session.userId = user._id;
+                //req.session.userId = user._id;
                 return res.redirect('mon-compte');
             }
         });
@@ -245,14 +275,13 @@ router.post('/signup', function (req, res, next) {
             prenom: req.body.prenom,
             password: req.body.password
         };
-        console.log(userData);
         User.create(userData, function (error, user) {
             if (error) {
                 return next(error);
             } else {
                 req.session.userId = user._id;
                 
-                res.redirect('mon-compte');
+                return res.redirect('mon-compte');
             }
         });
 

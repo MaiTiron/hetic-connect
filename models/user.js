@@ -74,6 +74,9 @@ var UserSchema = new mongoose.Schema({
   },  
   competences: {
     type: Array
+  },
+  imgURL: {
+    type: String
   }
 });
 

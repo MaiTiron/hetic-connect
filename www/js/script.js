@@ -4,7 +4,7 @@ var container;
 document.addEventListener('DOMContentLoaded', () => {
   container = document.querySelector('#container');
   launchRequest();
-});		
+});        
 
 
 
@@ -59,27 +59,40 @@ function search(inputValue, userList){
       }
     }
     
-    if (countMatched>0) affichage( user.username, user.description, user.competences,user._id, countPeople, inputValue);
+    if (countMatched>0) affichage( user.username, user.description, user.design, user.com, user.dev, user._id, user.imgURL, countPeople, inputValue);
   }
 }
 
-function injectCompetences(competences, i) {
+
+function injectDev(competences, i) {
   for (competence of competences ) {
-    $('.list-competences-'+i).prepend("<a href='#'>" + competence + "</a></br>");
+    $('.list-dev-'+i).prepend("<a href='#'>" + competence + "</a></br>");
+  }
+};
+function injectCom(competences, i) {
+  for (competence of competences ) {
+    $('.list-com-'+i).prepend("<a href='#'>" + competence + "</a></br>");
+  }
+};
+function injectDesign(competences, i) {
+  for (competence of competences ) {
+    $('.list-design-'+i).prepend("<a href='#'>" + competence + "</a></br>");
   }
 };
 
-function affichage(username, bio, competences,id, i, inputValue) {
+function affichage(username, bio, design, com, dev ,id,img, i, inputValue) {
   
   // Gestion de du nb de compétences
-  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div><a href='/voir-profil/" + id + "'>Voir le profil</a></article>";
+  var content = "<article><img src='../uploads/"+ img +"' alt='image de profile' /><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-dev-" + i + "' ><div class='list-com-" + i + "' ><div class='list-design-" + i + "' ></div><a href='/voir-profil/" + id + "'>Voir le profil</a></article>";
   if (inputValue === ""){
     var content = "";
   }
   $('#container').append(content);
-  injectCompetences(competences, i);
+  injectDev(dev, i);
+  injectDesign(design, i);
+  injectCom(com, i);
   
-  var content = "";
+  var content = "<section class='contenu'><a href='/voir-profil/" + id + "'><img src='../img/axelle.png' alt=''/><img class='echarpe' alt='écharpe hétic' src='../img/echarpe.png'/><div class='rectangle'><article><p>" + username + "<br/>" + profil + "</p><p>"+ description + "</p></article><article><div id='competences' class='list-competences-" + i + "' ></div></article></div></a></section>";
 }
 
 

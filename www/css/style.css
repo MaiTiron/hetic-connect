@@ -42,13 +42,19 @@ h1{
 body{
     font-family: 'NeutraTextTF-Book';
     color: #303641;
-    font-size: 20px;
+    font-size: 18px;
 }
-header{
+#inscription, #connexion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+/*--Header--*/
+.fixed{
     position: fixed;
     padding: 0 150px;
 }
-nav img {
+nav img, #questionnaire header nav img{
     width: 80%;
 }
 .nav {
@@ -97,9 +103,6 @@ div.err {
     padding: 0.5rem;
     background: #D60500;
     margin: 15px auto;
-}
-p.errMsg {
-
 }
 input, textarea {
     outline: none;
@@ -164,15 +167,24 @@ input, button, form>a {
     padding-left: 27px; 
 }
 /*----------Démarrez le quizz-----------*/
-#quizz section a{
+/*Bouton*/
+#questionnaire form a, #quizz section a, #facultatif button, #connexion button, #inscription button{
     font-family:'NeutraTextTF-Book';
     color: white;
     border-radius: 35px;
     background-color: #384597;
     padding: 8px 25px;
+    border: none;
+    margin-top: 10px;
+    text-decoration: none;
+}
+.over{
+    overflow: hidden;
 }
 #quizz {
     height: 100vh;
+    display: flex;
+    align-items: center;
 }   
 #quizz section{
     background-image: url('../img/carte-cuvier.png');
@@ -201,6 +213,9 @@ input, button, form>a {
 /*  PAGE -- QUESTIONNAIRE FACULTATIF */
 #facultatif{
     height: 100vh;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
 }
 #facultatif form{
     margin:auto;
@@ -211,11 +226,10 @@ input, button, form>a {
     padding: 15px 5px;
 }
 #facultatif section{
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-#facultatif h1{
+#facultatif h1, #questionnaire h1{
     color: #303641;
     margin-bottom: 10px;
 }
@@ -225,17 +239,18 @@ input, button, form>a {
     border-radius: 30px;
     background-color: #FFC300; 
     margin-left: 0;
-    height: 5px;
-    margin-bottom: 45px;
-    
+    height: 5px;   
 }
 
 /*  PAGE -- QUESITONNAIRE OBLIGATOIRE */
-#questionnaire header {
-    height: 10vh;
-    width: 100%;
-    position: relative;
-    padding: 0;
+#questionnaire hr{
+    width: 60%;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFC300; 
+    margin-left: 0;
+    height: 5px;
+    margin-bottom: 45px;
 }
 #questionnaire h2 {
     margin: 0;
@@ -253,6 +268,88 @@ main {
 #questionnaire .lastScreen {
     display: none;
 }
+#questionnaire{
+    height: 100vh;
+}
+#questionnaire main{
+    height: 100vh;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+}
+#questionnaire form {
+    margin:auto;
+}
+#questionnaire section:first-of-type input, #questionnaire select {
+    margin-bottom: 65px;
+    border: none;
+    border-bottom: 1px solid #303641;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 400px;
+    font-size: 20px;
+}
+#questionnaire form a{
+    float: right;
+    margin-left: 15px;
+}
+#questionnaire section:nth-of-type(3) article{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+.question article p{
+    flex-basis: 100%;
+}
+.question textarea{
+    width: 45%;
+    margin-top: 16px;
+    background-color: #FAFAFA;
+    border: none;
+    font-family:'NeutraTextTF-Book';
+    font-size: 18px;
+    padding: 10px;
+}
+#questionnaire section:nth-of-type(8) textarea, #questionnaire section:nth-of-type(6) textarea, #questionnaire section:nth-of-type(7) textarea{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 35px;
+}
+#questionnaire section:nth-of-type(4) p, #questionnaire section:nth-of-type(5) p{
+    width: 500px;
+    display: flex;
+}
+#questionnaire section:nth-of-type(10), #questionnaire section:nth-of-type(9), #questionnaire section:nth-of-type(4), #questionnaire section:nth-of-type(5){
+    margin-bottom: 40px;
+}
+#questionnaire section:nth-of-type(5) article{
+    margin-left: 100px;
+}
+#questionnaire section:nth-of-type(4) input, #questionnaire section:nth-of-type(5) input{
+    border: none;
+    border-bottom: 1px solid #303641;
+    opacity: 0.5;
+    margin-left: 12px;
+    flex-grow: 1;
+}
+#questionnaire section:nth-of-type(9) input{
+    margin-left: 22px;
+}
+#questionnaire input[type="checkbox"]{
+    cursor: pointer;
+}
+
+#questionnaire section img{
+    width: 35px;
+}
+#questionnaire section:nth-of-type(10) label{
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+
+
 
 /*  PAGE -- INSCRIPTION || CONNEXION */
 #inscription button, #connexion button{
@@ -285,7 +382,15 @@ main {
     padding-right: 10px;
     padding-left: 50px;
 }
+/*-----top-----*/
+.echarpe{
+    z-index: 1000;
+    width: 130px;
+    position: relative;
+    left: -132px;
+    top:20px;
 
+}
 /*----------Démarrez le quizz-----------*/
 #quizz section a{
     font-family:'NeutraTextTF-Book';
@@ -368,12 +473,13 @@ main {
     margin: auto;
     cursor: pointer;
 }
-.contenu img {
+
+.contenu img:first-of-type {
     height: 130px;
     border-radius: 80px;
     z-index: 50;
     margin-top: 50px;
-    margin-left: 60px;
+    margin-left: 80px;
 }
 .contenu .rectangle {
     background-color: #FAFAFA;
@@ -410,23 +516,38 @@ main {
     margin-right: 20px;
     text-align: center;
 }
-.contenu .rectangle article:nth-of-type(2) p:nth-of-type(1), .contenu .rectangle article:nth-of-type(2) p:nth-of-type(2) {
+.contenu .rectangle article:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+}
+.contenu .rectangle{
+    display: flex;
+    text-decoration: none;
+}
+.contenu a{
+    text-decoration: none;
+    color: #303641;
+}
+#competences {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  center;
+}
+#competences a {
+    margin-left: 15px;
+}
+#competences a:first-of-type, #competences a:nth-of-type(2), #competences a:nth-of-type(3){
+    border: 2px solid #FFC300;
+    padding: 0px 20px;
+    border-radius: 40px;
+    width: 20%;
     text-align: center;
 }
-.contenu .rectangle article p span:first-of-type {
-    border: 2px solid #FFC300;
-    padding: 15px;
-    border-radius: 30px;
-}
-.contenu .rectangle article p:first-of-type span:nth-of-type(2), .contenu .rectangle article p:first-of-type span:nth-of-type(3) {
+#competences a:nth-of-type(4), #competences a:nth-of-type(5){
     border: 2px solid #409C5B;
-    padding: 15px;
-    border-radius: 30px;
-}
-.contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) {
-    border: 2px solid #384597;
-    padding: 15px;
-    border-radius: 30px;
+    padding: 0px 20px;
+    border-radius: 40px;
+    margin-top: 15px;
 }
 
 /*--FAQ--*/
@@ -477,7 +598,6 @@ main {
     display: none;
 }
  
-
 
 
 
@@ -622,7 +742,7 @@ main {
 }
 
 #profil #contenuprofil .contprodroite a {
- color: #FFC300;
+    color: #FFC300;
 }
 
 #profil #bottomprofil {
@@ -644,6 +764,64 @@ main {
 #profil #bottomprofil article img {
     height: 50px;
 }
+
+
+
+
+
+
+ /*-- Page mon-compte --*/
+
+#profil #acompte {
+    margin-top: 50px;
+}
+
+#profil #acompte p , #profil #acompte2 p {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+#profil #acompte p:first-of-type a {
+    text-decoration: none;
+    background-color: #FFC300;
+    color: white;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+#profil #acompte p:nth-of-type(2) a , #profil #acompte2 p a {
+    text-decoration: none;
+    color: #FFC300;
+    border: 1px solid #FFC300;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+#profil #acompte2 p a {
+    text-transform: uppercase;
+}
+
+ /*-- Page 404 --*/
+
+#top404 {
+    margin-top: 50px;
+}
+#top404 a {
+    text-decoration: none;
+    color: white;
+    background-color: #384597;
+    padding: 30px;
+    border-radius: 50px;
+    font-family: 'NeutraTextTF-Book';
+}
+#top404 p {
+    margin-top: 80px;
+}
+#compte {
+    background-color: green;
+}
+
 
 
 
