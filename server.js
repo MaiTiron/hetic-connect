@@ -16,8 +16,6 @@ const session = require('express-session');
 // const frontRoute = require('./routes/front');
 const apiRoute = require('./routes/api');
 
-
-
 /*
 Import des composants MongoDB et configuration
 */
@@ -26,12 +24,16 @@ const MongoStore = require('connect-mongo')(session);
 mongoose.connect('mongodb://localhost/hetic');
 const db = mongoose.connection;
 
+
     
 /* 
     Initialiser le serveur
 */
     // Config serveur
 const app = express();
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+
 const port = process.env.PORT || 3000;
 
     // Config dossier des vues clients
@@ -46,9 +48,9 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () { });
 
 
-/*
-    Configuration des middleware
-*/
+
+
+
     // Configuration de Express Session
 app.use(session({
     secret: 'secret',
@@ -83,6 +85,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.send(err.message);
 });
+
 
 
 

@@ -12,11 +12,11 @@
         <section>
             <h1>Inscription</h1>
             <form action="/signup" method="POST">
-                <img><input class="icon-name" type="text" name="nom" id="name" placeholder="Votre Nom" required="required"/>
-                <img><input class="icon-name" type="text" name="prenom" id="name2" placeholder="Votre Prénom" required="required">
-                <img><input class="icon-mail" type="mail" name="mail" id="mail" placeholder="E-mail" required="required"/>
-                <img><input class="icon-mdp" type="password" name="password" id="mdp" placeholder="Mot de passe" required="required"/>
-                <img><input class="icon-mdp" type="password" name="passwordVerif" id="mdp2" placeholder="Confirmez votre mot de passe" required="required"/>
+                <input class="icon-name" type="text" name="nom" id="name" placeholder="Votre Nom" required="required"/>
+                <input class="icon-name" type="text" name="prenom" id="name2" placeholder="Votre Prénom" required="required">
+                <input class="icon-mail" type="email" name="mail" id="mail" placeholder="E-mail" required="required"/>
+                <input class="icon-mdp" type="password" name="password" id="mdp" placeholder="Mot de passe" required="required"/>
+                <input class="icon-mdp" type="password" name="passwordVerif" id="mdp2" placeholder="Confirmez votre mot de passe" required="required"/>
                 
                 <!-- GESTION D'ERREUR -->
                 <% if (err) { %>
@@ -37,23 +37,16 @@
 
 
                 <button type="submit" id="inscr">Inscription</button>
-                <a href="/signin">Connectez-vous</a>
+                <a href="/signup">Connectez-vous</a>
             </form>
         </section>
-
-        
-
     </main>
 
-
     <!-- Footer -->
-    <footer>
-
-    </footer>
+    <footer></footer>
 
     <script>
-        
-        var inputPWD = document.querySelectorAll("input[type='password']");
+        var inputPwd = document.querySelectorAll("input[type='password']");
         
         var re = /(?=.*\d)(?=.*[a-z]).{6,20}/g;
     

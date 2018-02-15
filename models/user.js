@@ -12,11 +12,13 @@ var UserSchema = new mongoose.Schema({
   },
   prenom: {
     type: String,
-    required: true
+    required: true,
+    
   },
   nom: {
     type: String,
-    required: true
+    required: true,
+    
   },
   affichage: {
     type: Boolean,
@@ -28,36 +30,55 @@ var UserSchema = new mongoose.Schema({
   },
   age: {
     type: Number,
+    default: 2
   },
   filiere: {
-    type: String,
+    type: String
   },
-  competences: {
+  dev: {
     type: Array,
+    default: []
+  },
+  design: {
+    type: Array,
+    default: []
+  },
+  com: {
+    type: Array,
+    default: []
   },
   tags: {
-    type: Array,
+    type: Array
   },
   parcours: {
-    type: Array,
+    type: Array
   },
   description: {
-    type: String,
+    type: String
   },
   biographie: {
-    type: String,
+    type: String
   },
   disponibilites: {
-    type: String,
+    type: String
   },
   realisations: {
-    type: Array,
+    type: Array
   },
   contact: {
-    type: Array,
+    type: Array
   },
   photo: {
-    type: String,
+    type: String
+  },
+  profil: {
+    type: String
+  },  
+  competences: {
+    type: Array
+  },
+  imgURL: {
+    type: String
   }
 });
 
