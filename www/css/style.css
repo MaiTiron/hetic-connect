@@ -44,7 +44,6 @@ body{
     color: #303641;
     font-size: 18px;
 }
-<<<<<<< HEAD
 #inscription, #connexion{
     display: flex;
     flex-direction: row;
@@ -52,16 +51,12 @@ body{
 }
 /*--Header--*/
 .fixed{
-=======
-header{
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
     position: fixed;
     padding: 0 150px;
 }
-nav img {
+nav img, #questionnaire header nav img{
     width: 80%;
 }
-<<<<<<< HEAD
 .nav {
     position: fixed;
     padding-left: 150px;
@@ -99,12 +94,6 @@ nav img {
 #connexion section, #inscription section, #quizz section, #facultatif section{
     flex: 1;
     text-align: center;
-=======
-.error {
-    background-color: #C70018;
-    padding: 15px;
-    color: #FFFFFF;
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
 }
 
 
@@ -165,14 +154,20 @@ input, button, form>a {
     background-size: 15px; 
     padding-left: 27px; 
 }
-<<<<<<< HEAD
 /*----------Démarrez le quizz-----------*/
-#quizz section a{
+/*Bouton*/
+#questionnaire form a, #quizz section a, #facultatif button, #connexion button, #inscription button{
     font-family:'NeutraTextTF-Book';
     color: white;
     border-radius: 35px;
     background-color: #384597;
     padding: 8px 25px;
+    border: none;
+    margin-top: 10px;
+    text-decoration: none;
+}
+.over{
+    overflow: hidden;
 }
 #quizz {
     height: 100vh;
@@ -197,14 +192,6 @@ input, button, form>a {
     font-size: 22px;
 }
 /*------Questions facultatives------*/
-=======
-
-
-/* ==========================
-            PAGES 
-========================== */
-/*  PAGE -- QUESTIONNAIRE FACULTATIF */
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
 #facultatif{
     height: 100vh;
     flex-direction: row;
@@ -223,7 +210,7 @@ input, button, form>a {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-#facultatif h1{
+#facultatif h1, #questionnaire h1{
     color: #303641;
     margin-bottom: 10px;
 }
@@ -233,23 +220,21 @@ input, button, form>a {
     border-radius: 30px;
     background-color: #FFC300; 
     margin-left: 0;
-    height: 5px;
-    margin-bottom: 45px;
-    
+    height: 5px;   
 }
 
 /*  PAGE -- QUESITONNAIRE OBLIGATOIRE */
-#questionnaire header {
-    height: 10vh;
-    width: 100%;
-    position: relative;
-    padding: 0;
+#questionnaire hr{
+    width: 60%;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFC300; 
+    margin-left: 0;
+    height: 5px;
+    margin-bottom: 45px;
 }
 #questionnaire h2 {
     margin: 0;
-}
-main {
-    height: 90vh;
 }
 #questionnaire .question {
     height: 100%;
@@ -261,6 +246,88 @@ main {
 #questionnaire .lastScreen {
     display: none;
 }
+#questionnaire{
+    height: 100vh;
+}
+#questionnaire main{
+    height: 100vh;
+    flex-direction: row;
+    align-items: center;
+    display: flex;
+}
+#questionnaire form {
+    margin:auto;
+}
+#questionnaire section:first-of-type input, #questionnaire select {
+    margin-bottom: 65px;
+    border: none;
+    border-bottom: 1px solid #303641;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 400px;
+    font-size: 20px;
+}
+#questionnaire form a{
+    float: right;
+    margin-left: 15px;
+}
+#questionnaire section:nth-of-type(3) article{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+.question article p{
+    flex-basis: 100%;
+}
+.question textarea{
+    width: 45%;
+    margin-top: 16px;
+    background-color: #FAFAFA;
+    border: none;
+    font-family:'NeutraTextTF-Book';
+    font-size: 18px;
+    padding: 10px;
+}
+#questionnaire section:nth-of-type(8) textarea, #questionnaire section:nth-of-type(6) textarea, #questionnaire section:nth-of-type(7) textarea{
+    width: 100%;
+    height: 100px;
+    margin-bottom: 35px;
+}
+#questionnaire section:nth-of-type(4) p, #questionnaire section:nth-of-type(5) p{
+    width: 500px;
+    display: flex;
+}
+#questionnaire section:nth-of-type(10), #questionnaire section:nth-of-type(9), #questionnaire section:nth-of-type(4), #questionnaire section:nth-of-type(5){
+    margin-bottom: 40px;
+}
+#questionnaire section:nth-of-type(5) article{
+    margin-left: 100px;
+}
+#questionnaire section:nth-of-type(4) input, #questionnaire section:nth-of-type(5) input{
+    border: none;
+    border-bottom: 1px solid #303641;
+    opacity: 0.5;
+    margin-left: 12px;
+    flex-grow: 1;
+}
+#questionnaire section:nth-of-type(9) input{
+    margin-left: 22px;
+}
+#questionnaire input[type="checkbox"]{
+    cursor: pointer;
+}
+
+#questionnaire section img{
+    width: 35px;
+}
+#questionnaire section:nth-of-type(10) label{
+    cursor: pointer;
+    color: #00b1ca;
+    font-weight: bold;
+}
+
+
 
 /*  PAGE -- INSCRIPTION || CONNEXION */
 #inscription button, #connexion button{
@@ -293,7 +360,6 @@ main {
     padding-right: 10px;
     padding-left: 50px;
 }
-<<<<<<< HEAD
 /*-----top-----*/
 .echarpe{
     z-index: 1000;
@@ -303,48 +369,6 @@ main {
     top:20px;
 
 }
-=======
-.roundedImage{
-    overflow:hidden;
-    -webkit-border-radius:50px;
-    -moz-border-radius:50px;
-    border-radius:50px;
-    width:90px;
-    height:90px;
-}
-/*----------Démarrez le quizz-----------*/
-#quizz section a{
-    font-family:'NeutraTextTF-Book';
-    color: white;
-    border-radius: 35px;
-    background-color: #384597;
-    padding: 8px 25px;
-}
-#quizz {
-    height: 100vh;
-}   
-#quizz section{
-    background-image: url('../img/carte-cuvier.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding-bottom: 200px;
-    padding-top: 200px;
-}
-#quizz img {
-    width: 50px;
-}
-#quizz h1{
-    font-size: 38px;
-}
-#quizz a{
-    text-decoration: none;
-    font-size: 22px;
-}
-
-
-/*-----top-----*/
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
 #top {
     text-align: center;
     background-image: url("../img/carte-cuvier.png");
@@ -395,12 +419,8 @@ main {
     margin: auto;
     cursor: pointer;
 }
-<<<<<<< HEAD
 
 .contenu img:first-of-type {
-=======
-.contenu img {
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
     height: 130px;
     border-radius: 80px;
     z-index: 50;
@@ -442,32 +462,40 @@ main {
     margin-right: 20px;
     text-align: center;
 }
-.contenu .rectangle article:nth-of-type(2) p:nth-of-type(1), .contenu .rectangle article:nth-of-type(2) p:nth-of-type(2) {
+.contenu .rectangle article:nth-of-type(2) {
+    display: flex;
+    align-items: center;
+}
+.contenu .rectangle{
+    display: flex;
+    text-decoration: none;
+}
+.contenu a{
+    text-decoration: none;
+    color: #303641;
+}
+#competences {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  center;
+}
+#competences a {
+    margin-left: 15px;
+}
+#competences a:first-of-type, #competences a:nth-of-type(2), #competences a:nth-of-type(3){
+    border: 2px solid #FFC300;
+    padding: 0px 20px;
+    border-radius: 40px;
+    width: 20%;
     text-align: center;
 }
-.contenu .rectangle article p span:first-of-type {
-    border: 2px solid #FFC300;
-    padding: 15px;
-    border-radius: 30px;
-}
-.contenu .rectangle article p:first-of-type span:nth-of-type(2), .contenu .rectangle article p:first-of-type span:nth-of-type(3) {
+#competences a:nth-of-type(4), #competences a:nth-of-type(5){
     border: 2px solid #409C5B;
-    padding: 15px;
-    border-radius: 30px;
-}
-<<<<<<< HEAD
-
-.contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) div a {
-    border: 2px solid #384597;
-=======
-.contenu .rectangle article p:nth-of-type(2) span:nth-of-type(2) {
-    border: 1px solid #384597;
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
-    padding: 15px;
-    border-radius: 30px;
+    padding: 0px 20px;
+    border-radius: 40px;
+    margin-top: 15px;
 }
 
-<<<<<<< HEAD
 /*--FAQ--*/
 #faq #top .topfaq p {
     width: 30%;
@@ -519,20 +547,12 @@ main {
  }
  
  footer p:first-of-type {
-=======
-/*--Footer--*/
-footer {
-    text-align: center;
-}
-footer p:first-of-type {
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
     background-color:  #384597;
     width: 80px;
     margin: auto;
     padding: 10px;
     padding-top: 12px;
     border-radius: 40px;
-<<<<<<< HEAD
     width: 110px;
  }
  
@@ -543,15 +563,6 @@ footer p:first-of-type {
  }
  
  footer p:last-of-type {
-=======
-}
-footer p:first-of-type a {
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-}
-footer p:last-of-type {
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
     color: #707070;
     margin-top: 40px;
     margin-bottom: 40px;

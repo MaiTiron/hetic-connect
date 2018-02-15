@@ -1,90 +1,128 @@
 <% include ./partials/head.ejs %>
 <body id="questionnaire">
-    <header>
-        <h2>Les questions sont faculatives, votre profils sera juste moinss remplie</h2>
+    <header class="fixed">
+        <nav>
+        <img src="../img/logo.png">
+            </nav>
     </header>
     <main>
         <form method="POST" action="./send-questionnaire">   
             <section class="question">
-                <h3>Quel est votre age</h3>
+                <h1>1/10 - Quel âge avez-vous ?</h1>
+                <hr>
                 <input type="number" name="age" placeholder="Votre âge" />
             </section>
             <section class="question">
-                <h3>De quel formation êtes-vous?</h3>
+                <h1>2/10 - Dans quelle formation êtes-vous?</h1>
+                <hr>
                 <select name="filiere">
                     <option value="MBA">MBA</option> 
-                    <option value="Webmarketing" selected>Mastère Webmarketing  UX</option>
-                    <option value="Data">Mastère Data</option>
+                    <option value="Webmarketing" selected>Mastère UX & Marketing</option>
+                    <option value="Data">Mastère Big Data</option>
                     <option value="Pmd">PMD</option>
                 </select>
             </section>
             <section class="question">
-                <h3>Quel est votre parcours avant d'arriver à hetic?</h3>
-                <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
-                <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
-                <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
-                <textarea name="parcours" placeholder="Raconter nous une expérience..."></textarea>
+                <h1>3/10 - Quel est votre parcours professionnel ?</h1>
+                <hr>
+                <article>
+                    <p>Du plus récent au plus ancien</p>
+                    <textarea name="parcours" placeholder="1 - Raconter nous une expériencejdksnfkdn"></textarea>
+                    <textarea name="parcours" placeholder="2 - Raconter nous une expérience..."></textarea>
+                    <textarea name="parcours" placeholder="3 - Raconter nous une expérience..."></textarea>
+                    <textarea name="parcours" placeholder="4 - Raconter nous une expérience..."></textarea>
+                </article>
             </section>
             <section class="question">
-                <h3>Comment peut-on vous contacter</h3>
-                    Linkedin<input type="text" name="linkedin" placeholder="www.linkedin.fr">
-                    Facebook<input type="text" name="facebook" placeholder="www.facebook.fr">
-                    Telephone<input type="text" name="telephone" placeholder="www.telephone.fr">
+                <h1>4/10 - Comment peut-on vous contacter ?</h1>
+                <hr>
+                <article>
+                    <p>Linkedin<input type="text" name="linkedin" placeholder="www.linkedin.com"></p>
+                    <p>Facebook<input type="text" name="facebook" placeholder="www.facebook.fr"></p>
+                    <p>Téléphone<input type="text" name="telephone"></p>
+                </article>
             </section>
             <section class="question">
-                <h3>Avez-vous un portfolio ou des réalisation à mettre en avant ?</h3>
-                    Dribbble<input type="text" name="dribbble" placeholder="dribbble">
-                    Behance<input type="text" name="behance" placeholder="behance">
-                    Instagram<input type="text" name="instagram" placeholder="instagram">
-                    Site portfolio<input type="text" name="site" placeholder="site">
+                <h1>5/10 - Avez-vous un portfolio ou des réalisations à mettre en avant ?</h1>
+                <hr>
+                <article>
+                    <p>Dribbble<input type="text" name="dribbble" ></p>
+                    <p>Behance<input type="text" name="behance" ></p>
+                    <p>Instagram<input type="text" name="instagram"></p>
+                    <p>Site portfolio<input type="text" name="site"></p>
+                </article>
             </section>
             <section class="question">
-                <h3>Décrivez-vous rapidement (faites une phrase d'accroche)</h3>
-                <textarea name="desription">Faites ressortir votre profil</textarea>
+                <h1>6/10 - Décrivez-vous rapidement (faites une phrase d'accroche)</h1>
+                <hr>
+                <textarea name="desription" placeholder="Faites ressortir votre profil"></textarea>
             </section>
             <section class="question">
-                <h3>Raconter nous en un peu plus sur vous...</h3>
-                <textarea name="biographie">Faites une petites bio</textarea>
+                <h1>7/10 - Racontez-nous en un peu plus sur vous...</h1>
+                <hr>
+                <textarea name="biographie" placeholder="Centres d'intérêt, musique, sport, dites-nous en plus sur vous..."></textarea>
             </section>
             <section class="question">
-                <h3>Quelles sont vos disponibilités? Avez-vous des empechements quotidiens?</h3>
-                <input type="disponibilites" name="disponibilites" placeholder="disponibilite">
+                <h1>8/10 - Quelles sont vos disponibilités ? Avez-vous des empêchements quotidiens ?</h1>
+                <hr>
+                <textarea name="disponibilites" placeholder="Mes disponibilités sont..."></textarea>
             </section>
             <section class="question">
-                <h3>Mettez en avant vos compétences</h3>
+                <h1>9/10 - Mettez en avant vos compétences</h1>
+                <hr>
+                <article>
                 <h4>Compétences dev</h4>
-                <input type="checkbox" name="competences" value="node">
-                <input type="checkbox" name="competences" value="Js">
-                <input type="checkbox" name="competences" value="MEAN">
-                <input type="checkbox" name="competences" value="PHP">
-                <input type="checkbox" name="competences" value="Symfony">
-                <input type="checkbox" name="competences" value="HTML/CSS">
+                <input type="checkbox" name="competences" value="node"><label>NodeJs</label>
+                <input type="checkbox" name="competences" value="Js"><label>Javascript</label>
+                <input type="checkbox" name="competences" value="MEAN"><label>Mean</label>
+                <input type="checkbox" name="competences" value="PHP"><label>PHP</label>
+                <input type="checkbox" name="competences" value="Symfony"><label>Symfony</label>
+                <input type="checkbox" name="competences" value="HTML/CSS"><label>Html/css</label>
+            </article>
+            <article>
                 <h4>Compétences design</h4>
-                <input type="checkbox" name="competences" value="UX">
-                <input type="checkbox" name="competences" value="UI">
-                <input type="checkbox" name="competences" value="Webdesign">
-                <input type="checkbox" name="competences" value="Motion design / vidéo">
-                <h4>Compétences Comm & Marketing</h4>
-                <input type="checkbox" name="competences" value="Marketing">
-                <input type="checkbox" name="competences" value="Community management">
-                <input type="checkbox" name="competences" value="Gestion de projet">
-                <input type="checkbox" name="competences" value="Redaction">
-                <input type="checkbox" name="competences" value="SEA">
+                <input type="checkbox" name="competences" value="UX"><label>UX design</label>
+                <input type="checkbox" name="competences" value="UI"><label>UI design</label>
+                <input type="checkbox" name="competences" value="Webdesign"><label>Webdesign</label>
+                <input type="checkbox" name="competences" value="Motion design / vidéo"><label>Motion design/Vidéo</label>
+            </article>
+                <article>
+                    <h4>Compétences Comm & Marketing</h4>
+                <input type="checkbox" name="competences" value="Marketing"><label>Marketing</label>
+                <input type="checkbox" name="competences" value="Community management"><label>Community management</label>
+                <input type="checkbox" name="competences" value="Gestion de projet"><label>Gestion de projet</label>
+                <input type="checkbox" name="competences" value="Redaction"><label>Rédaction</label>
+                <input type="checkbox" name="competences" value="SEA"><label>SEA</label>
+            </article>
             </section>
             <section class="question">
-                <h3>Donnez-nous une petite photo de vous</h3>
-                <img src="#" alt="Photo de progfil" />
+                <h1>10/10 - Donnez-nous une petite photo de vous</h1>
+                <hr>
+                <img src="../img/icone-img.svg" alt="Photo de profil" />
+                <label>Choisir une photo</label>
                 <input type="file" value="Insérez une image de vous" />
             </section>
             <section class="question">
-                <p>C'est finis, vous pouvez personaliser encore plus votre profil en répondant à cce quizz faculatatif</p>
+                <p>C'est fini, vous pouvez personnaliser encore plus votre profil en répondant à ce quizz facultatif</p>
                 <input type="submit" value="ajoutProfil">Créer mon profil</input>
             </section>
+            <a class="nextScreen" id="fadeIn" href="#">Suivant</a>
             <a class="lastScreen" href="#">Précedent</a>
-            <a class="nextScreen" href="#">Suivant</a>
+            
         </form>
     </main>
     <script src="./js/scriptQuestionnaire.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        /*
+        $('#fadeIn').on('click', function() {
+            for ($i=0, $i<10, $i++)
+            {
+                $('section:nth-of-type($i)').fadeIn(1000);
+            }
+
+    });*/
+    </script>
 </body>
 
 </html>

@@ -3,18 +3,10 @@ var container;
 // Attendre le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
   container = document.querySelector('#container');
-<<<<<<< HEAD
   launchRequest();
 });        
 
 
-=======
-  var element = document.getElementById('yo');
-  launchRequest();
-});		
-
-
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
 
 var users = {};
 function launchRequest() {
@@ -25,11 +17,7 @@ function launchRequest() {
     url: 'http://localhost:3000/data',
     success: function(users) {
       console.log(users);
-<<<<<<< HEAD
       $('#rechercher').on('input', function(){
-=======
-      $('#yo').on('input', function(){
->>>>>>> 65d4c0b98ece05e2d0f016cc9f466ea3f69cea66
         $('#container>*').remove();
         console.log("succes : " + users);
         search(this.value.toLowerCase(), users.data);
@@ -82,7 +70,7 @@ function affichage(username, description, competences,id,profil, i) {
   console.log(id);
   
   // Gestion de du nb de compétences
-  var content = "<section class='contenu'><a href='/voir-profil/" + id + "'><img src='../img/axelle.png' alt=''/><img class='echarpe' alt='écharpe hétic' src='../img/echarpe.png'/><div class='rectangle'><article><p>" + username + "<br/>" + profil + "</p><p>"+ description + "</p></article><article><div class='list-competences-" + i + "' ></div></article></div></a></section>";
+  var content = "<section class='contenu'><a href='/voir-profil/" + id + "'><img src='../img/axelle.png' alt=''/><img class='echarpe' alt='écharpe hétic' src='../img/echarpe.png'/><div class='rectangle'><article><p>" + username + "<br/>" + profil + "</p><p>"+ description + "</p></article><article><div id='competences' class='list-competences-" + i + "' ></div></article></div></a></section>";
   $('#container').append(content);
   injectCompetences(competences, i);
   
