@@ -4,7 +4,7 @@
         <h2>Les questions sont faculatives, votre profils sera juste moinss remplie</h2>
     </header>
     <main>
-        <form method="POST" action="./send-questionnaire">   
+        <form id="uploadForm" enctype="multipart/form-data" method="POST" action="./send-questionnaire">   
             <section class="question">
                 <h3>Quel est votre age</h3>
                 <input type="number" name="age" placeholder="Votre âge" />
@@ -88,8 +88,8 @@
             </section>
             <section class="question">
                 <h3>Donnez-nous une petite photo de vous</h3>
-                <img src="#" alt="Photo de progfil" />
-                <input type="file" value="Insérez une image de vous" />
+                <p>VOus ne pouvez mettre qu'un png,jpeg, jpg ou gif! </p>
+		            <input type="file" accept="image/*" name="userFile" />
             </section>
             <section class="question">
                 <p>C'est finis, vous pouvez personaliser encore plus votre profil en répondant à cce quizz faculatatif</p>
