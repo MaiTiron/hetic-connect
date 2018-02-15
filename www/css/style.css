@@ -101,6 +101,10 @@ div.err {
 p.errMsg {
 
 }
+
+.incorrect{
+    display: none;
+}
 input, textarea {
     outline: none;
 }

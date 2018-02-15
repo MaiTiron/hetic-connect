@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 var User = require('../models/user');
 
+const check = require('req-check');
 
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -146,7 +147,7 @@ router.post('/data', (req, res) => {
     mongoose.connect(mongoServer, (err, db) => {
         if (err) { res.json({error : err})}
         else { 
-            db.collection('users').find({"affichage": "true"}).toArray( (err, result) => {
+            db.collection('users').find({"affichage": true}).toArray( (err, result) => {
                 if (err) { res.json({error : err}) }
                 else {
                     res.json({data : result}); //changer de collection
@@ -200,7 +201,7 @@ router.get('/mon-compte', function (req, res, next) {
 
     // INSCRIPTION  --> Inscription d'un utilisateur
 router.get('/signup', (req, res) => {
-    res.render('signup');
+    res.render('signup', {err: null});
 });    
 
 // Connexion
@@ -226,18 +227,36 @@ router.post('/signin', function (req, res, next) {
     // ENVOI DE L'INSCRIPTION   --> inscription d'un user en base : POST
 router.post('/signup', function (req, res, next) {
     
+    // Vérification de la validité du mot de passe
+    // a faire
+    // var check = req.check(req.body.password, "").matches(/(?=.*\d)(?=.*[a-z]).{6,20}/g, "i");
+    // console.log(check);
+
+    
+    let regex = (/(?=.*\d)(?=.*[a-z]).{6,20}/g, "i");
+
+    req.body.password.analyze = function(value) {
+        if(regex.test(value)) {
+            next();
+        } else {
+            return res.render("signup", {err: "Le mot de passe doit contenir"});
+        }
+    };
+
     // Vérification pwd et conf pwd
     if (req.body.password !== req.body.passwordVerif) {    
         var err = new Error('Les mots de passe ne correspondent pas.');
         err.status = 400;
-        return next(err);
-    }    
+        return res.render("signup", {err: err});
+    }
     
     // Vérification qu'il y a toute les données de rentrées
     if (req.body.mail && req.body.nom && req.body.prenom && req.body.password) { 
-       // if (checkUserAlreadyKnown(req.body.mail) != false ) {
-       //    res.render('signup', {mail: req.body.mail, nom: req.body.nom, prenom: req.body.prenom});
-       //  };
+        console.log("Vérification");
+        if (checkUserAlreadyKnown(req.body.mail) == false ) {
+            console.log("DIdjqskjh");
+            return res.render('signup', {mail: req.body.mail, nom: req.body.nom, prenom: req.body.prenom, err: "Cette adresse est déjà utilisée."});
+        };
         let userData = {
             mail: req.body.mail,
             nom: req.body.nom,
@@ -261,7 +280,7 @@ router.post('/signup', function (req, res, next) {
             if (error) {
                 var err = new Error('Mauvaise adresse mail ou mot de passe.');
                 err.status = 401;
-                return next(err);
+                return res.render('signup', {err: err});
             } else {
                 req.session.userId = user._id;
                 return res.redirect('mon-compte');
@@ -270,7 +289,7 @@ router.post('/signup', function (req, res, next) {
     } else {
         var err = new Error('Remplissez tous les champs.');
         err.status = 400;
-        return next(err);
+        return res.render('signup', {err: err});
     }
 });
 
@@ -356,9 +375,7 @@ router.post('/suppression-profil', (req, res) => {
                 })
                         
             );
-
-            
-        
+    
 });
 
 
