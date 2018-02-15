@@ -59,7 +59,7 @@ function search(inputValue, userList){
       }
     }
     
-    if (countMatched>0) affichage( user.username, user.description, user.design, user.com, user.dev, user._id, user.imgURL, countPeople, inputValue);
+    if (countMatched>0) affichage( user.username, user.description, user.profil, user.design, user.com, user.dev, user._id, user.imgURL, countPeople, inputValue);
   }
 }
 
@@ -80,11 +80,11 @@ function injectDesign(competences, i) {
   }
 };
 
-function affichage(username, bio, design, com, dev ,id,img, i, inputValue) {
+function affichage(username, description, profil, design, com, dev ,id, img, i, inputValue) {
   
   // Gestion de du nb de compétences
-  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-dev-" + i + "' ><div class='list-com-" + i + "' ><div class='list-design-" + i + "' ></div><a href='/voir-profil/" + id + "'>Voir le profil</a></article>";
-  var content ="<section class='contenu'><a href='/voir-profil/" + id + "'>  <img class='echarpe' alt='écharpe hétic' src='../img/echarpe.png'/><div class='rectangle'><article><p>" + username + "<br/>" + profil + "</p><p>"+ description + "</p></article><article><div id='competences' class='list-competences-" + i + "' ></div></article></div></a></section>"
+  
+  var content = "<section class='contenu'><a href='/voir-profil/" + id + "'><img src='../uploads/"+ img +"' alt='image de profile' /><img class='echarpe' alt='écharpe hétic' src='../img/echarpe.png'/><div class='rectangle'><article><p>" + username +  "<br/>" + profil + "</p><p>" + description + "</p></article><article><div id='dev' class='list-dev-" + i + "' ></div><div id='com' class='list-com-" + i + "' ></div><div id='design' class='list-design-" + i + "' ></div></article></div></a></section>";
   if (inputValue === ""){
     var content = "";
   }

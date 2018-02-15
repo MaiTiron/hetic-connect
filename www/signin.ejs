@@ -1,5 +1,5 @@
 <% include ./partials/head.ejs %>
-<body>
+<body class="global">
     <header class="fixed">
         <nav>
             <a><img alt="logo" src="../img/logo.png"></a>
@@ -10,6 +10,7 @@
         <div class="image-background"></div>
         <section>
             <h1>Connexion</h1>
+            <hr>
             <form method="post" action="/signin">
                 <img><input class="icon-mail" type="email" name="logemail" id="mail" placeholder="E-mail" required="required"/>
                 <img><input class="icon-mdp" type="password" name="logpassword" id="mdp" placeholder="Mot de passe" required="required"/>

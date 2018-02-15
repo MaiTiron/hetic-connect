@@ -12,11 +12,13 @@ var UserSchema = new mongoose.Schema({
   },
   prenom: {
     type: String,
-    required: true
+    required: true,
+    
   },
   nom: {
     type: String,
-    required: true
+    required: true,
+    
   },
   affichage: {
     type: Boolean,
@@ -28,9 +30,10 @@ var UserSchema = new mongoose.Schema({
   },
   age: {
     type: Number,
+    default: 2
   },
   filiere: {
-    type: String,
+    type: String
   },
   dev: {
     type: Array,
