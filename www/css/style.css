@@ -50,23 +50,15 @@ body{
     align-items: center;
 }
 /*--Header--*/
-.fixed{
-    position: fixed;
-    padding: 0 150px;
-}
 nav img, #questionnaire header nav img{
     width: 80%;
 }
-.nav {
-    position: fixed;
-    padding-left: 150px;
-    background-color: white;
- }
- 
  .nav ul li {
     display: inline-block;
  }
- 
+ .nav ul {
+     margin: auto;
+ }
  .nav ul li:first-of-type {
     margin-right: 650px;
  }
@@ -118,6 +110,14 @@ section form {
 h1, form>a{
     color: #FFC300; 
 }
+#inscription hr, #connexion hr{
+    width: 30%;
+    margin: auto;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFC300; 
+    height: 3px;   
+}
 input, button, form>a {
     margin-right: auto;
     margin-left: auto;
@@ -125,17 +125,20 @@ input, button, form>a {
 #connexion input, #inscription input {
     margin-bottom: 15px;
     border: none;
-    border-bottom: 1px solid #303641;
+    border-bottom: 1px solid #C1C3C6;
     opacity: 0.5;
     font-family:'NeutraTextTF-Book';
     width: 45%;
     font-size: 20px;
+    color: #303641;
 }
 #connexion section, #inscription section, #quizz section, #facultatif section{
     flex: 1;
     text-align: center;
 }
-
+.global{
+    height: 100vh;
+}
 /*--Image en background--*/
 .image-background{
     background-image: url(../img/projet-travail.jpg);
@@ -146,7 +149,7 @@ input, button, form>a {
 
 /*--Icones--*/
 .icon-name{
-    background-image: url('../img/icone-compte.svg');
+    background-image: url('../img/icone-nom.svg');
     background-repeat: no-repeat;
     background-position: 2px;
     background-size: 15px; 
@@ -203,6 +206,9 @@ input, button, form>a {
     text-decoration: none;
     font-size: 22px;
 }
+
+
+
 /*------Questions facultatives------*/
 
 
@@ -255,7 +261,9 @@ input, button, form>a {
 #questionnaire h2 {
     margin: 0;
 }
-main {
+
+
+main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#quizz {
     height: 100vh;
 }
 #questionnaire .question {
@@ -349,18 +357,36 @@ main {
     font-weight: bold;
 }
 
+.question .bouton_submit {
+    font-family: 'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #FFC300;
+    padding: 10px 25px 6px 25px;
+    border: none;
+    margin-top: 10px;
+    text-decoration: none;
+    float: right;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    cursor: pointer;
+}
 
 
 /*  PAGE -- INSCRIPTION || CONNEXION */
 #inscription button, #connexion button{
-    font-size: 22px;
+    font-size: 20px;
+    margin-top: 45px;
 }
 
 /*  PAGE --  */
+.fixed{
+    position: fixed;
+    left: 150px;
+}
 .nav{
-    padding-left: 150px;
-    position: 0px 0px;
-    position: relative;
+    text-align: center;
 }
 .nav ul li {
     display: inline-block;
@@ -423,7 +449,7 @@ main {
 
 
 /*-----top-----*/
-#top {
+#top , #top404 {
     text-align: center;
     background-image: url("../img/carte-cuvier.png");
     background-repeat: no-repeat;
@@ -434,7 +460,7 @@ main {
     padding-top: 100px;
     padding-bottom: 100px;
 }
-#top h1 {
+#top h1 , #top404 {
     margin-top: 0;
     margin-bottom: 30px;
     font-family: 'NeutraText-Bold';
@@ -452,9 +478,10 @@ main {
     background-color: white;
     margin-top: 30px;
     width: 400px;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 12px 10px 0px;
     border-radius: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(32, 21, 134, 0.19);
+    display: flex;
 }
 #top .rechercher input[type="text"] {
     border: none;
@@ -465,6 +492,11 @@ main {
 }
 #top .rechercher .loupe img {
     height: 20px;
+}
+
+#footer404 {
+    width: 100%;
+    background-color: white;
 }
 
 /*-----contenu-----*/
@@ -489,7 +521,7 @@ main {
     z-index: 1;
     margin-top: -180px;
     height: 200px;
-    padding: 20px 40px 0px 70px;
+    padding: 0px 5px 0px 70px;
     margin-bottom: 30px;
 }
 .contenu:last-of-type .rectangle {
@@ -501,16 +533,13 @@ main {
 }
 .contenu .rectangle article:first-of-type {
     width: 35%;
-    margin-right: 40px;
+    margin-right: 5px;
 }
 .contenu .rectangle article:first-of-type p {
     margin-top: 20px;
 }
 .contenu .rectangle article:first-of-type p:nth-of-type(2) {
     font-style: italic;
-}
-.contenu .rectangle article:nth-of-type(2) {
-    line-height: 50px;
 }
 .contenu .rectangle article:nth-of-type(2) p span {
     margin-right: 20px;
@@ -519,6 +548,7 @@ main {
 .contenu .rectangle article:nth-of-type(2) {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 .contenu .rectangle{
     display: flex;
@@ -527,6 +557,7 @@ main {
 .contenu a{
     text-decoration: none;
     color: #303641;
+    margin-left: 6px;
 }
 #competences {
     display: flex;
@@ -536,18 +567,37 @@ main {
 #competences a {
     margin-left: 15px;
 }
-#competences a:first-of-type, #competences a:nth-of-type(2), #competences a:nth-of-type(3){
+#design a {
     border: 2px solid #FFC300;
-    padding: 0px 20px;
+    padding: 4px 10px;
     border-radius: 40px;
-    width: 20%;
     text-align: center;
+    margin-top: 5px;
 }
-#competences a:nth-of-type(4), #competences a:nth-of-type(5){
+#dev a {
     border: 2px solid #409C5B;
-    padding: 0px 20px;
+    padding: 4px 10px;
     border-radius: 40px;
+    margin-top: 5px;
+}
+#com a {
+    border: 2px solid #303641;
+    padding: 4px 10px;
+    border-radius: 40px;
+    margin-top: 5px;
+}
+.rectangle article:last-child{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+.rectangle article:first-child{
     margin-top: 15px;
+}
+.rectangle article:last-child div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
 }
 
 /*--FAQ--*/
@@ -823,6 +873,31 @@ main {
 }
 
 
+
+
+
+
+
+
+
+ /*-- Page 404 --*/
+
+#top404 {
+    margin-top: 50px;
+}
+
+#top404 a {
+    text-decoration: none;
+    color: white;
+    background-color: #384597;
+    padding: 30px;
+    border-radius: 50px;
+    font-family: 'NeutraTextTF-Book';
+}
+
+#top404 p {
+    margin-top: 80px;
+}
 
 
 

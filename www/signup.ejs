@@ -1,6 +1,5 @@
 <% include ./partials/head.ejs %>
-
-<body>
+<body class="global">
     <header class="fixed">
         <nav>
             <a><img alt="logo" src="../img/logo.png"></a>
@@ -11,6 +10,7 @@
         <div class="image-background"></div>
         <section>
             <h1>Inscription</h1>
+            <hr>
             <form action="/signup" method="POST">
                 <input class="icon-name" type="text" name="nom" id="name" placeholder="Votre Nom" required="required"/>
                 <input class="icon-name" type="text" name="prenom" id="name2" placeholder="Votre Prénom" required="required">
@@ -19,10 +19,24 @@
                 <input class="icon-mdp" type="password" name="passwordVerif" id="mdp2" placeholder="Confirmez votre mot de passe" required="required"/>
                 
                 <!-- GESTION D'ERREUR -->
+                <% if (err) { %>
+
+                    <div>
+                        <p><%= err %></p>
+                    </div>
+
+                <% } %>
+
                 <div class='absolute err'>
-                    <p class='centered errMsg'>Votre mot de passe doit contenir au moins <b>6 caractères</b> avec <b>une lettre minuscule et majuscule</b>, <b>1 chiffre</b></p>
+                    <p class='centered errMsg'>Votre mot de passe doit entre <b>6 caractères</b> et <b>20 caractères</b> avec <b>une lettre minuscule et majuscule</b>, <b>1 chiffre</b></p>
                 </div>
-                <button type="submit">Inscription</button>
+
+                <div class="incorrect">
+                    <p class="centered errMsg">Les mots de passe ne correspondent pas</p>
+                </div>
+
+
+                <button type="submit" id="inscr">Inscription</button>
                 <a href="/signin">Connectez-vous</a>
             </form>
         </section>
@@ -33,15 +47,24 @@
 
     <script>
         var inputPwd = document.querySelectorAll("input[type='password']");
-        var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
         
-        for (input of inputPwd) {
+        var re = /(?=.*\d)(?=.*[a-z]).{6,20}/g;
+    
+        // for(input of inputPWD){    
             input.addEventListener('change', function() { 
-                if (re.test(inputPwd.value) != true) {
+                if (re.test(input.value) != true) {
                     document.querySelector("div.err").style.display = 'block';
+                    document.querySelector("#inscr").setAttribute("disabled", "true");
+                }
+                
+                if(pwd1 !== pwd2){
+                    console.log("test");
+                    document.querySelector("div.incorrect").style.display = 'block';
+                    document.querySelector("#inscr").setAttribute("disabled", "true");
                 }
             });
-        }
+        // }
+        
     </script>
 </body>
 
