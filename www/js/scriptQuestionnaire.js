@@ -1,12 +1,13 @@
 var questionContainer;
 var nextScreen;
 var lastScreen;
-
+var submit;
 
 // Attendre le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
     var i = 0;
 
+    submit = document.querySelector('input[type="submit"]');
     questionContainer = document.querySelectorAll('.question');
     nextBtn = document.querySelector('.nextScreen');
     lastBtn = document.querySelector('.lastScreen');
@@ -42,8 +43,11 @@ function nextScreen(index) {
         lastBtn.style.display = 'block';
 
         if (index >= questionContainer.length-2) {
+            
             nextBtn.style.display = 'none';
-            console.log('quoi ?');
+            console.log(submit);
+            submit.removeAttribute("disabled");
+            
         }
     } 
 }

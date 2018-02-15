@@ -19,8 +19,13 @@
     </header>
     <main id="profil">
         <section id="topprofil">
+<<<<<<< HEAD
             <img src="#" alt="image de profil" />
+=======
+            <img src="<%= imgURL %>" alt="image de profile" />
+>>>>>>> 2c74012c1950fd3667962aa6016ddd4971eecaad
             <h1><%= prenom %><span> <%= nom %></span></h1>
+            <h2><%= profil %></h2>
             <!-- Afficher "Profil designer", etc ? -->
             <!-- Si admin : smaller "admin" en gris === c'était un commentaire existant, à vous de gérer -->
             <p><%= age %> ans</p>
@@ -37,11 +42,29 @@
             <h2>Compétences maîtrisées</h2>
             <article class="etiqprocompetences">
                 <p>
-                    <% for(var i=0; i < competences.length; i++) { %>
-                    <span>
-                        <!-- Logiquement les compétences ont des couleurs différentes en fonction du domaine, à modifier si lien BDD, pour le moment c'est jaune tout le temps -->
-                        <%= competences[i] %>
-                    </span>
+                    <% if (dev.length > 0){ %>
+                        <% for(var i=0; i < dev.length; i++) { %>
+                        <span>
+                            <!-- Logiquement les compétences ont des couleurs différentes en fonction du domaine, à modifier si lien BDD, pour le moment c'est jaune tout le temps -->
+                            <%= dev[i] %>
+                        </span>
+                        <% } %>
+                    <% } %>
+                    <% if (design.length > 0){ %>
+                        <% for(var i=0; i < design.length; i++) { %>
+                        <span>
+                            <!-- Logiquement les compétences ont des couleurs différentes en fonction du domaine, à modifier si lien BDD, pour le moment c'est jaune tout le temps -->
+                            <%= design[i] %>
+                        </span>
+                        <% } %>
+                    <% } %>
+                    <% if (com.length > 0){ %>
+                        <% for(var i=0; i < com.length; i++) { %>
+                            <span>
+                                <!-- Logiquement les compétences ont des couleurs différentes en fonction du domaine, à modifier si lien BDD, pour le moment c'est jaune tout le temps -->
+                                <%= com[i] %>
+                            </span>
+                        <% } %>
                     <% } %>
                 </p>
             </article>

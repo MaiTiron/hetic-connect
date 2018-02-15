@@ -3,9 +3,8 @@ var container;
 // Attendre le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
   container = document.querySelector('#container');
-  var element = document.getElementById('yo');
   launchRequest();
-});		
+});        
 
 
 
@@ -17,10 +16,9 @@ function launchRequest() {
     contentType: 'application/json',
     url: 'http://localhost:3000/data',
     success: function(users) {
-      console.log(users);
-      $('#yo').on('input', function(){
+      console.log(users.data);
+      $('#recherche').on('input', function(){
         $('#container>*').remove();
-        console.log("succes : " + users);
         search(this.value.toLowerCase(), users.data);
       });
     }
@@ -37,43 +35,70 @@ function search(inputValue, userList){
     var countMatched = 0;
       //verifie que le nom et prenom contient le texte
     if (user.prenom.toLowerCase().indexOf(inputValue) == 0 || user.nom.toLowerCase().indexOf(inputValue) == 0 ){
-      
       countMatched++;
     }
-      // Vérifie qu'on à bien le contenu de l'input dans les compétences
-    for (competence of user.competences) {
-      
-      if (competence.toLowerCase().indexOf(inputValue) == 0){
-        
+    
+      // Vérifie dans les compétences dev
+    for (domaine of user.dev) {  
+      if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
       }
-    
     }
-  
-    if (countMatched>0) affichage( user.username, user.description, user.competences,user._id, countPeople);
+
+      // Vérifie dans les compétences communication et marketing
+    for (domaine of user.com) {   // On parcours les domaines de compétences
+      if (domaine.toLowerCase().indexOf(inputValue) == 0){
+        countMatched++;
+      }
+    }
+
+      // Vérifie dans les compétences design   
+    for (domaine of user.design) {   // On parcours les domaines de compétences
+      if (domaine.toLowerCase().indexOf(inputValue) == 0){
+        countMatched++;
+      }
+    }
+    
+    if (countMatched>0) affichage( user.username, user.description, user.profil, user.design, user.com, user.dev, user._id, user.imgURL, countPeople, inputValue);
   }
 }
 
 
-function injectCompetences(competences, i) {
+function injectDev(competences, i) {
   for (competence of competences ) {
-    console.log(competence);
-    console.log($('.list-competences-'+i));
-    $('.list-competences-'+i).prepend("<a href='#'>" + competence + "</a></br>");
+    $('.list-dev-'+i).prepend("<a href='#'>" + competence + "</a></br>");
+  }
+};
+function injectCom(competences, i) {
+  for (competence of competences ) {
+    $('.list-com-'+i).prepend("<a href='#'>" + competence + "</a></br>");
+  }
+};
+function injectDesign(competences, i) {
+  for (competence of competences ) {
+    $('.list-design-'+i).prepend("<a href='#'>" + competence + "</a></br>");
   }
 };
 
-function affichage(username, bio, competences,id, i) {
-  console.log('test');
-  console.log('username : ' + username );
-  console.log('bio : ' + bio);
-  console.log('compétences : ' + competences);
-  console.log(id);
+function affichage(username, description, profil, design, com, dev ,id, img, i, inputValue) {
   
   // Gestion de du nb de compétences
-  var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div><a href='/voir-profil/" + id + "'>Voir le profil</a></article>";
+  
+  var content = "<section class='contenu'><a href='/voir-profil/" + id + "'><img src='../uploads/"+ img +"' alt='image de profile' /><img class='echarpe' alt='écharpe hétic' src='../img/echarpe.png'/><div class='rectangle'><article><p>" + username +  "<br/>" + profil + "</p><p>" + description + "</p></article><article><div id='dev' class='list-dev-" + i + "' ></div><div id='com' class='list-com-" + i + "' ></div><div id='design' class='list-design-" + i + "' ></div></article></div></a></section>";
+  if (inputValue === ""){
+    var content = "";
+  }
   $('#container').append(content);
-  injectCompetences(competences, i);
+  injectDev(dev, i);
+  injectDesign(design, i);
+  injectCom(com, i);
   
   var content = "";
+}
+
+
+// Activer champs suppression profil
+function suppr(){
+  var form = document.querySelector("#suppr");
+  form.style.display = "block";
 }
