@@ -603,7 +603,6 @@ main {
 
 
 
-
 /*---Profil---*/
 
 #profil #topprofil {
@@ -743,7 +742,7 @@ main {
 }
 
 #profil #contenuprofil .contprodroite a {
- color: #FFC300;
+    color: #FFC300;
 }
 
 #profil #bottomprofil {
@@ -765,6 +764,64 @@ main {
 #profil #bottomprofil article img {
     height: 50px;
 }
+
+
+
+
+
+
+ /*-- Page mon-compte --*/
+
+#profil #acompte {
+    margin-top: 50px;
+}
+
+#profil #acompte p , #profil #acompte2 p {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+#profil #acompte p:first-of-type a {
+    text-decoration: none;
+    background-color: #FFC300;
+    color: white;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+#profil #acompte p:nth-of-type(2) a , #profil #acompte2 p a {
+    text-decoration: none;
+    color: #FFC300;
+    border: 1px solid #FFC300;
+    padding: 15px;
+    border-radius: 30px;
+}
+
+#profil #acompte2 p a {
+    text-transform: uppercase;
+}
+
+ /*-- Page 404 --*/
+
+#top404 {
+    margin-top: 50px;
+}
+#top404 a {
+    text-decoration: none;
+    color: white;
+    background-color: #384597;
+    padding: 30px;
+    border-radius: 50px;
+    font-family: 'NeutraTextTF-Book';
+}
+#top404 p {
+    margin-top: 80px;
+}
+#compte {
+    background-color: green;
+}
+
 
 
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta name="description" content="Plateforme collaborative qui met en relation les étudiants d'Hétic pour proposer ou demander de l'aide pour réaliser des projets digitaux.">
+    <title>Hétic Connect</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="nav">
+        <ul>
+            <!-- Mettre à jour tous les header avec les bons liens -->
+            <li><a href="../"><img alt="logo" src="../img/logo.png"></a></li>
+            <li><a href="../faq"><img alt="F.A.Q" src="../img/icone-faq.svg">F.A.Q</a></li>
+            <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
+        </ul>
+    </header>
+    <main id="profil">
+        <section id="topprofil">
+            <h1>Modification de vos informations</h1>
+            <article>
+                <input name="Prénom" type="text" placeholder="<%= prenom %>" value="<%= prenom %>"/>
+                <input name="Nom" type="text" placeholder="<%= nom %>" value="<%= nom %>" />
+                <input name="Age" type="text" placeholder="<%= age %>" value="<%= age %>" />
+                <input name="Formation" type="text" placeholder="<%= filiere %>" value="<%= filiere %>" />
+                <input name="Description" type="text" placeholder="<%= description %>" value="<%= description %>" />
+                <input type="file" name="myImage" accept="image/x-png,image/gif,image/jpeg" />
+            </article>
+        </section>
+        <section id="etiqprofil">
+            <h2>Compétences maîtrisées</h2>
+            <article class="etiqprocompetences">
+                <p>
+                    <% for(var i=0; i < competences.length; i++) { %>
+                        <p>Compétence : <input name="competence" type="text" placeholder="<%= competences[i] %>" value="<%= competences[i] %>"/> </p>
+                    <% } %>
+                </p>
+            </article>
+        </section>
+        <section id="contenuprofil">
+            <article class="contprogauche">
+                <img alt="parcours" src="../img/icone-parcours.svg">
+                <h3>Parcours professionnel et scolaire</h3>
+                <% for(var i=0; i < parcours.length; i++) { %>
+                    <p>
+                        <input name="parcours" type="text" placeholder="<%= parcours[i] %>" value="<%= parcours[i] %>"/>
+                    </p>
+                <% } %>
+            </article>
+            <article class="contprodroite">
+                <img alt="parcours" src="../img/icone-hobbies.svg">
+                <h3>Bio & centres d'intérêt</h3>
+                <!-- à l'affichage en  bas il y a "phdb.useroto" je sais pas ce que -->
+                <p><%= biographie %></p>
+                <img alt="disponibilités" src="../img/icone-horlogecopie.svg">
+                <h3>Disponibilités</h3>
+                <p><%= disponibilites %></p>
+                <img alt="réalisations" src="../img/icone-realisationscopie.svg">
+                <h3>Réalisations</h3>
+                <p>Vous pouvez découvrir mes réalisations dans les liens suivants :</p>
+                <p class="reseauxsociaux">
+                    <input name="realisations" type="text" placeholder="<%= realisations.dribbble %>" value="<%= realisations.dribbble %>"/>
+                    <input name="realisations" type="text" placeholder="<%= realisations.behance %>" value="<%= realisations.behance %>"/>
+                    <input name="realisations" type="text" placeholder="<%= realisations.github %>" value="<%= realisations.github %>"/>
+                    <input name="realisations" type="text" placeholder="<%= realisations.instagram %>"" value="<%= realisations.instagram %>"/>
+                    <input name="realisations" type="text" placeholder="site" value="site"/>
+                </p>
+            </article>
+        </section>
+        <section id="bottomprofil">
+            <p>Vos données personnelles</p>
+            <article>
+                <p>Mail : <input name="mail" type="text" placeholder="<%= contact.mail %>" value="<%= contact.mail %>"/></p>
+                <p>Téléphone : <input name="telephone" type="text" placeholder="<%= contact.telephone %>" value="<%= contact.telephone %>"/></p></p>
+            </article>
+            <article>
+                <p>
+                    <img alt="facebook" src="../img/icone-facebook.svg"></a><input name="facebook" type="text" placeholder="<%= contact.facebook %>" value="<%= contact.facebook %>"/>
+                    <img alt="linkedin" src="../img/icone-linkedin.svg"></a><input name="linkedin" type="text" placeholder="<%= contact.linkedin %>" value="<%= contact.linkedin %>"/>
+                </p>
+                </p>
+            </article>
+        </section>
+        <section id="acompte">
+            <p><a href="#">Enregistrer les modifications</a></p>
+            <p><a href="#">Annuler</a></p>      
+        </section>
+    </main>
+    <footer>
+        <p>
+            <a href="#top">En haut</a>
+        </p>
+        <p>
+            © Hétic 2018. All rights reserved
+        </p>
+    </footer>
+</body>
+</html>
