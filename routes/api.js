@@ -341,24 +341,17 @@ router.get('/404', (req, res) => {
 
 // Suppression profil
 router.post('/suppression-profil', (req, res) => {
-
-            var utilisateurCourant = User.findById(req.session.userId);
-
-            console.log(utilisateurCourant);
-            User.findById(req.session.userId).remove(User).then( 
-                
-                req.session.destroy(function (err) {
-                    if (err) {
-                        return next(err);
-                    } else {
-                        return res.redirect('/signin');
-                    }
-                })
-                        
-            );
-
-            
-        
+    let utilisateurCourant = User.findById(req.session.userId);
+    console.log(utilisateurCourant);
+    User.findById(req.session.userId).remove(User).then(             
+        req.session.destroy(function (err) {
+            if (err) {
+                return next(err);
+            } else {
+                return res.redirect('/signin');
+            }
+        })                
+    );        
 });
 
 
