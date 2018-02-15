@@ -19,7 +19,6 @@ function launchRequest() {
       console.log(users.data);
       $('#recherche').on('input', function(){
         $('#container>*').remove();
-        console.log("succes : " + users);
         search(this.value.toLowerCase(), users.data);
       });
     }
@@ -39,31 +38,38 @@ function search(inputValue, userList){
       countMatched++;
     }
     
-      // Vérifie qu'on à bien le contenu de l'input dans les compétences
-    for (competence of user.competences[0]) {
-   
-      if (competence.toLowerCase().indexOf(inputValue) == 0){
+      // Vérifie dans les compétences dev
+    for (domaine of user.dev) {  
+      if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
       }
     }
+
+      // Vérifie dans les compétences communication et marketing
+    for (domaine of user.com) {   // On parcours les domaines de compétences
+      if (domaine.toLowerCase().indexOf(inputValue) == 0){
+        countMatched++;
+      }
+    }
+
+      // Vérifie dans les compétences design   
+    for (domaine of user.design) {   // On parcours les domaines de compétences
+      if (domaine.toLowerCase().indexOf(inputValue) == 0){
+        countMatched++;
+      }
+    }
+    
     if (countMatched>0) affichage( user.username, user.description, user.competences,user._id, countPeople, inputValue);
   }
 }
 
 function injectCompetences(competences, i) {
   for (competence of competences ) {
-    console.log(competence);
-    console.log($('.list-competences-'+i));
     $('.list-competences-'+i).prepend("<a href='#'>" + competence + "</a></br>");
   }
 };
 
 function affichage(username, bio, competences,id, i, inputValue) {
-  console.log('test');
-  console.log('username : ' + username );
-  console.log('bio : ' + bio);
-  console.log('compétences : ' + competences);
-  console.log(id);
   
   // Gestion de du nb de compétences
   var content = "<article><h3>" + username +  "</h3><p>" + bio + "</p><div class='list-competences-" + i + "' ></div><a href='/voir-profil/" + id + "'>Voir le profil</a></article>";
