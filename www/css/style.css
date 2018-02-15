@@ -53,28 +53,49 @@ body{
 nav img, #questionnaire header nav img{
     width: 80%;
 }
- .nav ul li {
+.nav ul li {
     display: inline-block;
- }
- .nav ul {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.nav ul {
      margin: auto;
- }
- .nav ul li:first-of-type {
-    margin-right: 650px;
- }
+}
+.nav ul li:first-of-type{
+     margin: 0;
+}
  
- .nav ul li a {
+.nav ul li a {
     text-decoration: none;
     color: #303641;
     font-family: 'NeutraText-BookAlt';
     display: inline-block;
- }
+}
   
- .nav ul li:nth-of-type(2) a img, .nav ul li:nth-of-type(3) a img{
+.nav ul:nth-of-type(2) li:first-of-type a img, .nav ul:nth-of-type(2) li:nth-of-type(2) a img{
     height: 12px;
     padding-right: 10px;
     padding-left: 50px;
- }
+}
+.fixed{
+    position: fixed;
+    left: 150px;
+}
+.nav{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nav ul li a {
+    text-decoration: none;
+    color: #303641;
+    font-family: 'NeutraText-BookAlt';
+    display: inline-block;
+}
+.nav ul:first-of-type li:first-of-type a img{
+    width:80%;
+}
 /*--Image en background--*/
 .image-background{
     background-image: url(../img/projet-travail.jpg);
@@ -110,8 +131,14 @@ section form {
 h1, form>a{
     color: #FFC300; 
 }
+/*  PAGE -- INSCRIPTION || CONNEXION */
+#inscription button, #connexion button{
+    font-size: 20px;
+    margin-top: 45px;
+    margin-bottom: 15px;
+}
 #inscription hr, #connexion hr{
-    width: 30%;
+    width: 5%;
     margin: auto;
     border: none;
     border-radius: 30px;
@@ -125,12 +152,15 @@ input, button, form>a {
 #connexion input, #inscription input {
     margin-bottom: 15px;
     border: none;
-    border-bottom: 1px solid #C1C3C6;
+    border-bottom: 1px solid #9EA0A6;
     opacity: 0.5;
     font-family:'NeutraTextTF-Book';
     width: 45%;
     font-size: 20px;
     color: #303641;
+}
+#connexion form, #inscription form{
+    margin-top: 45px;
 }
 #connexion section, #inscription section, #quizz section, #facultatif section{
     flex: 1;
@@ -178,7 +208,6 @@ input, button, form>a {
     background-color: #384597;
     padding: 8px 25px;
     border: none;
-    margin-top: 10px;
     text-decoration: none;
 }
 .over{
@@ -227,6 +256,7 @@ input, button, form>a {
     font-size: 20px;
     width: 40%;
     padding: 15px 5px;
+    margin-top: 10px;
 }
 #facultatif section{
     flex-wrap: wrap;
@@ -355,41 +385,7 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 }
 
 
-
-/*  PAGE -- INSCRIPTION || CONNEXION */
-#inscription button, #connexion button{
-    font-size: 20px;
-    margin-top: 45px;
-}
-
 /*  PAGE --  */
-.fixed{
-    position: fixed;
-    left: 150px;
-}
-.nav{
-    text-align: center;
-}
-.nav ul li {
-    display: inline-block;
-}
-.nav ul li:first-of-type {
-    margin-right: 650px;
-}
-.nav ul li a {
-    text-decoration: none;
-    color: #303641;
-    font-family: 'NeutraText-BookAlt';
-    display: inline-block;
-}
-.nav ul li:first-of-type a img{
-    width:80%;
-}
-.nav ul li:nth-of-type(2) a img, header ul li:nth-of-type(3) a img{
-    height: 12px;
-    padding-right: 10px;
-    padding-left: 50px;
-}
 /*-----top-----*/
 .echarpe{
     z-index: 1000;
@@ -454,12 +450,13 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     text-align: center;
     margin: auto;
     line-height: 25px;
+    font-size: 20px;
 }
 #top .rechercher{
     margin: auto;
     background-color: white;
     margin-top: 30px;
-    width: 400px;
+    width: 500px;
     padding: 10px 12px 10px 0px;
     border-radius: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(32, 21, 134, 0.19);
@@ -467,9 +464,9 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 }
 #top .rechercher input[type="text"] {
     border: none;
+    margin-left: 15px;
     font-family: 'NeutraTextTF-Book';
-    font-style: italic;
-    font-size: 15px;
+    font-size: 18px;
     width: 80%;
 }
 #top .rechercher .loupe img {

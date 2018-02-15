@@ -4,9 +4,13 @@
 	 id="Calque_1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 66.7 48"
 	 style="enable-background:new 0 0 66.7 48;" xml:space="preserve">
-<g transform="translate(0,-952.3622)">
-	<path d="M46.2,952.4L26.6,972l-7.3,26.8H0v1.5l18.9,0c0,0,18.8-5.2,28.2-7.7l19.6-19.7l-1.1-1.1L47,990.6l-2.2-6.5l-7.3-2.4
-		l-2.4-7.3l-6.5-2.2l18.6-18.7L46.2,952.4z M27.8,973.4l6.2,2.1l2.4,7.3l7.3,2.4l2.1,6.2l-16.4,4.5l-6-6L27.8,973.4z M22.8,991.6
-		l4.8,4.8l-6.6,1.8L22.8,991.6z"/>
+<style type="text/css">
+	.st0{opacity:0.75;}
+	.st1{fill:#303641;}
+</style>
+<g transform="translate(0,-952.3622)" class="st0">
+	<path class="st1" d="M46.2,952.4L26.6,972l-7.3,26.8H0v1.5h18.9c0,0,18.8-5.2,28.2-7.7l19.6-19.7l-1.1-1.1L47,990.6l-2.2-6.5
+		l-7.3-2.4l-2.4-7.3l-6.5-2.2l18.6-18.7L46.2,952.4z M27.8,973.4l6.2,2.1l2.4,7.3l7.3,2.4l2.1,6.2l-16.4,4.5l-6-6L27.8,973.4z
+		 M22.8,991.6l4.8,4.8l-6.6,1.8L22.8,991.6z"/>
 </g>
 </svg>
