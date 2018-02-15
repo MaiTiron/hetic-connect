@@ -1,51 +1,53 @@
 var questionContainer;
 var nextScreen;
 var lastScreen;
-
-
+var submit;
 
 // Attendre le chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
     var i = 0;
 
+    submit = document.querySelector('input[type="submit"]');
     questionContainer = document.querySelectorAll('.question');
-    console.log(questionContainer.length);
     nextBtn = document.querySelector('.nextScreen');
     lastBtn = document.querySelector('.lastScreen');
 
-
     nextBtn.addEventListener('click', function () {
-        console.log(i);
         nextScreen(i);
         i++;
     });
     lastBtn.addEventListener('click', function () {
-        console.log(i);
         previousScreen(i);
         i--;
     });
 });		
 
 function previousScreen(index) {
-    if (index > 0 && index <= questionContainer.length) {
-        console.log('<--' +  index + ' ' + questionContainer.length);
+    if (index > 0 && index <= questionContainer.length-1) {
         questionContainer[index].style.display = 'none';
         questionContainer[index-1].style.display = 'block';
-        
         nextBtn.style.display = 'block';
-    } else {
-        last.style.display = 'none';
+        
+        if (index <= 1) {
+            lastBtn.style.display = 'none';
+            console.log('quoi ?');
+        }
     }
 }
 
 function nextScreen(index) {
-    if (index >= 0 && index < questionContainer.length) {
+    if (index >= 0 && index < questionContainer.length-1) {
         console.log('-->' + index + ' ' + questionContainer.length);
         questionContainer[index].style.display = 'none';
         questionContainer[index+1].style.display = 'block';
-        
         lastBtn.style.display = 'block';
-    } else {
-        nextBtn.style.display = 'none';
-    }
+
+        if (index >= questionContainer.length-2) {
+            
+            nextBtn.style.display = 'none';
+            console.log(submit);
+            submit.removeAttribute("disabled");
+            
+        }
+    } 
 }

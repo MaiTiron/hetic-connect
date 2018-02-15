@@ -20,7 +20,7 @@ var UserSchema = new mongoose.Schema({
   },
   affichage: {
     type: Boolean,
-    default: false
+    default: "false"
   },
   mail: {
     type: String,
@@ -29,40 +29,55 @@ var UserSchema = new mongoose.Schema({
   age: {
     type: Number,
   },
-  filliere: {
+  filiere: {
     type: String,
   },
-  competences: {
+  dev: {
     type: Array,
+    default: []
+  },
+  design: {
+    type: Array,
+    default: []
+  },
+  com: {
+    type: Array,
+    default: []
   },
   tags: {
-    type: Array,
+    type: Array
   },
   parcours: {
-    type: Array,
+    type: Array
   },
   description: {
-    type: String,
+    type: String
   },
   biographie: {
-    type: String,
+    type: String
   },
   disponibilites: {
-    type: String,
+    type: String
   },
   realisations: {
-    type: Array,
+    type: Array
   },
   contact: {
-    type: Array,
+    type: Array
   },
   photo: {
-    type: String,
+    type: String
+  },
+  profil: {
+    type: String
+  },  
+  competences: {
+    type: Array
   }
 });
 
-UserSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email: email })
+UserSchema.statics.authenticate = function (mail, password, callback) {
+  User.findOne({ mail: mail })
     .exec(function (err, user) {
       if (err) {
         return callback(err)

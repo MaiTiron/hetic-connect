@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server.js"
   },
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Antoninbln/todomvc-test.git"
