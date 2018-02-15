@@ -50,23 +50,15 @@ body{
     align-items: center;
 }
 /*--Header--*/
-.fixed{
-    position: fixed;
-    padding: 0 150px;
-}
 nav img, #questionnaire header nav img{
     width: 80%;
 }
-.nav {
-    position: fixed;
-    padding-left: 150px;
-    background-color: white;
- }
- 
  .nav ul li {
     display: inline-block;
  }
- 
+ .nav ul {
+     margin: auto;
+ }
  .nav ul li:first-of-type {
     margin-right: 650px;
  }
@@ -255,7 +247,8 @@ input, button, form>a {
 #questionnaire h2 {
     margin: 0;
 }
-main {
+/* 6666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666*/
+.main {
     height: 100vh;
 }
 #questionnaire .question {
@@ -357,10 +350,11 @@ main {
 }
 
 /*  PAGE --  */
+.fixed{
+    position: fixed;
+}
 .nav{
-    padding-left: 150px;
-    position: 0px 0px;
-    position: relative;
+    text-align: center;
 }
 .nav ul li {
     display: inline-block;
@@ -452,9 +446,10 @@ main {
     background-color: white;
     margin-top: 30px;
     width: 400px;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 12px 10px 0px;
     border-radius: 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(32, 21, 134, 0.19);
+    display: flex;
 }
 #top .rechercher input[type="text"] {
     border: none;
@@ -489,7 +484,7 @@ main {
     z-index: 1;
     margin-top: -180px;
     height: 200px;
-    padding: 20px 40px 0px 70px;
+    padding: 0px 5px 0px 70px;
     margin-bottom: 30px;
 }
 .contenu:last-of-type .rectangle {
@@ -501,16 +496,13 @@ main {
 }
 .contenu .rectangle article:first-of-type {
     width: 35%;
-    margin-right: 40px;
+    margin-right: 5px;
 }
 .contenu .rectangle article:first-of-type p {
     margin-top: 20px;
 }
 .contenu .rectangle article:first-of-type p:nth-of-type(2) {
     font-style: italic;
-}
-.contenu .rectangle article:nth-of-type(2) {
-    line-height: 50px;
 }
 .contenu .rectangle article:nth-of-type(2) p span {
     margin-right: 20px;
@@ -519,6 +511,7 @@ main {
 .contenu .rectangle article:nth-of-type(2) {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 .contenu .rectangle{
     display: flex;
@@ -527,6 +520,7 @@ main {
 .contenu a{
     text-decoration: none;
     color: #303641;
+    margin-left: 6px;
 }
 #competences {
     display: flex;
@@ -536,18 +530,37 @@ main {
 #competences a {
     margin-left: 15px;
 }
-#competences a:first-of-type, #competences a:nth-of-type(2), #competences a:nth-of-type(3){
+#design a {
     border: 2px solid #FFC300;
-    padding: 0px 20px;
+    padding: 4px 10px;
     border-radius: 40px;
-    width: 20%;
     text-align: center;
+    margin-top: 5px;
 }
-#competences a:nth-of-type(4), #competences a:nth-of-type(5){
+#dev a {
     border: 2px solid #409C5B;
-    padding: 0px 20px;
+    padding: 4px 10px;
     border-radius: 40px;
+    margin-top: 5px;
+}
+#com a {
+    border: 2px solid #303641;
+    padding: 4px 10px;
+    border-radius: 40px;
+    margin-top: 5px;
+}
+.rectangle article:last-child{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+.rectangle article:first-child{
     margin-top: 15px;
+}
+.rectangle article:last-child div{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
 }
 
 /*--FAQ--*/
