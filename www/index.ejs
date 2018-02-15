@@ -1,87 +1,35 @@
-<!DOCTYPE html>
-
-   <html lang="fr">
-
-   <head>
-
-       <meta charset="UTF-8">
-
-       <meta content="IE=edge" http-equiv="X-UA-Compatible">
-
-       <meta content="width=device-width,initial-scale=1" name="viewport">
-
-       <meta name="description" content="Plateforme collaborative qui met en relation les étudiants d'Hétic pour proposer ou demander de l'aide pour réaliser des projets digitaux.">
-
-       <title>Hétic Connect</title>
-
-       <link href="../css/style.css" rel="stylesheet">
-
-   </head>
-
-   <body>
-
-       <header class="nav">
-
-           <ul>
-
-               <li><a href="home"><img alt="logo" src="../img/logo.png"></a></li>
-
-               <li><a href="faq"><img alt="F.A.Q" src="../img/icone-faq.svg">F.A.Q</a></li>
-
-               <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
-
-           </ul>
-
-       </header>
-
-       <main>
-
-           <div id="top">
-
-               <h1>Hétic Connect</h1>
-
-               <p>Trouvez des étudiants pour réaliser vos projets ensemble !</p>
-
-               <article class="rechercher">
-
-                   <input id="recherche" type="text" name="lname"><br>
-
-                   <a href="#" class="loupe"><img alt="recherche" src="../img/icone-search.png"></a>
-
-               </article>
-
-           </div>
-
-           <section id="container">
-
-           
-
-       </section>
-
-       </main>
-
-       <footer>
-
-           <p>
-
-               <a href="#top">En haut</a>
-
-           </p>
-
-           <p>
-
-               © Hétic 2018. All rights reserved
-
-           </p>
-
-       </footer>
-
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-   <script src="js/script.js"></script>
-
-   </body>
-
-   
-
-   </html>
+<% include ./partials/head.ejs %>
+    <body>
+        <header class="nav">
+            <ul>
+                <li><a href="home"><img alt="logo" src="../img/logo.png"></a></li>
+                <li><a href="faq"><img alt="F.A.Q" src="../img/icone-faq.svg">F.A.Q</a></li>
+                <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
+            </ul>
+        </header>
+        <main>
+            <div id="top">
+                <h1>Hétic Connect</h1>
+                <p>Trouvez des étudiants pour réaliser vos projets ensemble !</p>
+                <article class="rechercher">
+                    <input id="recherche" type="text" name="name">
+                    <a href="#" class="loupe"><img alt="recherche" src="../img/icone-search.png"></a>
+                </article> 
+            </div>
+            <section id="container">
+            
+        </section>
+        </main>
+        <footer>
+            <p>
+                <a href="#top">En haut</a>
+            </p>
+            <p>
+                © Hétic 2018. All rights reserved
+            </p>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+    </body>
+    
+    </html>
