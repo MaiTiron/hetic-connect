@@ -410,6 +410,11 @@ router.get('/404', (req, res) => {
     res.render('404', {data: res});
 });
 
+    // FAQ
+    router.get('/faq', (req, res) => {
+        res.render('faq', {data: res});
+    });
+
 // Suppression profil
 router.post('/suppression-profil', (req, res) => {
     let utilisateurCourant = User.findById(req.session.userId);

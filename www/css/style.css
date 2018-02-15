@@ -206,6 +206,9 @@ input, button, form>a {
     text-decoration: none;
     font-size: 22px;
 }
+
+
+
 /*------Questions facultatives------*/
 
 
@@ -354,6 +357,21 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     font-weight: bold;
 }
 
+.question .bouton_submit {
+    font-family: 'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #FFC300;
+    padding: 10px 25px 6px 25px;
+    border: none;
+    margin-top: 10px;
+    text-decoration: none;
+    float: right;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    cursor: pointer;
+}
 
 
 /*  PAGE -- INSCRIPTION || CONNEXION */
@@ -474,6 +492,11 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 }
 #top .rechercher .loupe img {
     height: 20px;
+}
+
+#footer404 {
+    width: 100%;
+    background-color: white;
 }
 
 /*-----contenu-----*/
