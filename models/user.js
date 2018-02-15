@@ -66,7 +66,8 @@ var UserSchema = new mongoose.Schema({
     type: Array
   },
   photo: {
-    type: String
+    type: String,
+    default: './img/default_profil.png'
   },
   profil: {
     type: String

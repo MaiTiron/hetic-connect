@@ -82,27 +82,6 @@ router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (s
 });
 
 
- 
-    // Afficher un profil 
-router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)   
-var targetId = req.params.id;
-mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
-// Test de la connexion
-if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-else { // Connexion établie --> récupère la collection de data
-    db.collection('users').find({"_id": ObjectId(targetId) }).toArray( (err, result) => {
-        // Test la connexion à la collection
-        if (err) { res.json({error : err}) }
-        else {
-            res.render('voir-profil', {nom: result[0].nom , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, competences: result[0].competences, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
-        }
-    });
-};
-    db.close();
-    });
-});
-
-
     // Afficher un profil sans nom
 router.get('/voir-profil/', (req, res) => {
     res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
@@ -327,16 +306,35 @@ router.get('/quizz', (req, res) => {
     });
 });  
 
+
+
 // ENVOI QUIZ   --> Envoi des données du quiz vers le schema User
 router.post('/send-quizz', (req, res) => {
     
-    var lastID = req.body.id_Quest;
+    let lastID = req.body.id_Quest;
+    
+
     mongoose.connect(mongoServer, (err, db) => {    // TODO : Supprimer la connexion à la base
         const quizz = db.collection('quizz');
         if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else {     
-            // SI ON REÇOIT + D'UN 1 _ID ON AJOUTE DANS LA REQUETE
-            if(tab.length > 1) {
+            // ENVOYER EN BDD
+            let etiquette = req.body.etiquette;
+            let userData = {
+                tags: ''
+            }
+            userData.tags.push(etiquette);
+            console.log(req.body.etiquette);
+            User.findById(req.session.userId).update(userData, function (error, user) {
+        
+                if (error) {
+                    return next(error);
+                } else {
+                    return res.redirect('mon-compte');
+                }
+            });
+
+            if(tab.length > 1) { // PB AVEC TAB []
                 let questionAlea = tab[Math.floor(Math.random()*tab.length)];
                 tab.splice( tab.indexOf(questionAlea), 1 );
                 res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
