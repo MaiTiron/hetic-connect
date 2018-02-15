@@ -6,7 +6,7 @@
             </nav>
     </header>
     <main>
-        <form method="POST" action="./send-questionnaire">   
+        <form id="uploadForm" enctype="multipart/form-data" method="POST" action="./send-questionnaire">   
             <section class="question">
                 <h1>1/10 - Quel âge avez-vous ?</h1>
                 <hr>
@@ -106,11 +106,17 @@
                     <label for="SEA">SEA</label>
             </section>
             <section class="question">
+<<<<<<< HEAD
+                <h3>Donnez-nous une petite photo de vous</h3>
+                <p>VOus ne pouvez mettre qu'un png,jpeg, jpg ou gif! </p>
+		            <input type="file" accept="image/*" name="userFile" />
+=======
                 <h1>10/10 - Donnez-nous une petite photo de vous</h1>
                 <hr>
                 <img src="../img/icone-img.svg" alt="Photo de profil" />
                 <label>Choisir une photo</label>
                 <input type="file" value="Insérez une image de vous" />
+>>>>>>> ba71411ed9600626571d36cdfe17200189a46a06
             </section>
             <section class="question">
                 <p>C'est fini, vous pouvez personnaliser encore plus votre profil en répondant à ce quizz facultatif</p>
