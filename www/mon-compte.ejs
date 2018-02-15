@@ -1,17 +1,43 @@
-<% include ./partials/head.ejs %>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta name="description" content="Plateforme collaborative qui met en relation les étudiants d'Hétic pour proposer ou demander de l'aide pour réaliser des projets digitaux.">
+    <title>Hétic Connect</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
 <body>
-    <h1>Mon compte</h1>
+    <header class="nav">
+        <ul>
+            <!-- Mettre à jour tous les header avec les bons liens -->
+            <li><a href="../home"><img alt="logo" src="../img/logo.png"></a></li>
+            <li><a href="../faq"><img alt="F.A.Q" src="../img/icone-faq.svg">F.A.Q</a></li>
+            <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
+        </ul>
+    </header>
+    <main id="compte">
+        <h1>Mon compte</h1>
     
-    <input name="Prénom" type="text" placeholder="Votre prénom" value="<%= prenom %>" />
-    <input name="Nom" type="text" placeholder="Votre nom" value="<%= nom %>" />
-
-    <img src="#" alt="Image de profile" />
-
-    <input name="age" type="text" placeholder="Votre âge" value="%Age" />
-    <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
-
-    <a href="./questionnaire">Complétez votre</a>
-    <a href="./logout">Se déconnecter</a>
-
+        <input name="Prénom" type="text" placeholder="Votre prénom" value="<%= prenom %>" />
+        <input name="Nom" type="text" placeholder="Votre nom" value="<%= nom %>" />
+        
+        <img src="#" alt="Image de profile" />
+        
+        <input name="age" type="text" placeholder="Votre âge" value="%Age" />
+        <input name="mail" type="email" placeholder="Votre e-mail" value="<%= mail %>" />
+        
+        <a href="./questionnaire">Complétez votre</a>
+        <a href="./logout">Se déconnecter</a>
+    </main>
+    <footer>
+        <p>
+            <a href="#top">En haut</a>
+        </p>
+        <p>
+            © Hétic 2018. All rights reserved
+        </p>
+    </footer>
 </body>
-</html>
+ </html>

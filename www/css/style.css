@@ -273,7 +273,7 @@ main {
 
 
 /*-----top-----*/
-#top {
+#top , #top404 {
     text-align: center;
     background-image: url("../img/carte-cuvier.png");
     background-repeat: no-repeat;
@@ -284,7 +284,7 @@ main {
     padding-top: 100px;
     padding-bottom: 100px;
 }
-#top h1 {
+#top h1 , #top404 {
     margin-top: 0;
     margin-bottom: 30px;
     font-family: 'NeutraText-Bold';
@@ -595,6 +595,31 @@ main {
     height: 50px;
 }
 
+
+
+
+
+
+
+
+ /*-- Page 404 --*/
+
+#top404 {
+    margin-top: 50px;
+}
+
+#top404 a {
+    text-decoration: none;
+    color: white;
+    background-color: #384597;
+    padding: 30px;
+    border-radius: 50px;
+    font-family: 'NeutraTextTF-Book';
+}
+
+#top404 p {
+    margin-top: 80px;
+}
 
 
 
