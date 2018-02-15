@@ -4,7 +4,7 @@ var container;
 document.addEventListener('DOMContentLoaded', () => {
   container = document.querySelector('#container');
   launchRequest();
-});		
+});        
 
 
 
@@ -92,7 +92,7 @@ function affichage(username, bio, design, com, dev ,id,img, i, inputValue) {
   injectDesign(design, i);
   injectCom(com, i);
   
-  var content = "";
+  var content = "<section class='contenu'><a href='/voir-profil/" + id + "'><img src='../img/axelle.png' alt=''/><img class='echarpe' alt='écharpe hétic' src='../img/echarpe.png'/><div class='rectangle'><article><p>" + username + "<br/>" + profil + "</p><p>"+ description + "</p></article><article><div id='competences' class='list-competences-" + i + "' ></div></article></div></a></section>";
 }
 
 
