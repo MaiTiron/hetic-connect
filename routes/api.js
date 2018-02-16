@@ -17,7 +17,7 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 
     // TODO : Mettre le lien vers la vraie BDD
-const mongoServer = 'mongodb://localhost/hetic';
+const mongoServer = 'mongodb://127.0.0.1:27017/hetic';
 
 var multer = require('multer')
 var upload = multer({ dest: './www/uploads/' })

@@ -41,7 +41,7 @@ function search(inputValue, userList){
     }
     
       // Vérifie dans les compétences dev
-      if(user.dev == null) {console.log('aucune competence')} else{
+      if(user.dev == null && user.dev.length == 1) {console.log('aucune competence')} else{
     for (domaine of user.dev) {  
       if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
@@ -49,7 +49,7 @@ function search(inputValue, userList){
     }
   }
       // Vérifie dans les compétences communication et marketing
-      if(user.com == null) {console.log('aucune competence')} else{
+      if(user.com == null && user.com.length == 1) {console.log('aucune competence')} else{
     for (domaine of user.com) {   // On parcours les domaines de compétences
       if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
@@ -57,7 +57,7 @@ function search(inputValue, userList){
     }
   }
       // Vérifie dans les compétences design   
-      if(user.design == null) {console.log('aucune competence')} else{
+      if(user.design == null && user.design.length == 1) {console.log('aucune competence')} else{
     for (domaine of user.design) {   // On parcours les domaines de compétences
       if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
