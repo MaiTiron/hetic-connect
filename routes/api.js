@@ -142,17 +142,17 @@ router.post('/send-questionnaire', (req, res) => {
                 age: req.body.age,
                 filiere: req.body.filiere,
                 parcours: req.body.parcours,
-                contact: {
-                    "linkedin": req.body.linkedin,
-                    "facebook": req.body.facebook,
-                    "telephone": req.body.telephone
-                },
-                realisations: {
-                    "dribbble": req.body.dribbble,
-                    "behance": req.body.behance, 
-                    "instagram": req.body.instagram,
-                    "site": req.body.site
-                },
+                contact: [
+                    req.body.linkedin,
+                    req.body.facebook,
+                    req.body.telephone
+                ],
+                realisations: [
+                    req.body.dribbble,
+                    req.body.behance, 
+                    req.body.instagram,
+                    req.body.site
+                ],
                 description: req.body.description,
                 biographie: req.body.biographie,
                 affichage: true,
@@ -160,11 +160,11 @@ router.post('/send-questionnaire', (req, res) => {
                 dev: req.body.dev,
                 design: req.body.design,
                 // com:  req.body.com,
-                competences: {
-                    "com": req.body.com,
-                    "dev": req.body.dev,
-                    "design": req.body.design
-                },
+                competences: [
+                    req.body.com,
+                    req.body.dev,
+                    req.body.design
+                ],
                 profil : profil,
                 imgURL: "../uploads/" + req.session.userId + ext 
             };
