@@ -9,6 +9,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const ObjectId = require('mongodb').ObjectID;
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: false}));
@@ -17,7 +19,7 @@ router.use(bodyParser.urlencoded({extended: false}));
     // TODO : Mettre le lien vers la vraie BDD
 const mongoServer = 'mongodb://localhost/hetic';
 
-var multer  = require('multer')
+var multer = require('multer')
 var upload = multer({ dest: './www/uploads/' })
 
 /*
@@ -106,98 +108,174 @@ var storage = multer.diskStorage({
 })
 
 
-    // Envoi du questionnaire
+  // Envoi du questionnaire
+
 router.post('/send-questionnaire', (req, res) => {
+    console.log('test', req.body);
+
+    // Ouvrir une connexion sur la base MongoDb
+    MongoClient.connect(`mongodb://localhost:27017`, (err, client) =>{
+        const db = client.db(`hetic`)
+
+        // Tester la connexion
+        if(err){ res.send(err) } 
+        else{
+            db.collection(`users`, (err, users)=>{
+                // Suppriumer la tâche
+                users.update({_id: new ObjectId(req.session.userId)}, {
+                    $set:{
+                        age: req.body.age,
+                        filiere: req.body.filiere,
+                        parcours: req.body.parcours,
+                        contact: [req.body.linkedin, req.body.facebook, req.body.telephone],
+                        realisations: [req.body.dribbble, req.body.behance, req.body.instgram, req.body.site],
+                        description: req.body.description,
+                        affichage: true,
+                        disponibilites: req.body.disponibilites,                        
+                        dev: req.body.dev,
+                        description: req.body.description,
+                        com: req.body.com,
+                        design: req.body.design,
+                        competences: [req.body.com, req.body.dev, req.body.design],
+                        imgURL: "../img/default_profill.jpg"
+                    }
+                    // $set:{filiere: req.body.filiere},
+                    // $set:{parcours: req.body.parcours},
+                    // $set:{contact: [req.body.linkedin, req.body.facebook, req.body.telephone]},
+                    // $set:{realisations: [req.body.dribbble, req.body.behance, req.body.instgram, req.body.site]},
+                    // $set:{description: req.body.description},
+                    // $set:{biographie: req.body.biographie},
+                    // $set:{affichage: true},
+                    // $set:{disponibilites: req.body.disponibilites},                    
+                    // $set:{dev: req.body.dev},
+                    // $set:{description: req.body.description},
+                    // $set:{com: req.body.com},
+                    // $set:{design: req.body.design},
+                    // $set:{competences: [req.body.com, req.body.dev, req.body.design]},
+                    // $set:{imgURL: "../img/default_profill.jpg"},
+                });
+            });
+        }
+                // Vérification de la commande MongoDb
+                if(err){  res.status(500).send(`There was a problem finding the user.`) } 
+                else{
+                    res.send( console.log(`update`) )
+                    // Fermer la connexion à la base MongoDb
+                    client.close()
+                    return res.redirect('mon-compte');
+                }
+           
+        })            
+});
+
+    /*
+    User.findById(req.session.userId, (err, user) => {
+        // Message d'erreur
+        if (err) return res.status(500).send(`There was a problem finding the user.`);
+        if (!user) return res.status(404).send(`No user found.`);
+
+        if(user){
+            console.log('FIND', user)
+            User.update()
+        }
+    })
+
     
     var upload = multer({
-		storage: storage,
-		fileFilter: function(req, file, callback) {
-			var ext = path.extname(file.originalname)
-			if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.PNG') {
-				return callback(res.end('Only images are allowed'), null)
+        storage: storage,
+        fileFilter: function(req, file, callback) {
+            var ext = path.extname(file.originalname);
+
+            if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.PNG') {
+                return callback(res.end('Only images are allowed'), null)
             }
             
+ 
             var profil = "";
+ 
             if (req.body.com == null){
                 req.body.com = [""];
             }
+ 
             if (req.body.dev == null){
                 req.body.dev = [""];
             }
+ 
             if (req.body.design == null){
                 req.body.design = [""];
             }
-            
-            
+ 
             if (req.body.com === Array && req.body.com.length >= req.body.dev.length && req.body.com.length >= req.body.design.length) {
                 profil += "Communication";
             } else if (req.body.dev === Array && req.body.dev.length >= req.body.com.length && req.body.dev.length >= req.body.design.length) {
                 profil += "Devellopeur";
             } else if (req.body.design === Array && req.body.design.length >= req.body.com.length && req.body.design.length >= req.body.dev.length) {
                 profil += "Designer";
-            } else ( profil = "");
-
-    
+            } else ( profil = "");    
+            
             var userData = {
                 age: req.body.age,
-                filiere: req.body.filiere,
-                parcours: req.body.parcours,
-                contact: [
-                    req.body.linkedin,
-                    req.body.facebook,
-                    req.body.telephone
-                ],
-                realisations: [
-                    req.body.dribbble,
-                    req.body.behance, 
-                    req.body.instagram,
-                    req.body.site
-                ],
-                description: req.body.description,
-                biographie: req.body.biographie,
-                affichage: true,
-                disponibilites: req.body.disponibilites,
-                dev: req.body.dev,
-                design: req.body.design,
-                // com:  req.body.com,
-                competences: [
-                    req.body.com,
-                    req.body.dev,
-                    req.body.design
-                ],
-                profil : profil,
-                imgURL: "../uploads/" + req.session.userId + ext 
+                filiere: req.body.filiere,        
+                parcours: req.body.parcours,        
+                contact: [req.body.linkedin, req.body.facebook, req.body.telephone],        
+                realisations: [req.body.dribbble, req.body.behance, req.body.instagram, req.body.site],        
+                description: req.body.description,        
+                biographie: req.body.biographie,        
+                affichage: true,        
+                disponibilites: req.body.disponibilites,        
+                dev: req.body.dev,        
+                design: req.body.design,        
+                com:  req.body.com,        
+                competences: [req.body.com, req.body.dev, req.body.design],        
+                profil : profil,        
+                imgURL: "../uploads/" + req.session.userId + ext        
             };
+ 
+    
+ 
+            // User.findById(req.session.userId).update(userData, function (error, user) {
+            //     if (error) {    
+            //         return next(error);    
+            //     } else {    
+            //         console.log(userData);    
+            //         return res.render('mon-compte', {user: user});     
+            //     }
+ 
+            // });
+            
+            User.findById(req.session.userId, (err, user) => {
+                // Message d'erreur
+                if (err) return res.status(500).send(`There was a problem finding the user.`);
+                if (!user) return res.status(404).send(`No user found.`);
 
-            console.log("Avant insertion");
-            User.findById(req.session.userId).update(userData, function (error, user) {
-        
-                if (error) {
-                    return next(error);
-                } else {
-                    User.findById(req.session.userId).exec(function (error, user) {
-                        if (error) {
-                            return next(error);
-                        } else {
-                            if (user === null) {
-                                var err = new Error('Erreur');
-                                err.status = 400;
-                                return next(err);
-                            } else {
-                                return res.render('mon-compte', {user: user}); 
-                            }
+                if(user){
+                    user.update(userData, (err, data) => {
+                        if (err) return res.status(500).send(`There was a problem finding the user.`);
+                        if (!user) {
+                            return res.status(404).send(`No user found.`);
                         }
-                    });
+                        else{
+                            console.log('setup', userData);    
+                            return res.render('mon-compte', {user: data}); 
+                        }
+
+                    })
                 }
-            });
-            
-            
-            callback(null, true)
+            })
+ 
+
+
+        callback(null, true)
         }
-	}).single('userFile');
-	upload(req, res, function(err) {
-    }) 
-});
+ 
+    }).single('userFile');
+ 
+    upload(req, res, function(err) {
+    })
+    */
+ 
+
+
 
 
     // DATA     --> Récupération des données user
@@ -311,7 +389,7 @@ router.post('/signup', function (req, res, next) {
     
     // Vérification qu'il y a toute les données de rentrées
     if (req.body.mail && req.body.nom && req.body.prenom && req.body.password) { 
-        console.log("Vérification");
+        
         if (checkUserAlreadyKnown(req.body.mail) == false ) {
             console.log("DIdjqskjh");
             return res.render('signup', {mail: req.body.mail, nom: req.body.nom, prenom: req.body.prenom, err: "Cette adresse est déjà utilisée."});
@@ -327,7 +405,7 @@ router.post('/signup', function (req, res, next) {
                 return next(error);
             } else {
                 req.session.userId = user._id;
-                console.log(user);
+                console.log('SIGNUP', user);
                 return res.render('mon-compte', {user: user});
             }
         });

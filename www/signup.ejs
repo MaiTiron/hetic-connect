@@ -47,18 +47,18 @@
         var re = /(?=.*\d)(?=.*[a-z]).{6,20}/g;
     
         // for(input of inputPWD){    
-            input.addEventListener('change', function() { 
-                if (re.test(input.value) != true) {
-                    document.querySelector("div.err").style.display = 'block';
-                    document.querySelector("#inscr").setAttribute("disabled", "true");
-                }
+            // input.addEventListener('change', function() { 
+            //     if (re.test(input.value) != true) {
+            //         document.querySelector("div.err").style.display = 'block';
+            //         document.querySelector("#inscr").setAttribute("disabled", "true");
+            //     }
                 
-                if(pwd1 !== pwd2){
-                    console.log("test");
-                    document.querySelector("div.incorrect").style.display = 'block';
-                    document.querySelector("#inscr").setAttribute("disabled", "true");
-                }
-            });
+            //     if(pwd1 !== pwd2){
+            //         console.log("test");
+            //         document.querySelector("div.incorrect").style.display = 'block';
+            //         document.querySelector("#inscr").setAttribute("disabled", "true");
+            //     }
+            // });
         // }
         
     </script>
