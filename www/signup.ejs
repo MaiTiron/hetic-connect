@@ -1,5 +1,5 @@
 <% include ./partials/head.ejs %>
-<body>
+<body class="global">
     <header class="fixed">
         <nav>
             <a><img alt="logo" src="../img/logo.png"></a>
@@ -10,6 +10,7 @@
         <div class="image-background"></div>
         <section>
             <h1>Inscription</h1>
+            <hr>
             <form action="/signup" method="POST">
                 <input class="icon-name" type="text" name="nom" id="name" placeholder="Votre Nom" required="required"/>
                 <input class="icon-name" type="text" name="prenom" id="name2" placeholder="Votre Prénom" required="required">

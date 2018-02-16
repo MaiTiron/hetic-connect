@@ -84,10 +84,6 @@ router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (s
 });
 
 
- 
-
-
-
     // Afficher un profil sans nom
 router.get('/voir-profil/', (req, res) => {
     res.render('404', {data : 'L\'utilisateur que vous cherchez n\'est pas enregistré sur la plateforme'});
@@ -376,16 +372,35 @@ router.get('/quizz', (req, res) => {
     });
 });  
 
+
+
 // ENVOI QUIZ   --> Envoi des données du quiz vers le schema User
 router.post('/send-quizz', (req, res) => {
     
-    var lastID = req.body.id_Quest;
+    let lastID = req.body.id_Quest;
+    
+
     mongoose.connect(mongoServer, (err, db) => {    // TODO : Supprimer la connexion à la base
         const quizz = db.collection('quizz');
         if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else {     
-            // SI ON REÇOIT + D'UN 1 _ID ON AJOUTE DANS LA REQUETE
-            if(tab.length > 1) {
+            // ENVOYER EN BDD
+            let etiquette = req.body.etiquette;
+            let userData = {
+                tags: ''
+            }
+            userData.tags.push(etiquette);
+            console.log(req.body.etiquette);
+            User.findById(req.session.userId).update(userData, function (error, user) {
+        
+                if (error) {
+                    return next(error);
+                } else {
+                    return res.redirect('mon-compte');
+                }
+            });
+
+            if(tab.length > 1) { // PB AVEC TAB []
                 let questionAlea = tab[Math.floor(Math.random()*tab.length)];
                 tab.splice( tab.indexOf(questionAlea), 1 );
                 res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
@@ -409,6 +424,11 @@ router.get('/clear', function(req, res) {
 router.get('/404', (req, res) => {
     res.render('404', {data: res});
 });
+
+    // FAQ
+    router.get('/faq', (req, res) => {
+        res.render('faq', {data: res});
+    });
 
 // Suppression profil
 router.post('/suppression-profil', (req, res) => {

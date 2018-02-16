@@ -74,7 +74,8 @@ var UserSchema = new mongoose.Schema({
     telephone: String
   },
   photo: {
-    type: String
+    type: String,
+    default: './img/default_profil.png'
   },
   profil: {
     type: String

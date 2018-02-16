@@ -110,6 +110,14 @@ section form {
 h1, form>a{
     color: #FFC300; 
 }
+#inscription hr, #connexion hr{
+    width: 30%;
+    margin: auto;
+    border: none;
+    border-radius: 30px;
+    background-color: #FFC300; 
+    height: 3px;   
+}
 input, button, form>a {
     margin-right: auto;
     margin-left: auto;
@@ -117,17 +125,20 @@ input, button, form>a {
 #connexion input, #inscription input {
     margin-bottom: 15px;
     border: none;
-    border-bottom: 1px solid #303641;
+    border-bottom: 1px solid #C1C3C6;
     opacity: 0.5;
     font-family:'NeutraTextTF-Book';
     width: 45%;
     font-size: 20px;
+    color: #303641;
 }
 #connexion section, #inscription section, #quizz section, #facultatif section{
     flex: 1;
     text-align: center;
 }
-
+.global{
+    height: 100vh;
+}
 /*--Image en background--*/
 .image-background{
     background-image: url(../img/projet-travail.jpg);
@@ -138,7 +149,7 @@ input, button, form>a {
 
 /*--Icones--*/
 .icon-name{
-    background-image: url('../img/icone-compte.svg');
+    background-image: url('../img/icone-nom.svg');
     background-repeat: no-repeat;
     background-position: 2px;
     background-size: 15px; 
@@ -195,6 +206,9 @@ input, button, form>a {
     text-decoration: none;
     font-size: 22px;
 }
+
+
+
 /*------Questions facultatives------*/
 
 
@@ -343,16 +357,33 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     font-weight: bold;
 }
 
+.question .bouton_submit {
+    font-family: 'NeutraTextTF-Book';
+    color: white;
+    border-radius: 35px;
+    background-color: #FFC300;
+    padding: 10px 25px 6px 25px;
+    border: none;
+    margin-top: 10px;
+    text-decoration: none;
+    float: right;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    cursor: pointer;
+}
 
 
 /*  PAGE -- INSCRIPTION || CONNEXION */
 #inscription button, #connexion button{
-    font-size: 22px;
+    font-size: 20px;
+    margin-top: 45px;
 }
 
 /*  PAGE --  */
 .fixed{
     position: fixed;
+    left: 150px;
 }
 .nav{
     text-align: center;
@@ -418,7 +449,7 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 
 
 /*-----top-----*/
-#top {
+#top , #top404 {
     text-align: center;
     background-image: url("../img/carte-cuvier.png");
     background-repeat: no-repeat;
@@ -429,7 +460,7 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     padding-top: 100px;
     padding-bottom: 100px;
 }
-#top h1 {
+#top h1 , #top404 {
     margin-top: 0;
     margin-bottom: 30px;
     font-family: 'NeutraText-Bold';
@@ -461,6 +492,11 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 }
 #top .rechercher .loupe img {
     height: 20px;
+}
+
+#footer404 {
+    width: 100%;
+    background-color: white;
 }
 
 /*-----contenu-----*/
@@ -837,6 +873,31 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 }
 
 
+
+
+
+
+
+
+
+ /*-- Page 404 --*/
+
+#top404 {
+    margin-top: 50px;
+}
+
+#top404 a {
+    text-decoration: none;
+    color: white;
+    background-color: #384597;
+    padding: 30px;
+    border-radius: 50px;
+    font-family: 'NeutraTextTF-Book';
+}
+
+#top404 p {
+    margin-top: 80px;
+}
 
 
 
