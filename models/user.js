@@ -63,15 +63,10 @@ var UserSchema = new mongoose.Schema({
     type: String
   },
   realisations: {
-    dribbble: String,
-    behance: String,
-    instagram: String,
-    site: String
+    type: Array
   },
   contact: {
-    linkedin: String,
-    facebook: String,
-    telephone: String
+    type: Array
   },
   photo: {
     type: String,
@@ -81,9 +76,7 @@ var UserSchema = new mongoose.Schema({
     type: String
   },  
   competences: {
-    com: String,
-    dev: String,
-    design: String
+    type: Array
   },
   imgURL: {
     type: String
