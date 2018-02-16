@@ -85,24 +85,7 @@ router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (s
 
 
  
-    // Afficher un profil 
-router.get('/voir-profil/:id', (req, res) => { // Possibilité de récup l'ID (si jamais y'a 2 Marseille dans la BDD)   
-var targetId = req.params.id;
-mongoose.connect(mongoServer, (err, db) => { // En fonction du déroulement on prend en param soit l'erreur, soit la BDD
-// Test de la connexion
-if (err) { res.json({error : err})}    // Si y'a une erreur, sa coupe le .connect()
-else { // Connexion établie --> récupère la collection de data
-    db.collection('users').find({"_id": ObjectId(targetId) }).toArray( (err, result) => {
-        // Test la connexion à la collection
-        if (err) { res.json({error : err}) }
-        else {
-            res.render('voir-profil', {nom: result[0].nom , prenom: result[0].prenom , tags: result[0].tags, age: result[0].age , filiere: result[0].filiere, competences: result[0].competences, parcours: result[0].parcours , description: result[0].description, biographie: result[0].biographie, disponibilites: result[0].disponibilites, realisations: result[0].realisations, contact: result[0].contact}); //changer collection
-        }
-    });
-};
-    db.close();
-    });
-});
+
 
 
     // Afficher un profil sans nom
@@ -129,6 +112,7 @@ var storage = multer.diskStorage({
 
     // Envoi du questionnaire
 router.post('/send-questionnaire', (req, res) => {
+    
     var upload = multer({
 		storage: storage,
 		fileFilter: function(req, file, callback) {
@@ -137,60 +121,75 @@ router.post('/send-questionnaire', (req, res) => {
 				return callback(res.end('Only images are allowed'), null)
             }
             
-    var profil = "";
-    if (req.body.com == null){
-        req.body.com = [""];
-    }
-    if (req.body.dev == null){
-        req.body.dev = [""];
-    }
-    if (req.body.design == null){
-        req.body.design = [""];
-    }
-    
-    
-    if (req.body.com === Array && req.body.com.length >= req.body.dev.length && req.body.com.length >= req.body.design.length) {
-        profil += "Communication";
-    } else if (req.body.dev === Array && req.body.dev.length >= req.body.com.length && req.body.dev.length >= req.body.design.length) {
-        profil += "Devellopeur";
-    } else if (req.body.design === Array && req.body.design.length >= req.body.com.length && req.body.design.length >= req.body.dev.length) {
-        profil += "Designer";
-    } else ( profil = "");
+            var profil = "";
+            if (req.body.com == null){
+                req.body.com = [""];
+            }
+            if (req.body.dev == null){
+                req.body.dev = [""];
+            }
+            if (req.body.design == null){
+                req.body.design = [""];
+            }
+            
+            
+            if (req.body.com === Array && req.body.com.length >= req.body.dev.length && req.body.com.length >= req.body.design.length) {
+                profil += "Communication";
+            } else if (req.body.dev === Array && req.body.dev.length >= req.body.com.length && req.body.dev.length >= req.body.design.length) {
+                profil += "Devellopeur";
+            } else if (req.body.design === Array && req.body.design.length >= req.body.com.length && req.body.design.length >= req.body.dev.length) {
+                profil += "Designer";
+            } else ( profil = "");
 
-
-    var userData = {
-        age: req.body.age,
-        filiere: req.body.filiere,
-        parcours: req.body.parcours,
-        contact: [req.body.linkedin, req.body.facebook, req.body.telephone],
-        realisations: [req.body.dribbble, req.body.behance, req.body.instagram, req.body.site],
-        description: req.body.description,
-        biographie: req.body.biographie,
-        affichage: true,
-        disponibilites: req.body.disponibilites,
-        dev: req.body.dev,
-        design: req.body.design,
-        com:  req.body.com,
-        competences: [req.body.com, req.body.dev, req.body.design],
-        profil : profil,
-        imgURL: "../uploads/" + req.session.userId + ext 
-    };
     
-    User.findById(req.session.userId).update(userData, function (error, user) {
+            var userData = {
+                age: req.body.age,
+                filiere: req.body.filiere,
+                parcours: req.body.parcours,
+                contact: {
+                    "linkedin": req.body.linkedin,
+                    "facebook": req.body.facebook,
+                    "telephone": req.body.telephone
+                },
+                realisations: {
+                    "dribbble": req.body.dribbble,
+                    "behance": req.body.behance, 
+                    "instagram": req.body.instagram,
+                    "site": req.body.site
+                },
+                description: req.body.description,
+                biographie: req.body.biographie,
+                affichage: true,
+                disponibilites: req.body.disponibilites,
+                dev: req.body.dev,
+                design: req.body.design,
+                // com:  req.body.com,
+                competences: {
+                    "com": req.body.com,
+                    "dev": req.body.dev,
+                    "design": req.body.design
+                },
+                profil : profil,
+                imgURL: "../uploads/" + req.session.userId + ext 
+            };
+
+            console.log("Avant insertion");
+            User.findById(req.session.userId).update(userData, function (error, user) {
         
-        if (error) {
-            return next(error);
-        } else {
-            console.log(userData);
-            return res.redirect('mon-compte');
-        }
-    });
+                if (error) {
+                    return next(error);
+                } else {
+                    console.log(user);
+                    return res.render('mon-compte', {user: user});
+                }
+            });
+            
+            
             callback(null, true)
-		}
+        }
 	}).single('userFile');
 	upload(req, res, function(err) {
-    })
-    
+    }) 
 });
 
 
@@ -234,6 +233,7 @@ router.get('/logout', function (req, res, next) {
 
     // MON COMPTE   --> Affichage des informations personnelles
 router.get('/mon-compte', function (req, res, next) {
+    var targetId = req.params.id;
     User.findById(req.session.userId).exec(function (error, user) {
         if (error) {
             return next(error);
@@ -244,7 +244,7 @@ router.get('/mon-compte', function (req, res, next) {
                 return next(err);
             } else {
                 // Remplacer par route sur laquelle il faut rediriger une fois connecté
-                return res.render('mon-compte', {nom: user.nom, prenom: user.prenom, mail: user.mail}); // TODO : On peut pas plutot le faire dans la session ?
+                return res.render('mon-compte', {user: user}); // TODO : On peut pas plutot le faire dans la session ?
             }
         }
     });
@@ -265,9 +265,9 @@ router.post('/signin', function (req, res, next) {
                 err.status = 401;
                 return next(err);
             } else {
-                //req.session.userId = user._id;
+                req.session.userId = user._id;
                 // console.log(userData)
-                return res.redirect('mon-compte');
+                return res.render('mon-compte', {user: user});
             }
         });
     } else {

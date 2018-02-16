@@ -19,21 +19,25 @@
             <p> <%= user.description %></p>
         </section>
         <section id="etiqprofil">
-            <% for(var i=0; i < user.tags.length; i++) { %>
+            <% if(user.tags){ 
+                for(var i=0; i < user.tags.length; i++) { %>
                 <article class="etiqproetiquette">
                     <!-- J'ai mis une image pour pouvoir faire le style, si on peut pas lier la BDD, penser à enlever l'image d'exemple -->
                     <img alt="#" src="../img/icone-chocolat-chaud.svg"><p> <%= user.tags[i] %></p>
                 </article>
-            <% } %>
+                <% }
+            }%>
             <h2>Compétences maîtrisées</h2>
             <article class="etiqprocompetences">
                 <p>
-                    <% for(var i=0; i < user.competences.length; i++) { %>
+                    <% if(user.competence){
+                         for(var i=0; i < user.competences.length; i++) { %>
                     <span>
                         <!-- Logiquement les compétences ont des couleurs différentes en fonction du domaine, à modifier si lien BDD, pour le moment c'est jaune tout le temps -->
                          <%= user.competences[i] %>
                     </span>
-                    <% } %>
+                    <% } 
+                } %>
                 </p>
             </article>
         </section>
@@ -41,12 +45,14 @@
             <article class="contprogauche">
                 <img alt="parcours" src="../img/icone-parcours.svg">
                 <h3>Parcours professionnel et scolaire</h3>
-                <% for(var i=0; i < user.parcours.length; i++) { %>
-                    <p>
-                        <!-- Le saut de ligne est pas compté, si vous regardez la page il y a des '/n' perdus on sait pas pourquoi (enfin moi je sais pas en tous cas) -->
-                         <%= user.parcours[i] %>
-                    </p>
-                <% } %>
+                <% if(user.parcours){
+                    for(var i=0; i < user.parcours.length; i++) { %>
+                        <p>
+                            <!-- Le saut de ligne est pas compté, si vous regardez la page il y a des '/n' perdus on sait pas pourquoi (enfin moi je sais pas en tous cas) -->
+                            <%= user.parcours[i] %>
+                        </p>
+                    <% } 
+                }%>
             </article>
             <article class="contprodroite">
                 <img alt="parcours" src="../img/icone-hobbies.svg">
@@ -63,10 +69,9 @@
                     <!-- 
                         Pas de lien github ? Si  non, l'enlever 
                     -->
-                    <a href="http:// <%= user.realisations.dribbble %>"><img alt="dribble" src="../img/icone-dribbble.svg"></a>
-                    <a href="http:// <%= user.realisations.behance %>"><img alt="behance" src="../img/icone-behance.svg"></a>
+                    <a href="http:// <%= user.realisations %>"><img alt="behance" src="../img/icone-behance.svg"></a>
                     <a href="#"><img alt="github" src="../img/icone-github.svg"></a>
-                    <a href="http:// <%= user.realisations.instagram %>"><img alt="instagram" src="../img/icone-instagram.svg"></a>
+                    <a href="http:// <%= user.realisations %>"><img alt="instagram" src="../img/icone-instagram.svg"></a>
                     <a href="#">site perso</a>
                     
                 </p>
@@ -76,13 +81,13 @@
             <p>Ce profil vous a plu ?</p>
             <p>Contactez  <%= user.prenom %></p>
             <article>
-                <p>Mail :  <%= user.contact.mail %></p>
-                <p>Téléphone :  <%= user.contact.telephone %></p>
+                <p>Mail :  <%= user.contact %></p>
+                <p>Téléphone :  <%= user.contact %></p>
             </article>
             <article>
                 <p>
-                    <a href="http:// <%= user.contact.facebook %>"><img alt="facebook" src="../img/icone-facebook.svg"></a>
-                    <a href="http:// <%= user.contact.linkedin %>"><img alt="linkedin" src="../img/icone-linkedin.svg"></a>
+                    <a href="http:// <%= user.contact %>"><img alt="facebook" src="../img/icone-facebook.svg"></a>
+                    <a href="http:// <%= user.contact %>"><img alt="linkedin" src="../img/icone-linkedin.svg"></a>
                 </p>
             </article>
         </section>
@@ -107,9 +112,10 @@
             <h2>Compétences maîtrisées</h2>
             <article class="etiqprocompetences">
                 <p>
-                    <% for(var i=0; i < user.competences.length; i++) { %>
+                    <% if(user.competences) { for(var i=0; i < user.competences.length; i++) { %>
                         <p>Compétence : <input name="competence" type="text" placeholder=" <%= user.competences[i] %>" value=" <%= user.competences[i] %>"/> </p>
-                    <% } %>
+                    <% } 
+                    }%>
                 </p>
             </article>
         </section>
@@ -117,11 +123,12 @@
             <article class="contprogauche">
                 <img alt="parcours" src="../img/icone-parcours.svg">
                 <h3>Parcours professionnel et scolaire</h3>
-                <% for(var i=0; i < user.parcours.length; i++) { %>
+                <% if(user.parcours){ for(var i=0; i < user.parcours.length; i++) { %>
                     <p>
                         <input name="parcours" type="text" placeholder=" <%= user.parcours[i] %>" value=" <%= user.parcours[i] %>"/>
                     </p>
-                <% } %>
+                <% } 
+                }%>
             </article>
             <article class="contprodroite">
                 <img alt="parcours" src="../img/icone-hobbies.svg">
@@ -135,10 +142,10 @@
                 <h3>Réalisations</h3>
                 <p>Vous pouvez découvrir mes réalisations dans les liens suivants :</p>
                 <p class="reseauxsociaux">
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations.dribbble %>" value=" <%= user.realisations.dribbble %>"/>
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations.behance %>" value=" <%= user.realisations.behance %>"/>
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations.github %>" value=" <%= user.realisations.github %>"/>
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations.instagram %>" value=" <%= user.realisations.instagram %>"/>
+                    <input name="realisations" type="text" placeholder=" <%= user.realisations %>" value=" <%= user.realisations %>"/>
+                    <input name="realisations" type="text" placeholder=" <%= user.realisations %>" value=" <%= user.realisations %>"/>
+                    <input name="realisations" type="text" placeholder=" <%= user.realisations %>" value=" <%= user.realisations %>"/>
+                    <input name="realisations" type="text" placeholder=" <%= user.realisations %>" value=" <%= user.realisations %>"/>
                     <input name="realisations" type="text" placeholder="site" value="site"/>
                 </p>
             </article>
@@ -146,13 +153,13 @@
         <section id="bottomprofil">
             <p>Vos données personnelles</p>
             <article>
-                <p>Mail : <input name="mail" type="text" placeholder=" <%= user.contact.mail %>" value=" <%= user.contact.mail %>"/></p>
-                <p>Téléphone : <input name="telephone" type="text" placeholder=" <%= user.contact.telephone %>" value=" <%= user.contact.telephone %>"/></p></p>
+                <p>Mail : <input name="mail" type="text" placeholder=" <%= user.contact %>" value=" <%= user.contact %>"/></p>
+                <p>Téléphone : <input name="telephone" type="text" placeholder=" <%= user.contact %>" value=" <%= user.contact %>"/></p></p>
             </article>
             <article>
                 <p>
-                    <img alt="facebook" src="../img/icone-facebook.svg"></a><input name="facebook" type="text" placeholder=" <%= user.contact.facebook %>" value=" <%= user.contact.facebook %>"/>
-                    <img alt="linkedin" src="../img/icone-linkedin.svg"></a><input name="linkedin" type="text" placeholder=" <%= user.contact.linkedin %>" value=" <%= user.contact.linkedin %>"/>
+                    <img alt="facebook" src="../img/icone-facebook.svg"></a><input name="facebook" type="text" placeholder=" <%= user.contact %>" value=' <%= user.contact %>'/>
+                    <img alt="linkedin" src="../img/icone-linkedin.svg"></a><input name="linkedin" type="text" placeholder=" <%= user.contact %>" value=" <%= user.contact %>"/>
                 </p>
                 </p>
             </article>
