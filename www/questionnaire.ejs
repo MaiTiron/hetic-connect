@@ -63,9 +63,9 @@
                 <textarea name="biographie" placeholder="Centres d'intérêt, musique, sport, dites-nous en plus sur vous..."></textarea>
             </section>
             <section class="question">
-                <h1>8/10 - Quelles sont vos disponibilités ? Avez-vous des empêchements quotidiens ?</h1>
+                <h1>8/10 - Quelles sont vos disponibilités (heures et lieux) ?</h1>
                 <hr>
-                <textarea name="disponibilites" placeholder="Mes disponibilités sont..."></textarea>
+                <textarea name="disponibilites" placeholder="Je suis disponible ..."></textarea>
             </section>
             <section class="question">
                 <h1>9/10 - Mettez en avant vos compétences</h1>
@@ -73,7 +73,7 @@
                 <article>
                 <h4>Compétences dev</h4>
                     <input id="node" type="checkbox" name="dev" value="node">
-                    <label for="node">Node</label>
+                    <label for="node">Node JS</label>
                     <input id="Js" type="checkbox" name="dev" value="Js">
                     <label for="Js">Js</label>
                     <input id="MEAN" type="checkbox" name="dev" value="MEAN">
@@ -84,6 +84,8 @@
                     <label for="Symfony">Symfony</label>
                     <input id="HTML/CSS" type="checkbox" name="dev" value="HTML/CSS">
                     <label for="HTML/CSS">HTML/CSS</label>
+                    <input id="SEO" type="checkbox" name="com" value="SEO">
+                    <label for="SEO">SEO</label>
                 <h4>Compétences design</h4>
                     <input id="UX" type="checkbox" name="design" value="UX">
                     <label for="UX">UX</label>
@@ -101,7 +103,7 @@
                     <input id="Gestion de projet" type="checkbox" name="com" value="Gestion de projet">
                     <label for="Gestion de projet">Gestion de projet</label>
                     <input id="Redaction" type="checkbox" name="com" value="Redaction">
-                    <label for="Redaction">Redaction</label>
+                    <label for="Redaction">Rédaction</label>
                     <input id="SEA" type="checkbox" name="com" value="SEA">
                     <label for="SEA">SEA</label>
             </section>
@@ -114,12 +116,11 @@
 		        <input type="file" accept="image/*" name="userFile" />
             </section>
             <section class="question">
-                <p>C'est fini, vous pouvez personnaliser encore plus votre profil en répondant à ce quizz facultatif</p>
-                <input type="submit" disabled  value="ajoutProfil">Créer mon profil</input>
+                <p>C'est fini ! Vous pouvez personnaliser encore plus votre profil en répondant au quiz facultatif. </p>
+                <input type="submit" disabled  value="Creer mon profil" class="bouton_submit">
             </section>
             <a class="nextScreen" id="fadeIn" href="#">Suivant</a>
             <a class="lastScreen" href="#">Précedent</a>
-            
         </form>
     </main>
     <script src="./js/scriptQuestionnaire.js"></script>
