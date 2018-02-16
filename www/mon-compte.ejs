@@ -17,10 +17,11 @@
             <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
         </ul>
     </header>
-    <main id="profil">
+    <main id="profil">  
         <section id="topprofil">
             <img src="#" alt="image de profil" />
             <h1> <%= user.prenom %><span>  <%= user.nom %></span></h1>
+            <a class="remplir " href="/questionnaire"> Remplir mon profil</a>
             <!-- Afficher "Profil designer", etc ? -->
             <!-- Si admin : smaller "admin" en gris === c'était un commentaire existant, à vous de gérer -->
             <h2> <%= user.age %></h2>
