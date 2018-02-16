@@ -175,8 +175,19 @@ router.post('/send-questionnaire', (req, res) => {
                 if (error) {
                     return next(error);
                 } else {
-                    console.log(user);
-                    return res.render('mon-compte', {user: user});
+                    User.findById(req.session.userId).exec(function (error, user) {
+                        if (error) {
+                            return next(error);
+                        } else {
+                            if (user === null) {
+                                var err = new Error('Erreur');
+                                err.status = 400;
+                                return next(err);
+                            } else {
+                                return res.render('mon-compte', {user: user}); 
+                            }
+                        }
+                    });
                 }
             });
             
@@ -229,7 +240,7 @@ router.get('/logout', function (req, res, next) {
 
     // MON COMPTE   --> Affichage des informations personnelles
 router.get('/mon-compte', function (req, res, next) {
-    var targetId = req.params.id;
+    // var targetId = req.params.id;
     User.findById(req.session.userId).exec(function (error, user) {
         if (error) {
             return next(error);
@@ -239,7 +250,6 @@ router.get('/mon-compte', function (req, res, next) {
                 err.status = 400;
                 return next(err);
             } else {
-                // Remplacer par route sur laquelle il faut rediriger une fois connecté
                 return res.render('mon-compte', {user: user}); // TODO : On peut pas plutot le faire dans la session ?
             }
         }
