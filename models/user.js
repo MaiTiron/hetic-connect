@@ -2,86 +2,166 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
 var UserSchema = new mongoose.Schema({
-  admin: {
-    type: Boolean,
-    default: false
-  }, 
-  password: {
-    type: String,
-    required: true
-  },
-  prenom: {
-    type: String,
-    required: true,
-    
-  },
-  nom: {
-    type: String,
-    required: true,
-    
-  },
-  affichage: {
-    type: Boolean,
-    default: "false"
-  },
-  mail: {
-    type: String,
-    required: true
-  },
-  age: {
-    type: Number,
-    default: 2
-  },
-  filiere: {
-    type: String
-  },
-  dev: {
-    type: Array,
-    default: []
-  },
-  design: {
-    type: Array,
-    default: []
-  },
-  com: {
-    type: Array,
-    default: []
-  },
-  tags: {
-    type: Array
-  },
-  parcours: {
-    type: Array
-  },
-  description: {
-    type: String
-  },
-  biographie: {
-    type: String
-  },
-  disponibilites: {
-    type: String
-  },
-  realisations: {
-    type: Array
-  },
-  contact: {
-    type: Array
-  },
-  photo: {
-    type: String
-  },
-  profil: {
-    type: String
-  },  
-  competences: {
-    type: Array
-  },
-  imgURL: {
-    type: String
-  }
-});
 
+  admin: {
+ 
+    type: Boolean,
+ 
+    default: false
+ 
+  },
+ 
+  password: {
+ 
+    type: String,
+ 
+    required: true
+ 
+  },
+ 
+  prenom: {
+ 
+    type: String,
+ 
+    required: true,
+ 
+    
+ 
+  },
+ 
+  nom: {
+ 
+    type: String,
+ 
+    required: true,
+ 
+    
+ 
+  },
+ 
+  affichage: {
+ 
+    type: Boolean,
+ 
+    default: "false"
+ 
+  },
+ 
+  mail: {
+ 
+    type: String,
+ 
+    required: true
+ 
+  },
+ 
+  age: {
+ 
+    type: Number,
+ 
+    default: 2
+ 
+  },
+ 
+  filiere: {
+ 
+    type: String
+ 
+  },
+ 
+  dev: {
+ 
+    type: Array,
+ 
+    default: ['Aucunes compétences dev']
+ 
+  },
+ 
+  design: {
+ 
+    type: Array,
+ 
+    default: ['Aucunes compétences design']
+ 
+  },
+ 
+  com: {
+ 
+    type: Array,
+ 
+    default: ['Aucunes compétences en communication']
+ 
+  },
+ 
+  tags: {
+ 
+    type: Array
+ 
+  },
+ 
+  parcours: {
+ 
+    type: Array
+ 
+  },
+ 
+  description: {
+ 
+    type: String
+ 
+  },
+ 
+  biographie: {
+ 
+    type: String
+ 
+  },
+ 
+  disponibilites: {
+ 
+    type: String
+ 
+  },
+ 
+  realisations: {
+ 
+    type: Array
+ 
+  },
+ 
+  contact: {
+ 
+    type: Array
+ 
+  },
+ 
+  photo: {
+ 
+    type: String
+ 
+  },
+ 
+  profil: {
+ 
+    type: String
+ 
+  },  
+ 
+  competences: {
+ 
+    type: Array
+ 
+  },
+ 
+  imgURL: {
+ 
+    type: String
+ 
+  }
+ 
+ });
+
+ 
 UserSchema.statics.authenticate = function (mail, password, callback) {
   User.findOne({ mail: mail })
     .exec(function (err, user) {

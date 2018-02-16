@@ -2,11 +2,12 @@
 <body id="questionnaire">
     <header class="fixed">
         <nav>
-        <img src="../img/logo.png">
+        <a href="/"> <img src="../img/logo.png"></a>
             </nav>
     </header>
     <main>
-        <form id="uploadForm" enctype="multipart/form-data" method="POST" action="./send-questionnaire">   
+        <!-- <form id="uploadForm" enctype="multipart/form-data" action="/send-questionnaire" method="POST">    -->
+        <form id="uploadForm" action="/send-questionnaire" method="POST">   
             <section class="question">
                 <h1>1/10 - Quel âge avez-vous ?</h1>
                 <hr>
@@ -28,9 +29,9 @@
                 <article>
                     <p>Du plus récent au plus ancien</p>
                     <textarea name="parcours" placeholder="1 - Raconter nous une expérience..."></textarea>
-                    <textarea name="parcours" placeholder="2 - Raconter nous une expérience..."></textarea>
+                    <!-- <textarea name="parcours" placeholder="2 - Raconter nous une expérience..."></textarea>
                     <textarea name="parcours" placeholder="3 - Raconter nous une expérience..."></textarea>
-                    <textarea name="parcours" placeholder="4 - Raconter nous une expérience..."></textarea>
+                    <textarea name="parcours" placeholder="4 - Raconter nous une expérience..."></textarea> -->
                 </article>
             </section>
             <section class="question">
@@ -112,8 +113,13 @@
                 <hr>
                 <img src="../img/icone-img.svg" alt="Photo de profil" />
                 <label>Choisir une photo</label>
+<<<<<<< HEAD
                 <p>Vous ne pouvez mettre qu'un png, jpeg, jpg ou gif !</p>
 		        <input type="file" accept="image/*" name="userFile" />
+=======
+                <p>Vous ne pouvez mettre qu'un png, jpeg, jpg ou gif! </p>
+		        <!-- <input type="file" accept="image/*" name="userFile" /> -->
+>>>>>>> 1bff3c3fffb1a14970eaa191dcfe9fb469d41714
             </section>
             <section class="question">
                 <p>C'est fini ! Vous pouvez personnaliser encore plus votre profil en répondant au quiz facultatif. </p>

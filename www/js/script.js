@@ -36,29 +36,34 @@ function search(inputValue, userList){
       //verifie que le nom et prenom contient le texte
     if (user.prenom.toLowerCase().indexOf(inputValue) == 0 || user.nom.toLowerCase().indexOf(inputValue) == 0 ){
       countMatched++;
+      console.log(user);
+      
     }
     
       // Vérifie dans les compétences dev
+      if(user.dev == null && user.dev.length == 1) {console.log('aucune competence')} else{
     for (domaine of user.dev) {  
       if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
       }
     }
-
+  }
       // Vérifie dans les compétences communication et marketing
+      if(user.com == null && user.com.length == 1) {console.log('aucune competence')} else{
     for (domaine of user.com) {   // On parcours les domaines de compétences
       if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
       }
     }
-
+  }
       // Vérifie dans les compétences design   
+      if(user.design == null && user.design.length == 1) {console.log('aucune competence')} else{
     for (domaine of user.design) {   // On parcours les domaines de compétences
       if (domaine.toLowerCase().indexOf(inputValue) == 0){
         countMatched++;
       }
     }
-    
+  }
     if (countMatched>0) affichage( user.username, user.description, user.profil, user.design, user.com, user.dev, user._id, user.imgURL, countPeople, inputValue);
   }
 }

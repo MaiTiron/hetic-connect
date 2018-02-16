@@ -13,7 +13,7 @@
             
             <section>
                 <% for (rep of reps) { %>
-                    <button name="etiquette" value="<%= rep.etiquette %>"><%= rep.contenu %></button>
+                    <button type="submit" name="etiquette" value="<%= rep.etiquette %>"><%= rep.contenu %></button>
                 <% } %>
 
                 <input style="display:none" type="text" name="id_Quest" value="<%= id_Quest %>" />

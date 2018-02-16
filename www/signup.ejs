@@ -31,10 +31,6 @@
                     <p class='centered errMsg'>Votre mot de passe doit entre <b>6 caractères</b> et <b>20 caractères</b> avec <b>une lettre minuscule et majuscule</b>, <b>1 chiffre</b></p>
                 </div>
 
-                <div class="incorrect">
-                    <p class="centered errMsg">Les mots de passe ne correspondent pas</p>
-                </div>
-
 
                 <button type="submit" id="inscr">Inscription</button>
                 <a href="/signin">Connectez-vous</a>
@@ -51,18 +47,18 @@
         var re = /(?=.*\d)(?=.*[a-z]).{6,20}/g;
     
         // for(input of inputPWD){    
-            input.addEventListener('change', function() { 
-                if (re.test(input.value) != true) {
-                    document.querySelector("div.err").style.display = 'block';
-                    document.querySelector("#inscr").setAttribute("disabled", "true");
-                }
+            // input.addEventListener('change', function() { 
+            //     if (re.test(input.value) != true) {
+            //         document.querySelector("div.err").style.display = 'block';
+            //         document.querySelector("#inscr").setAttribute("disabled", "true");
+            //     }
                 
-                if(pwd1 !== pwd2){
-                    console.log("test");
-                    document.querySelector("div.incorrect").style.display = 'block';
-                    document.querySelector("#inscr").setAttribute("disabled", "true");
-                }
-            });
+            //     if(pwd1 !== pwd2){
+            //         console.log("test");
+            //         document.querySelector("div.incorrect").style.display = 'block';
+            //         document.querySelector("#inscr").setAttribute("disabled", "true");
+            //     }
+            // });
         // }
         
     </script>

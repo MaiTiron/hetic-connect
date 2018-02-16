@@ -690,6 +690,13 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     height: 150px;
     border-radius: 100px;
 }
+#profil #topprofil a{
+    text-decoration: none;
+    color: #FFC300;
+    font-family: 'NeutraTextTF-Book';
+    font-size: 30px;
+}
+
 
 #profil #etiqprofil {
     width: 50%;
