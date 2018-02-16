@@ -395,18 +395,19 @@ router.post('/send-quizz', (req, res) => {
         if (err) { res.render({error : err})}    // Si y'a une erreur, sa coupe le .connect()
         else {     
             // ENVOYER EN BDD
-            let etiquette = req.body.etiquette;
+            var etiquette = req.body.etiquette;
+
             let userData = {
-                tags: ''
+                tags: [],
             }
             userData.tags.push(etiquette);
             console.log(req.body.etiquette);
             User.findById(req.session.userId).update(userData, function (error, user) {
-        
+                console.log(user);
                 if (error) {
-                    return next(error);
+                    return error;
                 } else {
-                    return res.redirect('mon-compte');
+                    return res.render('mon-compte', {user : user});
                 }
             });
 
@@ -416,7 +417,7 @@ router.post('/send-quizz', (req, res) => {
                 res.render('quizz', {quest: questionAlea.question, reps: questionAlea.responses, id_Quest: questionAlea._id });
             } else {
                 console.log('tableau vide');
-                res.render('404', {data: 'La page de retour n\'est pas encore dev !'});
+                return res.render('mon-compte', {user : user});
             }
         }
         db.close();
