@@ -21,7 +21,7 @@ Import des composants MongoDB et configuration
 */
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-mongoose.connect('mongodb://127.0.0.1:27017/hetic');
+mongoose.connect('mongodb://127.0.0.1/hetic');
 const db = mongoose.connection;
 
 
