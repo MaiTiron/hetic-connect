@@ -13,6 +13,8 @@
         <ul>
             <!-- Mettre à jour tous les header avec les bons liens -->
             <li><a href="/"><img alt="logo" src="../img/logo.png"></a></li>
+        </ul>
+        <ul>
             <li><a href="../faq"><img alt="F.A.Q" src="../img/icone-faq.svg">F.A.Q</a></li>
             <li><a href="#"><img alt="mon compte" src="../img/icone-compte.svg">Mon compte</a></li>
         </ul>
@@ -21,12 +23,12 @@
         <section id="topprofil">
             <img src="#" alt="image de profil" />
             <h1> <%= user.prenom %><span>  <%= user.nom %></span></h1>
-            <a class="remplir " href="/questionnaire"> Remplir mon profil</a>
             <!-- Afficher "Profil designer", etc ? -->
             <!-- Si admin : smaller "admin" en gris === c'était un commentaire existant, à vous de gérer -->
-            <h2> <%= user.age %></h2>
+            <p> <%= user.age %> ans</p>
             <p> <%= user.filiere %></p>
             <p> <%= user.description %></p>
+            <a class="remplir" href="/questionnaire">Faire le quizz</a>
         </section>
         <section id="etiqprofil">
             <% if(user.tags){ 
@@ -108,25 +110,25 @@
 
         <!-- Page profil, lorsque l'utilisateur n'a pas répondu au questionnaire -->
         <section id="topprofil">
-            <h1>Modification de vos informations</h1>
+            <h2>Modification de vos informations</h2>
             <article>
                 <input name="Prénom" type="text" placeholder=" <%= user.prenom %>" value=" <%= user.prenom %>"/>
                 <input name="Nom" type="text" placeholder=" <%= user.nom %>" value=" <%= user.nom %>" />
-                <!-- <input name="Age" type="text" placeholder=" <%= user.age %>" value=" <%= user.age %>" /> -->
+                <input name="Age" type="text" placeholder=" <%= user.age %>" value=" <%= user.age %>" />
                 <input name="Formation" type="text" placeholder=" <%= user.filiere %>" value=" <%= user.filiere %>" />
-                <input name="Description" type="text" placeholder=" <%= user.description %>" value=" <%= user.description %>" />
-                <input type="file" name="myImage" accept="image/x-png,image/gif,image/jpeg" />
+                <textarea name="Description" placeholder="Description : <%= user.description %>" value=" <%= user.description %>"></textarea>                <p class="file">
+                    <input type="file" name="myImage" accept="image/x-png,image/gif,image/jpeg" />
+                    <label for="file">Choisir une photo</label>
+                </p>
             </article>
         </section>
         <section id="etiqprofil">
             <h2>Compétences maîtrisées</h2>
             <article class="etiqprocompetences">
-                <p>
                     <% if(user.competences) { for(var i=0; i < user.competences.length; i++) { %>
-                        <p>Compétence : <input name="competence" type="text" placeholder=" <%= user.competences[i] %>" value=" <%= user.competences[i] %>"/> </p>
+                        <p>Compétence : <input name="competence" type="text" placeholder="<%= user.competences[i] %>" value=" <%= user.competences[i] %>"/> </p>
                     <% } 
                     }%>
-                </p>
             </article>
         </section>
         <section id="contenuprofil">
@@ -135,29 +137,35 @@
                 <h3>Parcours professionnel et scolaire</h3>
                 <% if(user.parcours){ for(var i=0; i < user.parcours.length; i++) { %>
                     <p>
-                        <input name="parcours" type="text" placeholder=" <%= user.parcours[i] %>" value=" <%= user.parcours[i] %>"/>
+                        <textarea name="parcours" placeholder=" <%= user.parcours[i] %>" value=" <%= user.parcours[i] %>"></textarea>
                     </p>
                 <% } 
                 }%>
             </article>
             <article class="contprodroite">
-                <img alt="parcours" src="../img/icone-hobbies.svg">
-                <h3>Bio & centres d'intérêt</h3>
-                <!-- à l'affichage en  bas il y a "phdb.useroto" je sais pas ce que -->
-                <p> <%= user.biographie %></p>
-                <img alt="disponibilités" src="../img/icone-horlogecopie.svg">
-                <h3>Disponibilités</h3>
-                <p> <%= user.disponibilites %></p>
-                <img alt="réalisations" src="../img/icone-realisationscopie.svg">
-                <h3>Réalisations</h3>
-                <p>Vous pouvez découvrir mes réalisations dans les liens suivants :</p>
-                <p class="reseauxsociaux">
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations[0] %>" value=" <%= user.realisations[0] %>"/>
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations[1] %>" value=" <%= user.realisations[1] %>"/>
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations[2] %>" value=" <%= user.realisations[2] %>"/>
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations[3] %>" value=" <%= user.realisations[3] %>"/>
-                    <input name="realisations" type="text" placeholder=" <%= user.realisations[4] %>" value=" <%= user.realisations[4] %>"/>
-                </p>
+                <div class="info">
+                    <img alt="parcours" src="../img/icone-hobbies.svg">
+                    <h3>Bio & centres d'intérêt</h3>
+                    <!-- à l'affichage en  bas il y a "phdb.useroto" je sais pas ce que -->
+                    <p> <%= user.biographie %></p>
+                </div>
+                <div class="info">
+                    <img alt="disponibilités" src="../img/icone-horlogecopie.svg">
+                    <h3>Disponibilités</h3>
+                    <textarea> <%= user.disponibilites %></textarea>
+                </div>
+                <div class="info">
+                    <img alt="réalisations" src="../img/icone-realisationscopie.svg">
+                    <h3>Réalisations</h3>
+                    <p>Vous pouvez découvrir mes réalisations dans les liens suivants :</p>
+                    <p class="reseauxsociaux">
+                        <input name="realisations" type="text" placeholder=" <%= user.realisations[0] %>" value=" <%= user.realisations[0] %>"/>
+                        <input name="realisations" type="text" placeholder=" <%= user.realisations[1] %>" value=" <%= user.realisations[1] %>"/>
+                        <input name="realisations" type="text" placeholder=" <%= user.realisations[2] %>" value=" <%= user.realisations[2] %>"/>
+                        <input name="realisations" type="text" placeholder=" <%= user.realisations[3] %>" value=" <%= user.realisations[3] %>"/>
+                        <input name="realisations" type="text" placeholder=" <%= user.realisations[4] %>" value=" <%= user.realisations[4] %>"/>
+                    </p>
+                </div>
             </article>
         </section>
         <section id="bottomprofil">
@@ -170,7 +178,6 @@
                 <p>
                     <img alt="facebook" src="../img/icone-facebook.svg"></a><input name="facebook" type="text" placeholder=" <%= user.contact %>" value=' <%= user.contact %>'/>
                     <img alt="linkedin" src="../img/icone-linkedin.svg"></a><input name="linkedin" type="text" placeholder=" <%= user.contact %>" value=" <%= user.contact %>"/>
-                </p>
                 </p>
             </article>
         </section>

@@ -394,7 +394,6 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     background-color: #FFC300;
     padding: 10px 25px 6px 25px;
     border: none;
-    margin-top: 10px;
     text-decoration: none;
     float: right;
     font-size: 18px;
@@ -655,13 +654,71 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 #profil #topprofil {
     text-align: center;
     width: 100%;
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
-#profil #topprofil h1 {
+#profil #topprofil input[type="text"] {
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #9EA0A6;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 46%;
+    font-size: 20px;
+    color: #303641;
+}
+
+
+.info{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.file {
+    position: relative;
+    margin-top: 40px;
+}
+.file label {
+    background: #384597;
+    padding: 8px 20px;
+    color: #fff;
+    transition: all .4s;
+    border-radius: 30px;
+}
+.file input {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    opacity: 0.01;
+    cursor: pointer;
+}
+.file input:hover + label,
+.file input:focus + label {
+   background:#303641;
+}
+#profil #topprofil textarea, .contprodroite textarea, .contprogauche textarea{
+    flex-basis: 100%;
+    margin-top: 20px;
+    border: none;
+    background-color: #FAFAFA;
+    font-family:'NeutraTextTF-Book';
+    font-size: 18px;
+    padding: 10px;
+}
+
+#profil #topprofil article{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 450px;
+    justify-content: space-between;
+    margin-right: 450px;
+}
+
+#profil #topprofil h2, #profil #etiqprofil h2 {
     font-family: 'NeutraText-BookAlt';
     color: #303641;
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 
 #profil #topprofil h1 span{
@@ -670,7 +727,8 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 
 #profil #topprofil p {                                                                                                                
     text-align: center;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     line-height: 32px;
 }
 
@@ -682,21 +740,24 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     color: #384597;
 }
 
-#profil #topprofil p:nth-of-type(3) {
-    font-style: italic;
-}
-
 #profil #topprofil img {
     height: 150px;
     border-radius: 100px;
 }
 #profil #topprofil a{
+    background: #384597;
+    padding: 8px 20px;
+    color: #fff;
+    transition: all .4s;
+    border-radius: 30px;
     text-decoration: none;
-    color: #FFC300;
-    font-family: 'NeutraTextTF-Book';
-    font-size: 30px;
 }
-
+#profil #topprofil p{
+    margin: 5;
+}
+#profil #topprofil a:hover{
+    background: #303641;
+}
 
 #profil #etiqprofil {
     width: 50%;
@@ -724,7 +785,8 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     padding-top: 40px;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     width: 53%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #profil #etiqprofil .etiqprocompetences {
@@ -739,6 +801,17 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     border-radius: 30px;
 }
 
+#profil #etiqprofil input{
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #9EA0A6;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 46%;
+    font-size: 20px;
+    color: #303641;
+}
+
 #profil #contenuprofil {
     background-color: #FAFAFA;
     text-align: center;
@@ -750,6 +823,17 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     justify-content:center ;
 }
 
+#profil #contenuprofil input{
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #9EA0A6;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 46%;
+    font-size: 20px;
+    color: #303641;
+}
+
 #profil #contenuprofil article {
     width: 30%;
     margin-left: 80px;
@@ -759,6 +843,10 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
 
 #profil #contenuprofil .contprogauche {
     margin-top: 16px;
+}
+
+.contprogauche textarea{
+    width: 100%;
 }
 
 #profil #contenuprofil .contprogauche img {
@@ -803,6 +891,13 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     text-align: center;
     margin-top: 90px;
     line-height: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#profil #bottomprofil>p{
+    flex-basis: 100%;
 }
 
 #profil #bottomprofil article {
@@ -815,10 +910,22 @@ main#connexion, main#inscription, main#questionnaire, main#start-quizz, main#qui
     margin-top: 30px;
 }
 
-#profil #bottomprofil article img {
-    height: 50px;
+#profil #bottomprofil article:last-of-type {
+    display: flex;
 }
-
+#profil #bottomprofil article:last-of-type img {
+    width: 32px;
+}
+#profil #bottomprofil input{
+    margin-bottom: 15px;
+    border: none;
+    border-bottom: 1px solid #9EA0A6;
+    opacity: 0.5;
+    font-family:'NeutraTextTF-Book';
+    width: 100%;
+    font-size: 20px;
+    color: #303641;
+}
 
 
 
